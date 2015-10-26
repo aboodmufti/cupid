@@ -8,7 +8,8 @@ QML_IMPORT_PATH =
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    test2.cpp
+    test2.cpp \
+    test_dania.cpp
 
 # Installation path
 # target.path =
@@ -18,4 +19,5 @@ include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    test2.h
+    test2.h \
+    test_dania.h
