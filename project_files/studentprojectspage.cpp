@@ -12,3 +12,12 @@ StudentProjectsPage::~StudentProjectsPage()
 {
     delete ui;
 }
+
+void StudentProjectsPage::setMain(MainWindow* newMain){
+    main = newMain;
+}
+
+void StudentProjectsPage::on_pushButton_clicked()
+{
+    main->handleNewPage(STUDENT_PROFILE);
+}

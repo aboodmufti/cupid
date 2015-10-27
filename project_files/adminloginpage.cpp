@@ -12,3 +12,13 @@ AdminLoginPage::~AdminLoginPage()
 {
     delete ui;
 }
+
+void AdminLoginPage::setMain(MainWindow* newMain){
+    main = newMain;
+}
+
+void AdminLoginPage::on_submitButton_clicked()
+{
+   main->handleNewPage(ADMIN_MAIN_PAGE);
+
+}

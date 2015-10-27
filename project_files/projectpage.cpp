@@ -12,3 +12,22 @@ ProjectPage::~ProjectPage()
 {
     delete ui;
 }
+
+void ProjectPage::setMain(MainWindow* newMain){
+    main = newMain;
+}
+
+void ProjectPage::on_pushButton_clicked()
+{
+    main->handleNewPage(ADMIN_MAIN_PAGE);
+}
+
+void ProjectPage::on_pushButton_3_clicked()
+{
+    main->handleNewPage(ADMIN_MAIN_PAGE);
+}
+
+void ProjectPage::on_pushButton_4_clicked()
+{
+    main->handleNewPage(EDIT_PROJECT);
+}

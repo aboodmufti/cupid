@@ -2,6 +2,8 @@
 #define EDITPROJECTPAGE_H
 
 #include <QWidget>
+#include "mainwindow.h"
+class MainWindow;
 
 namespace Ui {
 class EditProjectPage;
@@ -14,9 +16,19 @@ class EditProjectPage : public QWidget
 public:
     explicit EditProjectPage(QWidget *parent = 0);
     ~EditProjectPage();
+    void setMain(MainWindow*);
+
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::EditProjectPage *ui;
+    MainWindow *main;
 };
 
 #endif // EDITPROJECTPAGE_H
+
+
+

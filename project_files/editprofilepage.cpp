@@ -12,3 +12,17 @@ EditProfilePage::~EditProfilePage()
 {
     delete ui;
 }
+
+void EditProfilePage::setMain(MainWindow* newMain){
+    main = newMain;
+}
+
+void EditProfilePage::on_pushButton_2_clicked()
+{
+    main->handleNewPage(STUDENT_PROFILE);
+}
+
+void EditProfilePage::on_pushButton_clicked()
+{
+    main->handleNewPage(STUDENT_PROFILE);
+}

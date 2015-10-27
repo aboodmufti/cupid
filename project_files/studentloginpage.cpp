@@ -12,3 +12,12 @@ StudentLoginPage::~StudentLoginPage()
 {
     delete ui;
 }
+
+void StudentLoginPage::setMain(MainWindow* newMain){
+    main = newMain;
+}
+
+void StudentLoginPage::on_submitButton_clicked()
+{
+    main->handleNewPage(STUDENT_PROFILE);
+}

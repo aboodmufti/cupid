@@ -12,3 +12,12 @@ createProjectPage::~createProjectPage()
 {
     delete ui;
 }
+
+void createProjectPage::setMain(MainWindow* newMain){
+    main = newMain;
+}
+
+void createProjectPage::on_pushButton_clicked()
+{
+    main->handleNewPage(PROJECT);
+}

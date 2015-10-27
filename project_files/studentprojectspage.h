@@ -2,6 +2,8 @@
 #define STUDENTPROJECTSPAGE_H
 
 #include <QWidget>
+#include "mainwindow.h"
+class MainWindow;
 
 namespace Ui {
 class StudentProjectsPage;
@@ -14,9 +16,14 @@ class StudentProjectsPage : public QWidget
 public:
     explicit StudentProjectsPage(QWidget *parent = 0);
     ~StudentProjectsPage();
+    void setMain(MainWindow*);
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::StudentProjectsPage *ui;
+    MainWindow *main;
 };
 
 #endif // STUDENTPROJECTSPAGE_H

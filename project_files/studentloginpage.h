@@ -2,6 +2,8 @@
 #define STUDENTLOGINPAGE_H
 
 #include <QWidget>
+#include "mainwindow.h"
+class MainWindow;
 
 namespace Ui {
 class StudentLoginPage;
@@ -14,9 +16,16 @@ class StudentLoginPage : public QWidget
 public:
     explicit StudentLoginPage(QWidget *parent = 0);
     ~StudentLoginPage();
+    void setMain(MainWindow*);
+
+private slots:
+    void on_submitButton_clicked();
 
 private:
     Ui::StudentLoginPage *ui;
+    MainWindow *main;
 };
 
 #endif // STUDENTLOGINPAGE_H
+
+
