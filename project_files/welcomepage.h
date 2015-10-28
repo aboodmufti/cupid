@@ -19,10 +19,6 @@ public:
     void setMain(MainWindow*);
 
 private slots:
-    void on_adminButton_clicked();
-
-    void on_studentButton_clicked();
-
     void on_adminButton_2_clicked();
 
     void on_studentButton_2_clicked();
