@@ -17,12 +17,12 @@ void WelcomePage::setMain(MainWindow* newMain){
     main = newMain;
 }
 
-void WelcomePage::on_adminButton_clicked()
+void WelcomePage::on_adminButton_2_clicked()
 {
     main->handleNewPage(ADMIN_LOGIN);
 }
 
-void WelcomePage::on_studentButton_clicked()
+void WelcomePage::on_studentButton_2_clicked()
 {
     main->handleNewPage(STUDENT_LOGIN);
 }

@@ -16,10 +16,10 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>0</y>
-     <width>231</width>
-     <height>451</height>
+     <x>290</x>
+     <y>10</y>
+     <width>221</width>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -37,26 +37,51 @@
       </property>
      </widget>
     </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>260</y>
+     <width>301</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="adminButton">
-        <property name="text">
-         <string>Administrator</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="studentButton">
-        <property name="text">
-         <string>Student</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QPushButton" name="adminButton_2">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Administrator</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="studentButton_2">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Student</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
+  <zorder>verticalLayoutWidget_2</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>adminButton_2</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

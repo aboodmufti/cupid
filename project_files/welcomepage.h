@@ -23,6 +23,10 @@ private slots:
 
     void on_studentButton_clicked();
 
+    void on_adminButton_2_clicked();
+
+    void on_studentButton_2_clicked();
+
 private:
     Ui::WelcomePage *ui;
     MainWindow *main;
