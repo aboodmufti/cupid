@@ -3,38 +3,39 @@
 #define STUDENT_PROFILE_H
 
 #include <iostream>
-#include <string>
+#include <QString>
+#include <QList>
 
 using namespace std;
 
 
-class StudentPofile 
+class StudentProfile
 {
   public:
-    StudentPofile(String,String,int);
-    String            getUsername();
-    String            getStudentName();
-    int               getStudentID();
-    int*              getOwnQualifications();
-    int*              getPartnerQualifications();
-    list<Team*>       getTeams();
-    list<Projects*>   getProjects();
+    StudentProfile();
+    QString           getUsername();
+    QString           getName();
+    int               getID();
+    QList<int>*       getOwnQ();
+    QList<int>*       getPartnerQ();
+    //Qlist<Team*>      getTeams();
+    QList<Projects*>  getProjects();
     void              setUsername(String);
-    void              setStudentName(String);
-    void              setStudentID(int);
-    void              setOwnQualifications(int*);
-    void              setPartnerQualifications(int*);
-    void              addTeam(Team*);  // What about remove?
+    void              setName(String);
+    void              setID(int);
+    void              setOwnQ(QList<int>*);
+    void              setPartnerQ(QList<int>*);
+    //void              addTeam(Team*);  // What about remove?
     void              addProject(Project*);
     
   private:
-    String            username;
-    String            studentName;
+    QString           username;
+    QString           studentName;
     int               studentID;
-    int*              ownQualifications[13];
-    int*              partnerQualifications[13];
-    list<Team*>       teams;
-    list<Projects*>   projects;
+    QList<int>*        ownQualifications;
+    QList<int>*        partnerQualifications;
+    //QList<Team*>      teams;
+    QList<Projects*>  projects;
 };
 
 #endif

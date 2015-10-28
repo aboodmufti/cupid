@@ -1,65 +1,67 @@
 #include "StudentProfile.h"
 
 
-StudentPofile::StudentPofile(String userN ,String studentN ,int ID ){
-    username = userN;
-    studentName = studentN;
-    studentID = ID;
+StudentProfile::StudentProfile(){
+    username = "unknown";
+    studentName = "unknown";
+    studentID = -1;
 }
 
 //Getters
-String StudentPofile::getUsername(){
+QString StudentProfile::getUsername(){
     return username;
 }
 
-String StudentPofile::getStudentName(){
+QString StudentProfile::getName(){
     return studentName;
 }
 
-int StudentPofile::getStudentID(){
+int StudentProfile::getID(){
     return studentID;
 }
 
-int* StudentPofile::getOwnQualifications(){
+QList<int>*  StudentProfile::getOwnQ(){
     return ownQualifications;
 }
 
-int* StudentPofile::getPartnerQualifications(){
+QList<int>*  StudentProfile::getPartnerQ(){
     return partnerQualifications;
 }
-
-list<Team*> StudentPofile::getTeams(){
+/*
+QList<Team*> StudentProfile::getTeams(){
     return teams;
 }
-
-list<Projects*> StudentPofile::getProjects(){
+*/
+QList<Projects*> StudentProfile::getProjects(){
     return projects;
 }
 
 //Setters
-void StudentPofile::setUsername(String newUserName){
+void StudentProfile::setUsername(QString newUserName){
     username = newUserName;
 }
 
-void StudentPofile::setStudentName(String newStudentName){
+void StudentProfile::setName(QString newStudentName){
     studentName = newStudentName;
 }
 
-void StudentPofile::setStudentID(int newID){
+void StudentProfile::setID(int newID){
     studentID = newID;
 }
 
-void StudentPofile::setOwnQualifications(int* newList){
+void StudentProfile::setOwnQ(QList<int>*  newList){
     ownQualifications = newList;
 }
 
-void StudentPofile::setPartnerQualifications(int* newList){
+void StudentProfile::setPartnerQ(QList<int>*  newList){
     partnerQualifications = newList;
 }
 
-void StudentPofile::addTeam(Team* newTeam){
-    teams.push_back(newTeam);
+/*
+void StudentProfile::addTeam(Team* newTeam){
+    teams += newTeam;
 }
-void StudentPofile::addProject(Project* newProject){
-    projects.push_back(newProject);
+*/
+void StudentProfile::addProject(Project* newProject){
+    projects += newProject;
 }
