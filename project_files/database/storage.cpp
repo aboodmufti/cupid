@@ -34,16 +34,20 @@ bool Storage::insertAdministrator(Administrator *admin)
 
 bool Storage::insertStudent(StudentProfile *stuProfile)
 {
+    qDebug() << "DEBUG 1";
     int stuOwnQ = insertQualifications(stuProfile->getOwnQ());
+    qDebug() << "DEBUG 2";
     int stuPartnerQ = insertQualifications(stuProfile->getPartnerQ());
-
+    qDebug() << "DEBUG 3";
     query->prepare("INSERT INTO Student (S_ID, S_NAME, S_USERNAME, S_Own_Q, S_PARTNER_Q) VALUES (:id, :name, :username, :ownQ, :partnerQ );");
     //("+stuProfile->getID() +", '"+stuProfile->getName()+"', '"+stuProfile->getUsername()+"', "+stuOwnQ+", "+stuPartnerQ+")
+    qDebug() << "DEBUG 8";
     query->bindValue(":id",stuProfile->getID());
     query->bindValue(":name",stuProfile->getName());
     query->bindValue(":username",stuProfile->getUsername());
     query->bindValue(":ownQ",stuOwnQ);
     query->bindValue(":partnerQ",stuPartnerQ);
+    qDebug() << "DEBUG 9";
     bool exec_ok = query->exec();
 
 
@@ -52,6 +56,7 @@ bool Storage::insertStudent(StudentProfile *stuProfile)
 
 int Storage::insertQualifications(QList<int> *qualifications)
 {
+    qDebug() << "DEBUG 4";
     int GRADE_2404 = (*(qualifications))[1];
     int GRADE_2402 = (*(qualifications))[2];
     int PUNCTUALITY = (*(qualifications))[3];
@@ -65,7 +70,7 @@ int Storage::insertQualifications(QList<int> *qualifications)
     int WEEKEND = (*(qualifications))[11];
     int COURSE_LOAD = (*(qualifications))[12];
     int PROJECTS = (*(qualifications))[13];
-
+    qDebug() << "DEBUG 5";
     QSqlQuery *query2 = new QSqlQuery(db);
 
     /*
@@ -82,40 +87,43 @@ int Storage::insertQualifications(QList<int> *qualifications)
 
     query2->prepare("INSERT INTO Qualifications (GRADE_2404, GRADE_2402, PUNCTUALITY, TECHNICALITY, GROUP_WORK, WORK_HOURS, FLEXIBILITY, GRADE_GOAL, MEETING_TOPICS,  LEADERSHIP, WEEKEND, COURSE_LOAD, PROJECTS) "
                    " VALUES(:grade2404, :grade2042, :punctuality, :technicality, :groupWork, :workHours, :flexibility, :gradeGoal, :meetingTopics, :leadership, :weekend, :courseLoad, :projects)");
-    query2->bindValue("grade2404", GRADE_2404);
-    query2->bindValue("grade2042", GRADE_2402);
-    query2->bindValue("punctuality", PUNCTUALITY);
-    query2->bindValue("technicality", TECHNICALITY);
-    query2->bindValue("groupWork", GROUP_WORK);
-    query2->bindValue("workHours", WORK_HOURS);
-    query2->bindValue("flexibility", FLEXIBILITY);
-    query2->bindValue("gradeGoal", GRADE_GOAL);
-    query2->bindValue("meetingTopics", MEETING_TOPICS);
-    query2->bindValue("leadership",LEADERSHIP );
-    query2->bindValue("weekend", WEEKEND);
-    query2->bindValue("courseLoad", COURSE_LOAD);
-    query2->bindValue("projects", PROJECTS);
+    query2->bindValue(":grade2404", GRADE_2404);
+    query2->bindValue(":grade2042", GRADE_2402);
+    query2->bindValue(":punctuality", PUNCTUALITY);
+    query2->bindValue(":technicality", TECHNICALITY);
+    query2->bindValue(":groupWork", GROUP_WORK);
+    query2->bindValue(":workHours", WORK_HOURS);
+    query2->bindValue(":flexibility", FLEXIBILITY);
+    query2->bindValue(":gradeGoal", GRADE_GOAL);
+    query2->bindValue(":meetingTopics", MEETING_TOPICS);
+    query2->bindValue(":leadership",LEADERSHIP );
+    query2->bindValue(":weekend", WEEKEND);
+    query2->bindValue(":courseLoad", COURSE_LOAD);
+    query2->bindValue(":projects", PROJECTS);
     query2->exec();
     return query2->lastInsertId().toInt();
 }
 
 bool Storage::addStudentProject(int projId, int stuId)
 {
-    bool exec_ok = query->exec("INSERT INTO Project_Student (P_ID, S_ID) VALUES ('"+ projId +"', '"+ stuId +"');");
+    //bool exec_ok = query->exec("INSERT INTO Project_Student (P_ID, S_ID) VALUES ('"+ projId +"', '"+ stuId +"');");
     query->prepare("INSERT INTO Project_Student (P_ID, S_ID) VALUES (:pid, :sid);");
-    query->bindValue();
-
-    return exec_ok;
+    query->bindValue(":pid", projId);
+    query->bindValue(":sid", stuId);
+    return query->exec();
 }
 
 bool Storage::addAdminProject(int projId, QString adminUsername)
 {
-
+    /*
     bool exec_ok = query->exec("INSERT INTO Admin_Project (P_ID, A_USERNAME) "
                                "VALUES (" + projId + " , '" + adminUsername + "');");
+    */
+    query->prepare("INSERT INTO Admin_Project (P_ID, A_USERNAME) VALUES (:pid, :aUsername);");
+    query->bindValue(":pid", projId);
+    query->bindValue(":aUsername", adminUsername);
 
-
-    return exec_ok;
+    return query->exec();
 }
 
 Administrator* Storage::getAdminByUsername(QString adminUsername)
@@ -154,7 +162,10 @@ QList<Project*>* Storage::getAllProjects()
 
 
 Project* Storage::getProjectById(int id){
-    query->exec("select * from Project where P_ID = "+id+" ;");
+    //query->exec("select * from Project where P_ID = "+id+" ;");
+    query->prepare("select * from Project where P_ID = :pid ;");
+    query->bindValue(":pid", id);
+    query->exec();
     Project *project = new Project();
 
     query->next();
@@ -179,19 +190,37 @@ bool Storage::updateProject(Project* project){
     QString description = project->getDescription();
     QString status = project->getStatus();
 
-    return query->exec("UPDATE Project SET P_NAME = '"+name+"', P_TEAM_SIZE_MAX ="+ maxTeamSize+", "
+    /*return query->exec("UPDATE Project SET P_NAME = '"+name+"', P_TEAM_SIZE_MAX ="+ maxTeamSize+", "
                        "P_TEAM_SIZE_MIN ="+ minTeamSize + ", P_DESCRIPTION ='"+ description+ "',P_STATUS = '"+status+
-                       "' WHERE P_ID = "+id+" ;");
+                       "' WHERE P_ID = "+id+" ;");*/
+    query->prepare("UPDATE Project SET P_NAME = ':name', P_TEAM_SIZE_MAX = :maxTeamSize, "
+                   "P_TEAM_SIZE_MIN = :minTeamSize , P_DESCRIPTION = ': description ',P_STATUS = ':status "
+                   "' WHERE P_ID = :pid ;");
+    query->bindValue(":pid", id);
+    query->bindValue(":name", name);
+    query->bindValue(":maxTeamSize", maxTeamSize);
+    query->bindValue(":minTeamSize", minTeamSize);
+    query->bindValue(":description", description);
+    query->bindValue(":status", status);
 
+    return query->exec();
 }
 
 bool Storage::publishProject(int id ){
-    return query->exec("UPDATE Project SET P_STATUS= PUBLISHED WHERE P_ID = "+id+" ;");
+    //return query->exec("UPDATE Project SET P_STATUS= PUBLISHED WHERE P_ID = "+id+" ;");
+    query->prepare("UPDATE Project SET P_STATUS= PUBLISHED WHERE P_ID = :pid ;");
+    query->bindValue(":pid", id);
+
+    return query->exec();
 }
 
 StudentProfile* Storage::getStudentProfile(int id){
 
-    query->exec("select * from Student where S_ID = "+id+" ;");
+    //query->exec("select * from Student where S_ID = "+id+" ;");
+    query->prepare("select * from Student where S_ID =  :sid ;");
+    query->bindValue(":sid", id);
+
+    query->exec();
     StudentProfile *stu = new StudentProfile();
 
     query->next();
@@ -216,13 +245,17 @@ StudentProfile* Storage::getStudentProfile(int id){
 QList<int>* Storage::getQualifications(int id){
     QSqlQuery *query4 = new QSqlQuery(db);
 
-    query4->exec("select * from Qualifications where Q_ID = "+id+" ;");
+   // query4->exec("select * from Qualifications where Q_ID = "+id+" ;");
+    query4->prepare("select * from Qualifications where Q_ID =:qid ; ");
+    query4->bindValue(":qid", id);
+
+    query4->exec();
     QList<int>* qualifications = new QList<int>();
 
     query4->next();
 
     for(int i=0; i<14 ; ++i){
-        (*(qualifications))[i] = query4->value(i).toInt();
+        (*(qualifications)) += query4->value(i).toInt();
     }
 
 
@@ -250,10 +283,14 @@ QList<QList<QString>*>* Storage::getStudentProjects(int studentID){
     return projects;
 }
 
-bool Storage::studentJoinedProject(int projectId,int studentID){
+bool Storage::studentJoinedProject(int projectId,int studentId){
     QSqlQuery *query2 = new QSqlQuery(db);
 
-    query2->exec("select * from Project_Student where P_ID = "+projectId+" AND S_ID = "+studentID+" ;");
+    //query2->exec("select * from Project_Student where P_ID = "+projectId+" AND S_ID = "+studentID+" ;");
+    query2->prepare("select * from Project_Student where P_ID = :pid AND S_ID = :sid ; ");
+    query2->bindValue(":pid", projectId);
+    query2->bindValue(":sid", studentId);
+    query2->exec();
 
     if(query2->next()){
         return true;
@@ -297,21 +334,37 @@ bool Storage::updateQualifications(QList<int>* list){
     int COURSE_LOAD  = (*(list))[12];
     int PROJECTS  = (*(list))[13];
 
-    return query3->exec("UPDATE Qualifications SET"
-                 " GRADE_2404 ="+ GRADE_2404 +
-                 ", GRADE_2402 ="+ GRADE_2402 +
-                 ", PUNCTUALITY ="+PUNCTUALITY +
-                 ", TECHNICALITY="+TECHNICALITY +
-                 ", GROUP_WORK="+ GROUP_WORK +
-                 ", WORK_HOURS="+ WORK_HOURS +
-                 ", FLEXIBILITY="+ FLEXIBILITY +
-                 ", GRADE_GOAL="+ GRADE_GOAL +
-                 ", MEETING_TOPICS="+ MEETING_TOPICS +
-                 ", LEADERSHIP="+ LEADERSHIP +
-                 ", WEEKEND="+ WEEKEND +
-                 ", COURSE_LOAD="+ COURSE_LOAD +
-                 ", PROJECTS="+ PROJECTS +
-                 " WHERE Q_ID = "+Q_ID+" ;");
+    query3->prepare("UPDATE Qualifications SET"
+                 " GRADE_2404 = :grade2404 "
+                 ", GRADE_2402 = :grade2042 "
+                 ", PUNCTUALITY = :punctuality "
+                 ", TECHNICALITY= :technicality "
+                 ", GROUP_WORK= :groupWork "
+                 ", WORK_HOURS= :workHours "
+                 ", FLEXIBILITY= :flexibility "
+                 ", GRADE_GOAL= :gradeGoal "
+                 ", MEETING_TOPICS= :meetingTopics "
+                 ", LEADERSHIP= :leadership "
+                 ", WEEKEND= :weekend "
+                 ", COURSE_LOAD= :courseLoad "
+                 ", PROJECTS= :projects "
+                 " WHERE Q_ID =  :qid  ;");
+
+    query3->bindValue(":grade2404", GRADE_2404);
+    query3->bindValue(":grade2042", GRADE_2402);
+    query3->bindValue(":punctuality", PUNCTUALITY);
+    query3->bindValue(":technicality", TECHNICALITY);
+    query3->bindValue(":groupWork", GROUP_WORK);
+    query3->bindValue(":workHours", WORK_HOURS);
+    query3->bindValue(":flexibility", FLEXIBILITY);
+    query3->bindValue(":gradeGoal", GRADE_GOAL);
+    query3->bindValue(":meetingTopics", MEETING_TOPICS);
+    query3->bindValue(":leadership",LEADERSHIP );
+    query3->bindValue(":weekend", WEEKEND);
+    query3->bindValue(":courseLoad", COURSE_LOAD);
+    query3->bindValue(":projects", PROJECTS);
+    query3->bindValue(":qid", Q_ID);
+    return query3->exec();
 
 }
 
@@ -372,7 +425,11 @@ bool Storage::setUpAdminProjectTable()
 
 StudentProfile* Storage::getStudentsInProject(int pid)
 {
-  query->exec("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = "+ pid +") NATURAL JOIN (SELECT * FROM Student);");
+  //query->exec("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = "+ pid +") NATURAL JOIN (SELECT * FROM Student);");
+  query->prepare("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = :pid ) NATURAL JOIN (SELECT * FROM Student);");
+  query->bindValue(":pid", pid);
+  query->exec();
+
   StudentProfile *s = new StudentProfile();
   while(query->next()){
     s->setID(query->value(0).toInt());

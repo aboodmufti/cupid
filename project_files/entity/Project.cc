@@ -3,13 +3,13 @@
 
 Project::Project(){
   projectName = "unknown";
-  teamSizeMin = -1;
-  teamSizeMax = -1;
+  minTeamSize = -1;
+  maxTeamSize = -1;
   projectDescription = "unknown";
   id = -1;
 }
 
-~Project(){
+Project::~Project(){
 
 }
 
