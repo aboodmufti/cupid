@@ -1,14 +1,21 @@
 #include "storage.h"
 #include <QList>
+#include <unistd.h>
 
 Storage::Storage()
 {
+    QString test = __FILE__;
+    QString test2 = test.left(test.length() - 11);
+    QString final_path = test2.append("cupid_DB.db");
+
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/student/Desktop/project_files/database/cupid_DB.db");                            //FIX
+    db.setDatabaseName(final_path);                            //FIX
 
     bool db_ok = db.open();
 
     query = new QSqlQuery(db);
+
+
 }
 
 
@@ -34,30 +41,29 @@ bool Storage::insertAdministrator(Administrator *admin)
 
 bool Storage::insertStudent(StudentProfile *stuProfile)
 {
-    qDebug() << "DEBUG 1";
+
     int stuOwnQ = insertQualifications(stuProfile->getOwnQ());
-    qDebug() << "DEBUG 2";
+
     int stuPartnerQ = insertQualifications(stuProfile->getPartnerQ());
-    qDebug() << "DEBUG 3";
+
     query->prepare("INSERT INTO Student (S_ID, S_NAME, S_USERNAME, S_Own_Q, S_PARTNER_Q) VALUES (:id, :name, :username, :ownQ, :partnerQ );");
     //("+stuProfile->getID() +", '"+stuProfile->getName()+"', '"+stuProfile->getUsername()+"', "+stuOwnQ+", "+stuPartnerQ+")
-    qDebug() << "DEBUG 8";
+
     query->bindValue(":id",stuProfile->getID());
     query->bindValue(":name",stuProfile->getName());
     query->bindValue(":username",stuProfile->getUsername());
     query->bindValue(":ownQ",stuOwnQ);
     query->bindValue(":partnerQ",stuPartnerQ);
-    qDebug() << "DEBUG 9";
+
     bool exec_ok = query->exec();
 
-    qDebug() << "Error insert Student:  | " << query->lastError().text();
 
     return exec_ok;
 }
 
 int Storage::insertQualifications(QList<int> *qualifications)
 {
-    qDebug() << "DEBUG 4";
+
     int GRADE_2404 = (*(qualifications))[1];
     int GRADE_2402 = (*(qualifications))[2];
     int PUNCTUALITY = (*(qualifications))[3];
@@ -71,7 +77,7 @@ int Storage::insertQualifications(QList<int> *qualifications)
     int WEEKEND = (*(qualifications))[11];
     int COURSE_LOAD = (*(qualifications))[12];
     int PROJECTS = (*(qualifications))[13];
-    qDebug() << "DEBUG 5";
+
     QSqlQuery *query2 = new QSqlQuery(db);
 
     /*
@@ -374,16 +380,14 @@ bool Storage::updateQualifications(QList<int>* list){
 StudentProfile* Storage::getStudentByUsername(QString username)
 {
     query->exec("SELECT * FROM Student WHERE S_USERNAME = '"+username+"';");
-    qDebug() << "Error:  | " << query->lastError().text();
+
 
     StudentProfile *s = new StudentProfile();
-    qDebug() << "DEBUG 12.1";
+
     query->first();
-    qDebug() << "DEBUG 12.2";
+
     s->setID(query->value(0).toInt());
-    qDebug() << "DEBUG 12.3";
     s->setName(query->value(1).toString());
-    qDebug() << "DEBUG 12.4";
     s->setUsername(query->value(2).toString());
 
     int ownQ = query->value(3).toInt();

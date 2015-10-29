@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
     StudentProfile* stu = new StudentProfile();
     QList<int>* ownq = new QList<int>();
-    qDebug() << "DEBUG 6";
+
     (*(ownq)) += 1;
     (*(ownq)) += 1;
     (*(ownq)) += 2;
@@ -36,20 +36,20 @@ int main(int argc, char *argv[])
     (*(ownq)) += 12;
     (*(ownq)) += 14;
     (*(ownq)) += 19;
-    qDebug() << "DEBUG 7";
+
 
     stu->setID(10023492);
     stu->setName("Hussam");
-    qDebug() << "DEBUG 10";
+
     stu->setOwnQ(ownq);
     stu->setPartnerQ(ownq);
-    qDebug() << "DEBUG 11";
+
     stu->setUsername("hussamabubaker");
 
     qDebug() << "insert student " << storage->insertStudent(stu);
-    qDebug() << "DEBUG 12";
+
     StudentProfile* newStu = storage->getStudentByUsername("hussamabubaker");
-    qDebug() << "DEBUG 13";
+
     qDebug() << newStu->getName();
 
     return a.exec();
