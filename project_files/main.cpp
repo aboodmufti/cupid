@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include "databasemanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -7,6 +8,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.initialize();
     w.show();
+
+    DatabaseManager *db = new DatabaseManager();
 
     return a.exec();
 }
