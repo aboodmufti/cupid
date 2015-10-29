@@ -12,12 +12,12 @@ int main(int argc, char *argv[])
 
     Storage* storage = new Storage();
 
-    storage->setUpAdministratorTable();
-    storage->setUpAdminProjectTable();
-    storage->setUpProjectStudentTable();
-    storage->setUpProjectTable();
-    storage->setUpQualificationsTable();
-    storage->setUpStudentTable();
+    qDebug() << "adminTable " << storage->setUpAdministratorTable();
+    qDebug() << "adminProjectTable " << storage->setUpAdminProjectTable();
+    qDebug() << "ProjectStudentTable " << storage->setUpProjectStudentTable();
+    qDebug() << "projectTable " << storage->setUpProjectTable();
+    qDebug() << "Q table " << storage->setUpQualificationsTable();
+    qDebug() << "student table " << storage->setUpStudentTable();
 
     StudentProfile* stu = new StudentProfile();
     QList<int>* ownq = new QList<int>();
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     qDebug() << "DEBUG 11";
     stu->setUsername("hussamabubaker");
 
-    storage->insertStudent(stu);
+    qDebug() << "insert student " << storage->insertStudent(stu);
     qDebug() << "DEBUG 12";
     StudentProfile* newStu = storage->getStudentByUsername("hussamabubaker");
     qDebug() << "DEBUG 13";

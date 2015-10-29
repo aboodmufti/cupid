@@ -63,4 +63,5 @@ FORMS    += mainwindow.ui \
     welcomepage.ui
 
 OTHER_FILES += \
-    cupid_newUI.pro.user
+    cupid_newUI.pro.user \
+    database/cupid_DB.db

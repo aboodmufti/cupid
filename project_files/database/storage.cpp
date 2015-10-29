@@ -4,7 +4,7 @@
 Storage::Storage()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("./cupid_DB.db");                            //FIX
+    db.setDatabaseName("/home/student/Desktop/project_files/database/cupid_DB.db");                            //FIX
 
     bool db_ok = db.open();
 
@@ -50,6 +50,7 @@ bool Storage::insertStudent(StudentProfile *stuProfile)
     qDebug() << "DEBUG 9";
     bool exec_ok = query->exec();
 
+    qDebug() << "Error insert Student:  | " << query->lastError().text();
 
     return exec_ok;
 }
@@ -373,12 +374,16 @@ bool Storage::updateQualifications(QList<int>* list){
 StudentProfile* Storage::getStudentByUsername(QString username)
 {
     query->exec("SELECT * FROM Student WHERE S_USERNAME = '"+username+"';");
+    qDebug() << "Error:  | " << query->lastError().text();
 
     StudentProfile *s = new StudentProfile();
-
-    query->next();
+    qDebug() << "DEBUG 12.1";
+    query->first();
+    qDebug() << "DEBUG 12.2";
     s->setID(query->value(0).toInt());
+    qDebug() << "DEBUG 12.3";
     s->setName(query->value(1).toString());
+    qDebug() << "DEBUG 12.4";
     s->setUsername(query->value(2).toString());
 
     int ownQ = query->value(3).toInt();
