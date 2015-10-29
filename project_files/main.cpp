@@ -9,7 +9,5 @@ int main(int argc, char *argv[])
     w.initialize();
     w.show();
 
-    DatabaseManager *db = new DatabaseManager();
-
     return a.exec();
 }

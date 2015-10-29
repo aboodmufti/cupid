@@ -32,7 +32,7 @@ QList<Team*> StudentProfile::getTeams(){
     return teams;
 }
 */
-QList<Projects*> StudentProfile::getProjects(){
+QList<Project*> StudentProfile::getProjects(){
     return projects;
 }
 
@@ -58,10 +58,14 @@ void StudentProfile::setPartnerQ(QList<int>*  newList){
 }
 
 /*
-void StudentProfile::addTeam(Team* newTeam){
+void StudentProfile::setTeams(Team* newTeam){
     teams += newTeam;
 }
 */
 void StudentProfile::addProject(Project* newProject){
     projects += newProject;
+}
+
+void StudentProfile::setProjects(QList<Project*> newProjects){
+    projects = newProjects;
 }

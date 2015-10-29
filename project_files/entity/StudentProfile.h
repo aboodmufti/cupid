@@ -1,10 +1,10 @@
 
-#ifndef STUDENT_PROFILE_H
-#define STUDENT_PROFILE_H
+#ifndef STUDENTPROFILE_H
+#define STUDENTPROFILE_H
 
-#include <iostream>
 #include <QString>
 #include <QList>
+#include "Project.h"
 
 using namespace std;
 
@@ -19,23 +19,25 @@ class StudentProfile
     QList<int>*       getOwnQ();
     QList<int>*       getPartnerQ();
     //Qlist<Team*>      getTeams();
-    QList<Projects*>  getProjects();
-    void              setUsername(String);
-    void              setName(String);
+    QList<Project*>   getProjects();
+    void              setUsername(QString);
+    void              setName(QString);
     void              setID(int);
     void              setOwnQ(QList<int>*);
     void              setPartnerQ(QList<int>*);
-    //void              addTeam(Team*);  // What about remove?
+    //void              setTeams(Team*);
     void              addProject(Project*);
+    void              setProjects(QList<Project*>);
     
   private:
     QString           username;
     QString           studentName;
     int               studentID;
-    QList<int>*        ownQualifications;
-    QList<int>*        partnerQualifications;
+    QList<int>*       ownQualifications;
+    QList<int>*       partnerQualifications;
     //QList<Team*>      teams;
-    QList<Projects*>  projects;
+    QList<Project*>   projects;
+
 };
 
 #endif

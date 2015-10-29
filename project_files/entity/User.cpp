@@ -3,12 +3,9 @@
 
 User::User()
 {
+    username = "unknown";
 }
 
-User::User(QString username)
-{
-    this->username = username;
-}
 
 void User::setUsername(QString username)
 {

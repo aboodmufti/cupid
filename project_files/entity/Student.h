@@ -7,10 +7,12 @@
 
 class Student: public User
 {
+    public:
+        Student();
+        void setStudentProfile(StudentProfile*);
+
     private:
         StudentProfile *stuProfile;
-    public:
-        Student(QString);
 
 };
 #endif // STUDENT_H

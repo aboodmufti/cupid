@@ -10,7 +10,6 @@ class User
         QString username;
     public:
         User();
-        User(QString="");
         void setUsername(QString);
         QString getUsername();
 };

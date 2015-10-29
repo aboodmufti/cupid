@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,7 +23,13 @@ SOURCES += main.cpp\
     studentloginpage.cpp \
     studentprofilepage.cpp \
     studentprojectspage.cpp \
-    welcomepage.cpp
+    welcomepage.cpp \
+    database/storage.cpp \
+    entity/Administrator.cpp \
+    entity/Project.cc \
+    entity/Student.cpp \
+    entity/StudentProfile.cc \
+    entity/User.cpp
 
 HEADERS  += mainwindow.h \
     adminloginpage.h \
@@ -35,7 +41,14 @@ HEADERS  += mainwindow.h \
     studentloginpage.h \
     studentprofilepage.h \
     studentprojectspage.h \
-    welcomepage.h
+    welcomepage.h \
+    database/storage.h \
+    entity/Administrator.h \
+    entity/Project.h \
+    entity/Student.h \
+    entity/StudentProfile.h \
+    entity/User.h \
+    entity/EntityDef.h
 
 FORMS    += mainwindow.ui \
     adminloginpage.ui \
