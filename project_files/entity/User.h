@@ -6,7 +6,7 @@ using namespace std;
 
 class User
 {
-    private:
+    protected:
         QString username;
     public:
         User();
