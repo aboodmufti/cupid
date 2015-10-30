@@ -150,7 +150,7 @@ QList<Project*>* Storage::getAllProjects()
     QList<Project*>* listOfProjects = new QList<Project*>();
     query->exec("select * from Project;");
 
-    query->first()
+    query->first();
     do{
         Project *project = new Project();
         project->setID(query->value(0).toInt());
@@ -161,7 +161,7 @@ QList<Project*>* Storage::getAllProjects()
         project->setStatus(query->value(5).toString());
 
         (*listOfProjects) += project;
-    }while(query->next())
+    }while(query->next());
 
     return listOfProjects;
 }
@@ -286,7 +286,7 @@ QList<QList<QString>*>* Storage::getStudentProjects(int studentID){
             (*(project))[2] = "FALSE";
         }
         (*projects) += project;
-    }while (query->next())
+    }while (query->next());
 
     return projects;
 }
@@ -455,7 +455,7 @@ StudentProfile* Storage::getStudentsInProject(int pid)
 
     s->setOwnQ(oQ);
     s->setPartnerQ(pQ);
-  }while(query->next())
+  }while(query->next());
 
   return s;
 }
