@@ -18,8 +18,10 @@ Storage::Storage()
 
 }
 
-
-
+QSqlQuery* Storage::getQueryObject()
+{
+    return query;
+}
 bool Storage::insertProject(Project *proj)
 {
     bool exec_ok = query->exec("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, "
@@ -136,7 +138,7 @@ bool Storage::addAdminProject(int projId, QString adminUsername)
 Administrator* Storage::getAdminByUsername(QString adminUsername)
 {
     Administrator *admin = new Administrator();
-    query->exec("select * from Admin where A_USERNAME = "+adminUsername+";");
+    query->exec("select * from Admin where A_USERNAME = '"+adminUsername+"';");
 
     query->first();
     admin->setUsername(query->value(0).toString());
@@ -215,7 +217,7 @@ bool Storage::updateProject(Project* project){
 
 bool Storage::publishProject(int id ){
     //return query->exec("UPDATE Project SET P_STATUS= PUBLISHED WHERE P_ID = "+id+" ;");
-    query->prepare("UPDATE Project SET P_STATUS= PUBLISHED WHERE P_ID = :pid ;");
+    query->prepare("UPDATE Project SET P_STATUS = 'PUBLISHED' WHERE P_ID = :pid ;");
     query->bindValue(":pid", id);
 
     return query->exec();
@@ -271,19 +273,19 @@ QList<int>* Storage::getQualifications(int id){
 
 QList<QList<QString>*>* Storage::getStudentProjects(int studentID){
 
-    query->exec("select P_ID, P_NAME from Projects where P_STATUS = 'PUBLISHED';");
+    qDebug() <<"get published projects: " <<query->exec("select P_ID, P_NAME from Project where P_STATUS = 'PUBLISHED';");
     QList<QList<QString>*>* projects = new QList<QList<QString>*>;
 
     query->first();
     do{
         QList<QString>* project = new QList<QString>();
-        (*(project))[0] = query->value(0).toString();
-        (*(project))[1] = query->value(1).toString();
-        bool joined = studentJoinedProject(query->value(0).toInt(),studentID);
+        (*(project)) += query->value(0).toString();  //id
+        (*(project)) += query->value(1).toString();  //name
+        bool joined = studentJoinedProject(query->value(0).toInt(),studentID); //joined
         if(joined){
-            (*(project))[2] = "TRUE";
+            (*(project)) += "TRUE";
         }else{
-            (*(project))[2] = "FALSE";
+            (*(project)) += "FALSE";
         }
         (*projects) += project;
     }while (query->next());
@@ -317,11 +319,18 @@ bool Storage::updateStudentProfile(StudentProfile* stu){
     updateQualifications(ownQ);
     updateQualifications(partnerQ);
 
+
+    query->prepare("UPDATE Student SET S_NAME = :sname,  S_USERNAME = :susername  WHERE S_ID = :sid; ");
+    query->bindValue(":sid", id);
+    query->bindValue(":sname", name);
+    query->bindValue(":susername", username);
+    return query->exec();
+    /*
     return query->exec("UPDATE Project SET "
                        " S_NAME = '"+name+"' "
                        ", S_USERNAME = '"+username+"' "
                        " WHERE P_ID = "+id+" ;");
-
+    */
 }
 
 bool Storage::updateQualifications(QList<int>* list){
@@ -432,7 +441,7 @@ bool Storage::setUpAdminProjectTable()
 {
     return query->exec("create table if not exists Admin_Project (P_ID INTEGER, A_USERNAME varchar(96), FOREIGN KEY (P_ID) REFERENCES Project(P_ID), FOREIGN KEY (A_USERNAME) REFERENCES Admin(A_USERNAME));");
 }
-
+/*
 StudentProfile* Storage::getStudentsInProject(int pid)
 {
   //query->exec("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = "+ pid +") NATURAL JOIN (SELECT * FROM Student);");
@@ -459,3 +468,35 @@ StudentProfile* Storage::getStudentsInProject(int pid)
 
   return s;
 }
+*/
+QList<StudentProfile*>* Storage::getStudentsInProject(int pid)
+{
+  //query->exec("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = "+ pid +") NATURAL JOIN (SELECT * FROM Student);");
+  query->prepare("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = :pid ) NATURAL JOIN (SELECT * FROM Student);");
+  query->bindValue(":pid", pid);
+  query->exec();
+    QList<StudentProfile*>* studentsList = new QList<StudentProfile*>();
+
+
+  query->first();
+  do{
+    StudentProfile *s = new StudentProfile();
+    s->setID(query->value(0).toInt());
+    s->setName(query->value(1).toString());
+    s->setUsername(query->value(2).toString());
+
+    int ownQ = query->value(3).toInt();
+    int partnerQ = query->value(4).toInt();
+
+    QList<int>* oQ = getQualifications(ownQ);
+    QList<int>* pQ = getQualifications(partnerQ);
+
+    s->setOwnQ(oQ);
+    s->setPartnerQ(pQ);
+    (*studentsList) += s;
+
+  }while(query->next());
+
+  return studentsList;
+}
+

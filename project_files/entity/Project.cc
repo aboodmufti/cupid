@@ -7,6 +7,7 @@ Project::Project(){
   maxTeamSize = -1;
   projectDescription = "unknown";
   id = -1;
+  status = "NOT_PUBLISHED";
 }
 
 Project::~Project(){

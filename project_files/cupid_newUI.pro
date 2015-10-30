@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     entity/Project.cc \
     entity/Student.cpp \
     entity/StudentProfile.cc \
-    entity/User.cpp
+    entity/User.cpp \
+    storage_test_cases.cpp
 
 HEADERS  += mainwindow.h \
     adminloginpage.h \
