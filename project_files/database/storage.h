@@ -13,7 +13,7 @@ class Storage
 {
     public:
         Storage();
-        bool                            insertProject(Project*);    //abood
+        int                            insertProject(Project*);    //abood
         bool                            insertAdministrator(Administrator*);
         bool                            insertStudent(StudentProfile*); //abood
         int                             insertQualifications(QList<int>*); //abood

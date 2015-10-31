@@ -18,6 +18,7 @@ public:
     ~EditProjectPage();
     void setMain(MainWindow*);
     Project* getProject();
+    void setProject(Project*);
 
 private slots:
     void on_pushButton_clicked();
@@ -27,6 +28,7 @@ private slots:
 private:
     Ui::EditProjectPage *ui;
     MainWindow *main;
+    int pid;
 };
 
 #endif // EDITPROJECTPAGE_H

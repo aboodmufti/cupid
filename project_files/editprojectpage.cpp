@@ -19,23 +19,40 @@ void EditProjectPage::setMain(MainWindow* newMain){
 
 void EditProjectPage::on_pushButton_clicked()
 {
-    main->handleNewPage(PROJECT);
+
+    main->updateProject(getProject());
+    main->openProject(pid);
+   // main->handleNewPage(PROJECT);
 }
 
 void EditProjectPage::on_pushButton_2_clicked()
 {
-    main->handleNewPage(PROJECT);
+
+    main->openProject(pid);;
+    //main->openProject(newID);
+    //main->handleNewPage(PROJECT);
 }
 
 Project* EditProjectPage::getProject()
 {
     Project* project = new Project();
 
+
     // We need to get 'project Id' and 'project status' to
     // pass project into 'updateProject(project)'
+    project->setID(pid);
     project->setName(ui->newNameLineEdit->text());
     project->setMinTeamSize(ui->newMinTeamSpinBox->value());
     project->setMaxTeamSize(ui->newMaxTeamSpinBox->value());
     project->setDescription(ui->newDesriptionTextEdit->toPlainText());
     return project;
+}
+
+void EditProjectPage::setProject(Project* proj)
+{
+    pid = proj->getID();
+    ui->newNameLineEdit->setText(proj->getName());
+    ui->newMinTeamSpinBox->setValue(proj->getMinTeamSize());
+    ui->newMaxTeamSpinBox->setValue(proj->getMaxTeamSize());
+    ui->newDesriptionTextEdit->setPlainText(proj->getDescription());
 }

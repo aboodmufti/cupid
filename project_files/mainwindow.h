@@ -35,6 +35,10 @@ public:
     ~MainWindow();
     void handleNewPage(View view);
     void initialize();
+    int createProject(Project* proj);
+    void openProject(int pid);
+    void editProject(int pid);
+    void updateProject(Project*);
 
 private:
     Ui::MainWindow *ui;

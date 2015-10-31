@@ -19,6 +19,7 @@ public:
     void setMain(MainWindow*);
     void setProject(Project*);
 
+
 private slots:
     void on_pushButton_clicked();
 
@@ -29,6 +30,7 @@ private slots:
 private:
     Ui::ProjectPage *ui;
     MainWindow *main;
+    int pid;
 };
 
 #endif // PROJECTPAGE_H

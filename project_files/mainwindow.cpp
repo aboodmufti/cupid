@@ -7,7 +7,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     storage = new Storage();
-
+    qDebug() << storage->setUpAdministratorTable();
+    qDebug() << storage->setUpAdminProjectTable();
+    qDebug() << storage->setUpProjectStudentTable();
+    qDebug() << storage->setUpProjectTable();
+    qDebug() << storage->setUpQualificationsTable();
+    qDebug() << storage->setUpStudentTable();
 }
 
 MainWindow::~MainWindow()
@@ -76,8 +81,8 @@ void MainWindow::handleNewPage(View view){
         case CREATE_PROJECT:
         {
           createProjectPage *createProject = new createProjectPage();
-          Project* project = createProject->getProject();
-          storage->insertProject(project); // returns bool, so we can display an error message later on
+          //Project* project = createProject->getProject();
+          //storage->insertProject(project); // returns bool, so we can display an error message later on
           createProject->setMain(this);
           this->setCentralWidget(createProject);
         }
@@ -85,8 +90,11 @@ void MainWindow::handleNewPage(View view){
         case PROJECT:
         {
           ProjectPage *projectPage = new ProjectPage();
-
-          //Project* project = storage->getProjectById();   //Project* getProjectById(int)
+          // we need to get project ID from adminMainPage
+          // when the admin has clicked on a specific project
+          //AdminMainPage *adminMain = new AdminMainPage();
+          //int projectId = adminMain->getProjectId();
+          //Project* project = storage->getProjectById(projectId);
           //projectPage->setProject(project);
 
           projectPage->setMain(this);
@@ -106,4 +114,43 @@ void MainWindow::handleNewPage(View view){
           break;
     }
 
+}
+
+int MainWindow::createProject(Project* proj){
+    qDebug() << "max team size: "<<proj->getMaxTeamSize();
+    qDebug() << "min team size: "<<proj->getMinTeamSize();
+    return storage->insertProject(proj);
+}
+
+void MainWindow::openProject(int pid)
+{
+    Project* project = storage->getProjectById(pid);
+    qDebug() << "2 max team size: "<<project->getMaxTeamSize();
+    qDebug() << "2 min team size: "<<project->getMinTeamSize();
+    ProjectPage *projectPage = new ProjectPage();
+
+    projectPage->setProject(project);
+
+    projectPage->setMain(this);
+
+    this->setCentralWidget(projectPage);
+}
+
+void MainWindow::editProject(int pid)
+{
+    Project* project = storage->getProjectById(pid);
+    qDebug() << "3 max team size: "<<project->getMaxTeamSize();
+    qDebug() << "3 min team size: "<<project->getMinTeamSize();
+    EditProjectPage *editPage = new EditProjectPage();
+
+    editPage->setProject(project);
+
+    editPage->setMain(this);
+
+    this->setCentralWidget(editPage);
+}
+
+void MainWindow::updateProject(Project* proj)
+{
+    storage->updateProject(proj);
 }

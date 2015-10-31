@@ -20,7 +20,9 @@ void createProjectPage::setMain(MainWindow* newMain)
 
 void createProjectPage::on_pushButton_clicked()
 {
-    main->handleNewPage(PROJECT);
+    int newID = main->createProject(getProject());
+    main->openProject(newID);
+    //main->handleNewPage(PROJECT);
 }
 
 Project* createProjectPage::getProject()

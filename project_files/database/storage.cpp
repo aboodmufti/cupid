@@ -23,16 +23,23 @@ QSqlQuery* Storage::getQueryObject()
     return query;
 }
 
-bool Storage::insertProject(Project *proj)
+int Storage::insertProject(Project *proj)
 {
-    bool exec_ok = query->exec("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, "
+   /* bool exec_ok = query->exec("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, "
                                "P_TEAM_SIZE_MIN, P_DESCRIPTION, P_STATUS) VALUES "
-                               "('"+ proj->getName() +"', '"+ proj->getMaxTeamSize() +"', "
-                               "'"+ proj->getMinTeamSize() +"', '"+ proj->getDescription() +"', "
+                               "('"+ proj->getName() +"', "+ proj->getMaxTeamSize() +", "
+                               ""+ proj->getMinTeamSize() +", '"+ proj->getDescription() +"', "
                                "'"+ proj->getStatus() +"' );");
+                               */
+    query->prepare("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, P_TEAM_SIZE_MIN, P_DESCRIPTION, P_STATUS) VALUES (:name, :maxTeamSize, :minTeamSize, :description, :status);");
+    query->bindValue(":name", proj->getName());
+    query->bindValue(":maxTeamSize", proj->getMaxTeamSize());
+    query->bindValue(":minTeamSize", proj->getMinTeamSize());
+    query->bindValue(":description", proj->getDescription());
+    query->bindValue(":status", proj->getStatus());
 
-
-    return exec_ok;
+    query->exec();
+    return query->lastInsertId().toInt();
 }
 
 bool Storage::insertAdministrator(Administrator *admin)
@@ -182,8 +189,8 @@ Project* Storage::getProjectById(int id){
 
     project->setID(query->value(0).toInt());
     project->setName(query->value(1).toString());
-    project->setMaxTeamSize(query->value(2).toInt());
-    project->setMinTeamSize(query->value(3).toInt());
+    project->setMaxTeamSize(query->value(3).toInt());
+    project->setMinTeamSize(query->value(2).toInt());
     project->setDescription(query->value(4).toString());
     project->setStatus(query->value(5).toString());
 
@@ -203,9 +210,9 @@ bool Storage::updateProject(Project* project){
     /*return query->exec("UPDATE Project SET P_NAME = '"+name+"', P_TEAM_SIZE_MAX ="+ maxTeamSize+", "
                        "P_TEAM_SIZE_MIN ="+ minTeamSize + ", P_DESCRIPTION ='"+ description+ "',P_STATUS = '"+status+
                        "' WHERE P_ID = "+id+" ;");*/
-    query->prepare("UPDATE Project SET P_NAME = ':name', P_TEAM_SIZE_MAX = :maxTeamSize, "
-                   "P_TEAM_SIZE_MIN = :minTeamSize , P_DESCRIPTION = ': description ',P_STATUS = ':status "
-                   "' WHERE P_ID = :pid ;");
+    query->prepare("UPDATE Project SET P_NAME = :name, P_TEAM_SIZE_MAX = :maxTeamSize, "
+                   "P_TEAM_SIZE_MIN = :minTeamSize , P_DESCRIPTION = :description ,P_STATUS = :status "
+                   " WHERE P_ID = :pid ;");
     query->bindValue(":pid", id);
     query->bindValue(":name", name);
     query->bindValue(":maxTeamSize", maxTeamSize);
