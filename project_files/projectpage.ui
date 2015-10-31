@@ -65,48 +65,27 @@
      <x>50</x>
      <y>160</y>
      <width>761</width>
-     <height>91</height>
+     <height>121</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="teamSizeLabel">
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Team Size :</string>
-      </property>
-     </widget>
-    </item>
+    <property name="fieldGrowthPolicy">
+     <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+    </property>
     <item row="1" column="0">
-     <widget class="QLabel" name="descriptionLabel">
+     <widget class="QLabel" name="maxTeamSizeLabel">
       <property name="font">
        <font>
         <pointsize>16</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>Description :</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="teamSize">
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
+       <string>Team Size (Max.) :</string>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLabel" name="description">
+     <widget class="QLabel" name="maxTeamSize">
       <property name="font">
        <font>
         <pointsize>16</pointsize>
@@ -118,6 +97,42 @@
      </widget>
     </item>
     <item row="2" column="0">
+     <widget class="QLabel" name="descriptionLabel">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Description :</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="description">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="numOfStudents">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
      <widget class="QLabel" name="numOfStudentsLabel">
       <property name="font">
        <font>
@@ -129,13 +144,22 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLabel" name="numOfStudents">
+    <item row="0" column="0">
+     <widget class="QLabel" name="minTeamSizeLabel">
       <property name="font">
        <font>
         <pointsize>16</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
+      <property name="text">
+       <string>Team Size (Min.) :</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="minTeamSize">
       <property name="text">
        <string/>
       </property>
@@ -194,7 +218,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="projectNameLabel">
       <property name="font">
        <font>
         <pointsize>30</pointsize>
@@ -213,9 +237,9 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>260</y>
+     <y>290</y>
      <width>761</width>
-     <height>201</height>
+     <height>171</height>
     </rect>
    </property>
   </widget>

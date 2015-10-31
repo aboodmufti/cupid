@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    storage = new Storage();
+
 }
 
 MainWindow::~MainWindow()
@@ -64,30 +66,40 @@ void MainWindow::handleNewPage(View view){
           break;
         case ADMIN_MAIN_PAGE:
         {
-          AdminMainPage *newPage7 = new AdminMainPage();
-          newPage7->setMain(this);
-          this->setCentralWidget(newPage7);
+          AdminMainPage *adminMain = new AdminMainPage();
+          QList<Project*>* projects = storage->getAllProjects();
+          adminMain->setProjects(projects);
+          adminMain->setMain(this);
+          this->setCentralWidget(adminMain);
         }
           break;
         case CREATE_PROJECT:
         {
-          createProjectPage *newPage8 = new createProjectPage();
-          newPage8->setMain(this);
-          this->setCentralWidget(newPage8);
+          createProjectPage *createProject = new createProjectPage();
+          Project* project = createProject->getProject();
+          storage->insertProject(project); // returns bool, so we can display an error message later on
+          createProject->setMain(this);
+          this->setCentralWidget(createProject);
         }
           break;
         case PROJECT:
         {
-          ProjectPage *newPage9 = new ProjectPage();
-          newPage9->setMain(this);
-          this->setCentralWidget(newPage9);
+          ProjectPage *projectPage = new ProjectPage();
+
+          //Project* project = storage->getProjectById();   //Project* getProjectById(int)
+          //projectPage->setProject(project);
+
+          projectPage->setMain(this);
+          this->setCentralWidget(projectPage);
         }
           break;
         case EDIT_PROJECT:
         {
-          EditProjectPage *newPage10 = new EditProjectPage();
-          newPage10->setMain(this);
-          this->setCentralWidget(newPage10);
+          EditProjectPage *editProjectPage = new EditProjectPage();
+          Project *project = editProjectPage->getProject();
+          storage->updateProject(project);  // returns bool
+          editProjectPage->setMain(this);
+          this->setCentralWidget(editProjectPage);
         }
           break;
         default:

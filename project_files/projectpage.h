@@ -17,6 +17,7 @@ public:
     explicit ProjectPage(QWidget *parent = 0);
     ~ProjectPage();
     void setMain(MainWindow*);
+    void setProject(Project*);
 
 private slots:
     void on_pushButton_clicked();

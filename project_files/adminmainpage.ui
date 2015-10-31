@@ -53,7 +53,7 @@
     <string>Create Project</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="projectsTable">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -74,7 +74,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="adminLabel">
       <property name="font">
        <font>
         <pointsize>30</pointsize>

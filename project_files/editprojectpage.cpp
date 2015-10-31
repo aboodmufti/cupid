@@ -26,3 +26,16 @@ void EditProjectPage::on_pushButton_2_clicked()
 {
     main->handleNewPage(PROJECT);
 }
+
+Project* EditProjectPage::getProject()
+{
+    Project* project = new Project();
+
+    // We need to get 'project Id' and 'project status' to
+    // pass project into 'updateProject(project)'
+    project->setName(ui->newNameLineEdit->text());
+    project->setMinTeamSize(ui->newMinTeamSpinBox->value());
+    project->setMaxTeamSize(ui->newMaxTeamSpinBox->value());
+    project->setDescription(ui->newDesriptionTextEdit->toPlainText());
+    return project;
+}

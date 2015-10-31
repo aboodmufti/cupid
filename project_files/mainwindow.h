@@ -13,6 +13,8 @@
 #include "studentprofilepage.h"
 #include "studentprojectspage.h"
 #include "welcomepage.h"
+#include "entity/EntityDef.h"
+#include "database/storage.h"
 
 
 
@@ -36,6 +38,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    Storage *storage;
 };
 
 #endif // MAINWINDOW_H

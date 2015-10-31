@@ -9,7 +9,7 @@ Storage::Storage()
     QString final_path = test2.append("cupid_DB.db");
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(final_path);                            //FIX
+    db.setDatabaseName(final_path);
 
     bool db_ok = db.open();
 
@@ -22,6 +22,7 @@ QSqlQuery* Storage::getQueryObject()
 {
     return query;
 }
+
 bool Storage::insertProject(Project *proj)
 {
     bool exec_ok = query->exec("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, "
