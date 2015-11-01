@@ -69,7 +69,7 @@ void EditProfilePage::on_pushButton_clicked()
     stuProfile->setPartnerQ(partnerQ);
 
     if(newStu == 1){
-        stuProfile->setID(QString::number(ui->studentIDTextEdit->toPlainText()));
+        stuProfile->setID((ui->studentIDTextEdit->toPlainText()).toInt());
         main->editProfileSubmit(newStu, stuProfile);
     }else if(newStu == 0){
         stuProfile->setID(stuID);
@@ -87,6 +87,7 @@ void EditProfilePage::setStudentProfile(StudentProfile* stuProfile){
     else{
         newStu = 0;
         stuID = stuProfile->getID();
+
         ui->nameTextEdit->setPlainText(stuProfile->getName());
         //ui->idLabel->setText(QString::number(stuProfile->getID()));
         ui->studentIDTextEdit->setPlainText(QString::number(stuProfile->getID()));

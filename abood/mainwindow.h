@@ -34,6 +34,7 @@ public:
     void handleNewPage(View view);
     void initialize();
     void editProfileSubmit(int newStu, StudentProfile* stuProfile);
+    void joinProject(int pid);
 
 private:
     Ui::MainWindow *ui;

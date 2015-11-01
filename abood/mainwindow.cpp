@@ -61,16 +61,16 @@ void MainWindow::handleNewPage(View view){
         case EDIT_PROFILE:
         {
           EditProfilePage *newPage5 = new EditProfilePage();
-          //newPage5->setStudentProfile(student->getStudentProfile());
-          //newPage5->setMain(this);
+          newPage5->setStudentProfile(student->getStudentProfile());
+          newPage5->setMain(this);
           this->setCentralWidget(newPage5);
         }
           break;
         case STUDENT_PROJECT_LIST:
         {
           StudentProjectsPage *newPage6 = new StudentProjectsPage();
-          //QList<QList<QString>*>* projects = storage->getStudentProjects(student->getStudentProfile()->getID())  ;
-          //newPage6->setProjects(projects);
+          QList<QList<QString>*>* projects = storage->getStudentProjects(student->getStudentProfile()->getID())  ;
+          newPage6->setProjects(projects);
           newPage6->setMain(this);
           this->setCentralWidget(newPage6);
         }
@@ -120,5 +120,9 @@ void MainWindow::editProfileSubmit(int newStu, StudentProfile* stuProfile){
     student->setStudentProfile(stuProfile);
     handleNewPage(STUDENT_PROFILE);
 
+}
 
+void MainWindow::joinProject(int pid){
+    storage->studentJoinedProject(pid, student->getStudentProfile()->getID());
+    handleNewPage(STUDENT_PROJECT_LIST);
 }
