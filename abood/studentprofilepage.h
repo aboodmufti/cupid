@@ -19,6 +19,7 @@ public:
     ~StudentProfilePage();
     void setMain(MainWindow*);
     void setStudentProfile(StudentProfile*);
+    QString convertQ(int qid,int valueID);
 
 private slots:
     void on_pushButton_3_clicked();
