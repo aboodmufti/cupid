@@ -61,7 +61,8 @@ void ProjectPage::setProject(Project* project,QList<StudentProfile*>* list)
     ui->studentsInProjectTable->setRowCount(numOfStudentsInProject);
     ui->studentsInProjectTable->setColumnCount(2);
     ui->studentsInProjectTable->setColumnWidth(0, 600);
-    ui->studentsInProjectTable->setColumnWidth(1, 160);
+    //ui->studentsInProjectTable->setColumnWidth(1, 160);
+    ui->studentsInProjectTable->horizontalHeader()->setStretchLastSection(true);
     ui->studentsInProjectTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->studentsInProjectTable->setHorizontalHeaderLabels(QString("Student Name;Student ID").split(";"));
     qDebug() <<"DEBUG12 ";
