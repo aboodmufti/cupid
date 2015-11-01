@@ -22,9 +22,11 @@ void AdminMainPage::tableItemClicked(int row , int column)
     //QTableWidgetItem *item = new QTableWidgetItem();
     //item = ui->projectsTable->item(row, column);
     // we need to get project ID from this item (project)
-
+    qDebug() <<"DEBUG1 ";
     projId = ((*(projects))[row])->getID();
+    qDebug() <<"DEBUG2 ";
     main->openProject(projId);
+    qDebug() <<"DEBUG3 ";
 
 }
 
@@ -55,7 +57,8 @@ void AdminMainPage::setProjects(QList<Project*> *proj)
     ui->projectsTable->setRowCount(numOfPojects);
     ui->projectsTable->setColumnCount(2);
     ui->projectsTable->setColumnWidth(0, 600);
-    ui->projectsTable->setColumnWidth(1, 160);
+    ui->projectsTable->horizontalHeader()->setStretchLastSection(true);
+    //ui->projectsTable->setColumnWidth(1, 160);
     ui->projectsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->projectsTable->setHorizontalHeaderLabels(QString("Project Name;Status").split(";"));
 
@@ -64,7 +67,15 @@ void AdminMainPage::setProjects(QList<Project*> *proj)
         Project *project = (*(projects))[i];//check if status has changed
         QTableWidgetItem *projName = new QTableWidgetItem(project->getName());
         projName->setFlags(projName->flags() ^ Qt::ItemIsEditable);
-        QTableWidgetItem *projStatus = new QTableWidgetItem(project->getStatus());
+        QString stat = project->getStatus();
+        QTableWidgetItem *projStatus = new QTableWidgetItem(stat);
+        if(stat == "PUBLISHED"){
+            QColor * green = new QColor(84, 167, 0);
+            projStatus->setTextColor(*green);
+        }else{
+            QColor * red = new QColor(204, 0, 0);
+            projStatus->setTextColor(*red);
+        }
         projStatus->setFlags(projStatus->flags() ^ Qt::ItemIsEditable);
         ui->projectsTable->setItem(i, 0, projName);
         ui->projectsTable->setItem(i, 1, projStatus);

@@ -38,6 +38,7 @@ class Storage
         bool                            setUpAdministratorTable();
         bool                            setUpAdminProjectTable();
         QList<StudentProfile*>*         getStudentsInProject(int);  //abood
+        QList<StudentProfile*>*         getStudentsInProject2(int pid);
         QSqlQuery* getQueryObject();
 
     private:

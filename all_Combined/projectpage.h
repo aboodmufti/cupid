@@ -17,7 +17,7 @@ public:
     explicit ProjectPage(QWidget *parent = 0);
     ~ProjectPage();
     void setMain(MainWindow*);
-    void setProject(Project*);
+    void setProject(Project*, QList<StudentProfile*>*);
 
 
 private slots:
@@ -26,11 +26,14 @@ private slots:
     void on_pushButton_3_clicked();
 
     void on_pushButton_4_clicked();
+    void tableItemClicked(int row , int column);
 
 private:
     Ui::ProjectPage *ui;
     MainWindow *main;
     int pid;
+    int sid;
+    QList<StudentProfile*>* studentsInProjectList;
 };
 
 #endif // PROJECTPAGE_H

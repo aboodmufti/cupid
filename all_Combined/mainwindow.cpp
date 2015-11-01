@@ -156,6 +156,23 @@ void MainWindow::joinProject(int pid){
 
 
 //Dania's
+QList<StudentProfile*>* MainWindow::getStudentsInProject(int pid){
+    qDebug() <<"DEBUG20: "<<pid;
+    QList<StudentProfile*>* list = storage->getStudentsInProject2(pid);
+    return list;
+    qDebug() <<"DEBUG21 ";
+}
+
+void MainWindow::displayStudentProfile(int sid,int pid)
+{
+    StudentProfile *stuProfile = storage->getStudentProfile(sid);
+    AdminStudentProfilePage *studentProfilePage = new AdminStudentProfilePage();
+
+    studentProfilePage->setStudentProfile(stuProfile,pid);
+    studentProfilePage->setMain(this);
+    this->setCentralWidget(studentProfilePage);
+}
+
 int MainWindow::createProject(Project* proj)
 {
     return storage->insertProject(proj);
@@ -163,11 +180,16 @@ int MainWindow::createProject(Project* proj)
 
 void MainWindow::openProject(int pid)
 {
+    qDebug() <<"DEBUG4 ";
     Project* project = storage->getProjectById(pid);
+    QList<StudentProfile*>* list = getStudentsInProject(pid);
+    qDebug() <<"DEBUG5 ";
     ProjectPage *projectPage = new ProjectPage();
 
-    projectPage->setProject(project);
+    projectPage->setProject(project,list);
+    qDebug() <<"DEBUG6 ";
     projectPage->setMain(this);
+    qDebug() <<"DEBUG7 ";
     this->setCentralWidget(projectPage);
 }
 

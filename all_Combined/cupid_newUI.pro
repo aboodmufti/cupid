@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     entity/StudentProfile.cc \
     entity/User.cpp \
     storage_test_cases.cpp \
-    database/replacing.cpp
+    database/replacing.cpp \
+    adminstudentprofilepage.cpp
 
 HEADERS  += mainwindow.h \
     adminloginpage.h \
@@ -50,7 +51,8 @@ HEADERS  += mainwindow.h \
     entity/Student.h \
     entity/StudentProfile.h \
     entity/User.h \
-    entity/EntityDef.h
+    entity/EntityDef.h \
+    adminstudentprofilepage.h
 
 FORMS    += mainwindow.ui \
     adminloginpage.ui \
@@ -62,7 +64,8 @@ FORMS    += mainwindow.ui \
     studentloginpage.ui \
     studentprofilepage.ui \
     studentprojectspage.ui \
-    welcomepage.ui
+    welcomepage.ui \
+    adminstudentprofilepage.ui
 
 OTHER_FILES += \
     cupid_newUI.pro.user

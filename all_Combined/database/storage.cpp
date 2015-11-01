@@ -240,6 +240,7 @@ bool Storage::publishProject(int id ){
     return query->exec();
 }
 
+
 StudentProfile* Storage::getStudentProfile(int id){
 
     //query->exec("select * from Student where S_ID = "+id+" ;");
@@ -266,6 +267,7 @@ StudentProfile* Storage::getStudentProfile(int id){
     }
     return stu;
 }
+
 
 // inside getStudentProfile()
 QList<int>* Storage::getQualifications(int id){
@@ -462,12 +464,14 @@ bool Storage::setUpAdminProjectTable()
 
 QList<StudentProfile*>* Storage::getStudentsInProject(int pid)
 {
+    /*
   //query->exec("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = "+ pid +") NATURAL JOIN (SELECT * FROM Student);");
+  qDebug() <<"DEBUG13 ";
   query->prepare("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = :pid ) NATURAL JOIN (SELECT * FROM Student);");
   query->bindValue(":pid", pid);
   query->exec();
-    QList<StudentProfile*>* studentsList = new QList<StudentProfile*>();
-
+  QList<StudentProfile*>* studentsList = new QList<StudentProfile*>();
+    qDebug() <<"DEBUG14 ";
 
   if(query->first()){
       do{
@@ -488,6 +492,46 @@ QList<StudentProfile*>* Storage::getStudentsInProject(int pid)
 
       }while(query->next());
   }
+  qDebug() <<"DEBUG15 ";
   return studentsList;
+  */
+  QList<StudentProfile*>* studentsList = new QList<StudentProfile*>();
+  return studentsList;
+}
+
+QList<StudentProfile*>* Storage::getStudentsInProject2(int pid)
+{
+
+  //query->exec("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = "+ pid +") NATURAL JOIN (SELECT * FROM Student);");
+  qDebug() <<"DEBUG13 ";
+  query->prepare("SELECT * FROM (SELECT S_ID FROM Project_Student WHERE P_ID = :pid ) NATURAL JOIN (SELECT * FROM Student);");
+  query->bindValue(":pid", pid);
+  query->exec();
+  QList<StudentProfile*>* studentsList = new QList<StudentProfile*>();
+    qDebug() <<"DEBUG14 ";
+
+  if(query->first()){
+      do{
+        StudentProfile *s = new StudentProfile();
+        s->setID(query->value(0).toInt());
+        qDebug() << "Storage stu id:" << s->getID();
+        s->setName(query->value(1).toString());
+        s->setUsername(query->value(2).toString());
+
+        int ownQ = query->value(3).toInt();
+        int partnerQ = query->value(4).toInt();
+
+        QList<int>* oQ = getQualifications(ownQ);
+        QList<int>* pQ = getQualifications(partnerQ);
+
+        s->setOwnQ(oQ);
+        s->setPartnerQ(pQ);
+        (*studentsList) += s;
+
+      }while(query->next());
+  }
+  qDebug() <<"DEBUG15 ";
+  return studentsList;
+
 }
 

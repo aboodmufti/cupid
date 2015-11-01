@@ -26,7 +26,7 @@ void EditProjectPage::on_pushButton_clicked() // save
 
 void EditProjectPage::on_pushButton_2_clicked() // cancel
 {
-    main->openProject(pid);;
+    main->openProject(pid);
     //main->openProject(newID);
     //main->handleNewPage(PROJECT);
 }

@@ -50,6 +50,7 @@ void StudentProjectsPage::setProjects(QList<QList<QString>*>* projects){
     ui->projectsTable->setColumnCount(2);
     ui->projectsTable->setRowCount(projects2.size());
     ui->projectsTable->setColumnWidth(0, 642);
+    ui->projectsTable->horizontalHeader()->setStretchLastSection(true);
     ui->projectsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->projectsTable->setHorizontalHeaderLabels(QString("Project Name;Status").split(";"));
 

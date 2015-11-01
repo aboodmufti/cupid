@@ -13,6 +13,7 @@
 #include "studentprofilepage.h"
 #include "studentprojectspage.h"
 #include "welcomepage.h"
+#include "adminstudentprofilepage.h"
 
 #include "database/storage.h"
 
@@ -43,6 +44,8 @@ public:
     void updateProject(Project*);
     void publishProject(int);
     void viewProjects();
+    void displayStudentProfile(int sid, int pid);
+    QList<StudentProfile*>* getStudentsInProject(int pid);
 
 private:
     Ui::MainWindow *ui;
