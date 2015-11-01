@@ -17,33 +17,30 @@ void ProjectPage::setMain(MainWindow* newMain){
     main = newMain;
 }
 
-void ProjectPage::on_pushButton_clicked()
+void ProjectPage::on_pushButton_clicked()  // back button
 {
     main->handleNewPage(ADMIN_MAIN_PAGE);
 }
 
-void ProjectPage::on_pushButton_3_clicked()  //publish button
+void ProjectPage::on_pushButton_3_clicked()  // publish button
 {
-    main->handleNewPage(ADMIN_MAIN_PAGE);
+    main->publishProject(pid);
+    main->viewProjects();
 }
 
-void ProjectPage::on_pushButton_4_clicked()
+void ProjectPage::on_pushButton_4_clicked()  // edit button
 {
      main->editProject(pid);
-    //main->editProject(newID);
-    //main->handleNewPage(PROJECT);
-    //main->handleNewPage(EDIT_PROJECT);//openP function
 }
 
 void ProjectPage::setProject(Project* project)
 {
-    //Project* temProject = project;
     pid = project->getID();
     ui->projectNameLabel->setText(project->getName());
     ui->minTeamSize->setText(QString::number(project->getMinTeamSize()));
-    //ui->minTeamSize->setNum(project->getMinTeamSize());
-    //ui->maxTeamSize->setNum(project->getMaxTeamSize());
     ui->maxTeamSize->setText(QString::number(project->getMaxTeamSize()));
     ui->description->setText(project->getDescription());
+
+    // Need to get Number of Students in a Project
     //ui->numOfStudents->setNum(project->);
 }

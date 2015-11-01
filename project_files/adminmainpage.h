@@ -23,6 +23,7 @@ public:
     void setMain(MainWindow*);
     void setProjects(QList<Project*>*);
     int getProjectId();
+    void setProject(Project*);
 
 
 private slots:

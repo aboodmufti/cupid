@@ -61,14 +61,13 @@ void AdminMainPage::setProjects(QList<Project*> *proj)
 
     for(int i=0; i<numOfPojects; ++i)
     {
-        Project *project = (*(projects))[i];
+        Project *project = (*(projects))[i];//check if status has changed
         QTableWidgetItem *projName = new QTableWidgetItem(project->getName());
         projName->setFlags(projName->flags() ^ Qt::ItemIsEditable);
         QTableWidgetItem *projStatus = new QTableWidgetItem(project->getStatus());
         projStatus->setFlags(projStatus->flags() ^ Qt::ItemIsEditable);
         ui->projectsTable->setItem(i, 0, projName);
         ui->projectsTable->setItem(i, 1, projStatus);
-        //change to 'cellClicked'
-        connect(ui->projectsTable, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(tableItemClicked(int,int)));
+        connect(ui->projectsTable, SIGNAL(cellClicked(int,int)), this, SLOT(tableItemClicked(int,int)));
     }
 }

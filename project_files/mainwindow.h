@@ -39,6 +39,8 @@ public:
     void openProject(int pid);
     void editProject(int pid);
     void updateProject(Project*);
+    void publishProject(int pid);
+    void viewProjects();
 
 private:
     Ui::MainWindow *ui;

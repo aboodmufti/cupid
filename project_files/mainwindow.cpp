@@ -116,41 +116,49 @@ void MainWindow::handleNewPage(View view){
 
 }
 
-int MainWindow::createProject(Project* proj){
-    qDebug() << "max team size: "<<proj->getMaxTeamSize();
-    qDebug() << "min team size: "<<proj->getMinTeamSize();
+int MainWindow::createProject(Project* proj)
+{
     return storage->insertProject(proj);
 }
 
 void MainWindow::openProject(int pid)
 {
     Project* project = storage->getProjectById(pid);
-    qDebug() << "2 max team size: "<<project->getMaxTeamSize();
-    qDebug() << "2 min team size: "<<project->getMinTeamSize();
     ProjectPage *projectPage = new ProjectPage();
 
     projectPage->setProject(project);
-
     projectPage->setMain(this);
-
     this->setCentralWidget(projectPage);
 }
 
 void MainWindow::editProject(int pid)
 {
     Project* project = storage->getProjectById(pid);
-    qDebug() << "3 max team size: "<<project->getMaxTeamSize();
-    qDebug() << "3 min team size: "<<project->getMinTeamSize();
-    EditProjectPage *editPage = new EditProjectPage();
+    EditProjectPage *editProjectPage = new EditProjectPage();
 
-    editPage->setProject(project);
-
-    editPage->setMain(this);
-
-    this->setCentralWidget(editPage);
+    editProjectPage->setProject(project);
+    editProjectPage->setMain(this);
+    this->setCentralWidget(editProjectPage);
 }
 
 void MainWindow::updateProject(Project* proj)
 {
     storage->updateProject(proj);
+}
+
+void MainWindow::publishProject(int pid)
+{
+    AdminMainPage *adminMainPage = new AdminMainPage();
+    storage->publishProject(pid);
+    adminMainPage->setMain(this);
+    this->setCentralWidget(adminMainPage);
+}
+
+void MainWindow::viewProjects()
+{
+    AdminMainPage *adminMain = new AdminMainPage();
+    QList<Project*>* projects = storage->getAllProjects();
+    adminMain->setProjects(projects);
+    adminMain->setMain(this);
+    this->setCentralWidget(adminMain);
 }

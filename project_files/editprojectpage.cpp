@@ -17,17 +17,15 @@ void EditProjectPage::setMain(MainWindow* newMain){
     main = newMain;
 }
 
-void EditProjectPage::on_pushButton_clicked()
+void EditProjectPage::on_pushButton_clicked() // save
 {
-
     main->updateProject(getProject());
     main->openProject(pid);
    // main->handleNewPage(PROJECT);
 }
 
-void EditProjectPage::on_pushButton_2_clicked()
+void EditProjectPage::on_pushButton_2_clicked() // cancel
 {
-
     main->openProject(pid);;
     //main->openProject(newID);
     //main->handleNewPage(PROJECT);
@@ -36,7 +34,6 @@ void EditProjectPage::on_pushButton_2_clicked()
 Project* EditProjectPage::getProject()
 {
     Project* project = new Project();
-
 
     // We need to get 'project Id' and 'project status' to
     // pass project into 'updateProject(project)'
@@ -48,6 +45,7 @@ Project* EditProjectPage::getProject()
     return project;
 }
 
+// To display the project info that has already been set before
 void EditProjectPage::setProject(Project* proj)
 {
     pid = proj->getID();
