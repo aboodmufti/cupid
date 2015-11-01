@@ -53,7 +53,7 @@ void MainWindow::handleNewPage(View view){
             StudentProfilePage *newPage4 = new StudentProfilePage();
             //StudentProfile* stuProfile = storage->getStudentByUsername(student->getUsername());
             //student->setStudentProfile(stuProfile);  //if coming from editProfile
-            //newPage4->setStudentProfile(stuProfile);
+            newPage4->setStudentProfile(student->getStudentProfile());
             newPage4->setMain(this);
             this->setCentralWidget(newPage4);
         }
@@ -106,5 +106,19 @@ void MainWindow::handleNewPage(View view){
         default:
           break;
     }
+
+}
+
+
+void MainWindow::editProfileSubmit(int newStu, StudentProfile* stuProfile){
+
+    if(newStu == 1){
+        storage->insertStudent(stuProfile);
+    }else if(newStu == 0){
+        storage->updateStudentProfile(stuProfile);
+    }
+    student->setStudentProfile(stuProfile);
+    handleNewPage(STUDENT_PROFILE);
+
 
 }

@@ -42,7 +42,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-231</y>
+      <y>0</y>
       <width>353</width>
       <height>441</height>
      </rect>
@@ -448,7 +448,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-262</y>
+      <y>0</y>
       <width>363</width>
       <height>441</height>
      </rect>
@@ -912,22 +912,14 @@
     <string>Name :</string>
    </property>
   </widget>
-  <widget class="QLabel" name="idLabel">
+  <widget class="QTextEdit" name="studentIDTextEdit">
    <property name="geometry">
     <rect>
      <x>170</x>
      <y>200</y>
-     <width>251</width>
-     <height>21</height>
+     <width>261</width>
+     <height>31</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
    </property>
   </widget>
  </widget>

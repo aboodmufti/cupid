@@ -28,6 +28,10 @@ private slots:
 private:
     Ui::EditProfilePage *ui;
     MainWindow *main;
+    int         newStu;
+    int         stuID;
+    int         ownQID;
+    int         partnerQID;
 };
 
 #endif // EDITPROFILEPAGE_H

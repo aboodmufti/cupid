@@ -33,6 +33,7 @@ public:
     ~MainWindow();
     void handleNewPage(View view);
     void initialize();
+    void editProfileSubmit(int newStu, StudentProfile* stuProfile);
 
 private:
     Ui::MainWindow *ui;
