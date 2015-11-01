@@ -9,12 +9,21 @@ Storage::Storage()
     QString final_path = test2.append("cupid_DB.db");
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(final_path);                            //FIX
+    db.setDatabaseName(final_path);
 
     bool db_ok = db.open();
 
     query = new QSqlQuery(db);
 
+    query->exec("select * from Student;");
+
+    query->first();
+    do{
+        qDebug() <<"id: " << query->value(0).toString();
+        qDebug() <<"name: " << query->value(1).toString();
+        qDebug() <<"username: " << query->value(2).toString();
+        qDebug() << " ";
+    }while(query->next());
 
 }
 
@@ -22,16 +31,24 @@ QSqlQuery* Storage::getQueryObject()
 {
     return query;
 }
-bool Storage::insertProject(Project *proj)
+
+int Storage::insertProject(Project *proj)
 {
-    bool exec_ok = query->exec("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, "
+   /* bool exec_ok = query->exec("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, "
                                "P_TEAM_SIZE_MIN, P_DESCRIPTION, P_STATUS) VALUES "
-                               "('"+ proj->getName() +"', '"+ proj->getMaxTeamSize() +"', "
-                               "'"+ proj->getMinTeamSize() +"', '"+ proj->getDescription() +"', "
+                               "('"+ proj->getName() +"', "+ proj->getMaxTeamSize() +", "
+                               ""+ proj->getMinTeamSize() +", '"+ proj->getDescription() +"', "
                                "'"+ proj->getStatus() +"' );");
+                               */
+    query->prepare("INSERT INTO Project (P_NAME, P_TEAM_SIZE_MAX, P_TEAM_SIZE_MIN, P_DESCRIPTION, P_STATUS) VALUES (:name, :maxTeamSize, :minTeamSize, :description, :status);");
+    query->bindValue(":name", proj->getName());
+    query->bindValue(":maxTeamSize", proj->getMaxTeamSize());
+    query->bindValue(":minTeamSize", proj->getMinTeamSize());
+    query->bindValue(":description", proj->getDescription());
+    query->bindValue(":status", proj->getStatus());
 
-
-    return exec_ok;
+    query->exec();
+    return query->lastInsertId().toInt();
 }
 
 bool Storage::insertAdministrator(Administrator *admin)
@@ -140,9 +157,9 @@ Administrator* Storage::getAdminByUsername(QString adminUsername)
     Administrator *admin = new Administrator();
     query->exec("select * from Admin where A_USERNAME = '"+adminUsername+"';");
 
-    query->first();
-    admin->setUsername(query->value(0).toString());
-
+    if(query->first()){
+            admin->setUsername(query->value(0).toString());
+    }
     return admin;
 }
 
@@ -152,19 +169,19 @@ QList<Project*>* Storage::getAllProjects()
     QList<Project*>* listOfProjects = new QList<Project*>();
     query->exec("select * from Project;");
 
-    query->first();
-    do{
-        Project *project = new Project();
-        project->setID(query->value(0).toInt());
-        project->setName(query->value(1).toString());
-        project->setMaxTeamSize(query->value(2).toInt());
-        project->setMinTeamSize(query->value(3).toInt());
-        project->setDescription(query->value(4).toString());
-        project->setStatus(query->value(5).toString());
+    if(query->first()){
+        do{
+            Project *project = new Project();
+            project->setID(query->value(0).toInt());
+            project->setName(query->value(1).toString());
+            project->setMaxTeamSize(query->value(2).toInt());
+            project->setMinTeamSize(query->value(3).toInt());
+            project->setDescription(query->value(4).toString());
+            project->setStatus(query->value(5).toString());
 
-        (*listOfProjects) += project;
-    }while(query->next());
-
+            (*listOfProjects) += project;
+        }while(query->next());
+    }
     return listOfProjects;
 }
 
@@ -177,15 +194,15 @@ Project* Storage::getProjectById(int id){
     query->exec();
     Project *project = new Project();
 
-    query->first();
+    if(query->first()){
 
-    project->setID(query->value(0).toInt());
-    project->setName(query->value(1).toString());
-    project->setMaxTeamSize(query->value(2).toInt());
-    project->setMinTeamSize(query->value(3).toInt());
-    project->setDescription(query->value(4).toString());
-    project->setStatus(query->value(5).toString());
-
+        project->setID(query->value(0).toInt());
+        project->setName(query->value(1).toString());
+        project->setMaxTeamSize(query->value(3).toInt());
+        project->setMinTeamSize(query->value(2).toInt());
+        project->setDescription(query->value(4).toString());
+        project->setStatus(query->value(5).toString());
+    }
 
     return project;
 }
@@ -202,9 +219,9 @@ bool Storage::updateProject(Project* project){
     /*return query->exec("UPDATE Project SET P_NAME = '"+name+"', P_TEAM_SIZE_MAX ="+ maxTeamSize+", "
                        "P_TEAM_SIZE_MIN ="+ minTeamSize + ", P_DESCRIPTION ='"+ description+ "',P_STATUS = '"+status+
                        "' WHERE P_ID = "+id+" ;");*/
-    query->prepare("UPDATE Project SET P_NAME = ':name', P_TEAM_SIZE_MAX = :maxTeamSize, "
-                   "P_TEAM_SIZE_MIN = :minTeamSize , P_DESCRIPTION = ': description ',P_STATUS = ':status "
-                   "' WHERE P_ID = :pid ;");
+    query->prepare("UPDATE Project SET P_NAME = :name, P_TEAM_SIZE_MAX = :maxTeamSize, "
+                   "P_TEAM_SIZE_MIN = :minTeamSize , P_DESCRIPTION = :description ,P_STATUS = :status "
+                   " WHERE P_ID = :pid ;");
     query->bindValue(":pid", id);
     query->bindValue(":name", name);
     query->bindValue(":maxTeamSize", maxTeamSize);
@@ -232,21 +249,21 @@ StudentProfile* Storage::getStudentProfile(int id){
     query->exec();
     StudentProfile *stu = new StudentProfile();
 
-    query->first();
+    if(query->first()){
 
-    stu->setID(query->value(0).toInt());
-    stu->setName(query->value(1).toString());
-    stu->setUsername(query->value(2).toString());
+        stu->setID(query->value(0).toInt());
+        stu->setName(query->value(1).toString());
+        stu->setUsername(query->value(2).toString());
 
-    int ownQID = query->value(3).toInt();
-    int partnerQID = query->value(4).toInt();
+        int ownQID = query->value(3).toInt();
+        int partnerQID = query->value(4).toInt();
 
-    QList<int>* ownQ = getQualifications(ownQID);
-    QList<int>* partnerQ = getQualifications(partnerQID);
+        QList<int>* ownQ = getQualifications(ownQID);
+        QList<int>* partnerQ = getQualifications(partnerQID);
 
-    stu->setOwnQ(ownQ);
-    stu->setPartnerQ(partnerQ);
-
+        stu->setOwnQ(ownQ);
+        stu->setPartnerQ(partnerQ);
+    }
     return stu;
 }
 
@@ -261,12 +278,11 @@ QList<int>* Storage::getQualifications(int id){
     query4->exec();
     QList<int>* qualifications = new QList<int>();
 
-    query4->first();
-
-    for(int i=0; i<14 ; ++i){
-        (*(qualifications)) += query4->value(i).toInt();
+    if(query4->first()){
+        for(int i=0; i<14 ; ++i){
+            (*(qualifications)) += query4->value(i).toInt();
+        }
     }
-
 
     return qualifications;
 }
@@ -276,20 +292,21 @@ QList<QList<QString>*>* Storage::getStudentProjects(int studentID){
     qDebug() <<"get published projects: " <<query->exec("select P_ID, P_NAME from Project where P_STATUS = 'PUBLISHED';");
     QList<QList<QString>*>* projects = new QList<QList<QString>*>;
 
-    query->first();
-    do{
-        QList<QString>* project = new QList<QString>();
-        (*(project)) += query->value(0).toString();  //id
-        (*(project)) += query->value(1).toString();  //name
-        bool joined = studentJoinedProject(query->value(0).toInt(),studentID); //joined
-        if(joined){
-            (*(project)) += "TRUE";
-        }else{
-            (*(project)) += "FALSE";
-        }
-        (*projects) += project;
-    }while (query->next());
-
+    if(query->first()){
+        do{
+            QList<QString>* project = new QList<QString>();
+            (*(project)) += query->value(0).toString();  //id
+            (*(project)) += query->value(1).toString();  //name
+            bool joined = studentJoinedProject(query->value(0).toInt(),studentID); //joined
+            qDebug()<< "boolean from DB: " << joined;
+            if(joined){
+                (*(project)) += "TRUE";
+            }else{
+                (*(project)) += "FALSE";
+            }
+            (*projects) += project;
+        }while (query->next());
+    }
     return projects;
 }
 
@@ -394,20 +411,21 @@ StudentProfile* Storage::getStudentByUsername(QString username)
 
     StudentProfile *s = new StudentProfile();
 
-    query->first();
+    if(query->first()){
 
-    s->setID(query->value(0).toInt());
-    s->setName(query->value(1).toString());
-    s->setUsername(query->value(2).toString());
+        s->setID(query->value(0).toInt());
+        s->setName(query->value(1).toString());
+        s->setUsername(query->value(2).toString());
 
-    int ownQ = query->value(3).toInt();
-    int partnerQ = query->value(4).toInt();
+        int ownQ = query->value(3).toInt();
+        int partnerQ = query->value(4).toInt();
 
-    QList<int>* oQ = getQualifications(ownQ);
-    QList<int>* pQ = getQualifications(partnerQ);
+        QList<int>* oQ = getQualifications(ownQ);
+        QList<int>* pQ = getQualifications(partnerQ);
 
-    s->setOwnQ(oQ);
-    s->setPartnerQ(pQ);
+        s->setOwnQ(oQ);
+        s->setPartnerQ(pQ);
+    }
 
    return s;
 }
@@ -451,25 +469,25 @@ QList<StudentProfile*>* Storage::getStudentsInProject(int pid)
     QList<StudentProfile*>* studentsList = new QList<StudentProfile*>();
 
 
-  query->first();
-  do{
-    StudentProfile *s = new StudentProfile();
-    s->setID(query->value(0).toInt());
-    s->setName(query->value(1).toString());
-    s->setUsername(query->value(2).toString());
+  if(query->first()){
+      do{
+        StudentProfile *s = new StudentProfile();
+        s->setID(query->value(0).toInt());
+        s->setName(query->value(1).toString());
+        s->setUsername(query->value(2).toString());
 
-    int ownQ = query->value(3).toInt();
-    int partnerQ = query->value(4).toInt();
+        int ownQ = query->value(3).toInt();
+        int partnerQ = query->value(4).toInt();
 
-    QList<int>* oQ = getQualifications(ownQ);
-    QList<int>* pQ = getQualifications(partnerQ);
+        QList<int>* oQ = getQualifications(ownQ);
+        QList<int>* pQ = getQualifications(partnerQ);
 
-    s->setOwnQ(oQ);
-    s->setPartnerQ(pQ);
-    (*studentsList) += s;
+        s->setOwnQ(oQ);
+        s->setPartnerQ(pQ);
+        (*studentsList) += s;
 
-  }while(query->next());
-
+      }while(query->next());
+  }
   return studentsList;
 }
 

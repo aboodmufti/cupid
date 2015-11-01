@@ -13,22 +13,22 @@ class Storage
 {
     public:
         Storage();
-        bool                            insertProject(Project*);
+        int                            insertProject(Project*);    //abood
         bool                            insertAdministrator(Administrator*);
-        bool                            insertStudent(StudentProfile*);
-        int                             insertQualifications(QList<int>*);
-        bool                            addStudentProject(int, int);
+        bool                            insertStudent(StudentProfile*); //abood
+        int                             insertQualifications(QList<int>*); //abood
+        bool                            addStudentProject(int, int);  //abood
         bool                            addAdminProject(int projId, QString);
         Administrator*                  getAdminByUsername(QString);
-        QList<Project*>*                 getAllProjects();
-        Project*                        getProjectById(int);
+        QList<Project*>*                 getAllProjects();          //abood
+        Project*                        getProjectById(int);        //abood
         bool                            updateProject(Project*);
-        bool                            publishProject(int);
-        StudentProfile*                 getStudentProfile(int);
+        bool                            publishProject(int);        //abood
+        StudentProfile*                 getStudentProfile(int);     //abood
         QList<int>*                     getQualifications(int);
-        QList<QList<QString>*>*         getStudentProjects(int);
+        QList<QList<QString>*>*         getStudentProjects(int);    //abood
         bool                            studentJoinedProject(int,int);
-        bool                            updateStudentProfile(StudentProfile*);
+        bool                            updateStudentProfile(StudentProfile*); //abood
         bool                            updateQualifications(QList<int>*);
         StudentProfile*                 getStudentByUsername(QString);
         bool                            setUpProjectTable();
@@ -37,7 +37,7 @@ class Storage
         bool                            setUpProjectStudentTable();
         bool                            setUpAdministratorTable();
         bool                            setUpAdminProjectTable();
-        QList<StudentProfile*>*         getStudentsInProject(int);
+        QList<StudentProfile*>*         getStudentsInProject(int);  //abood
         QSqlQuery* getQueryObject();
 
     private:

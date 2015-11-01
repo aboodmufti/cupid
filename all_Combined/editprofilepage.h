@@ -32,6 +32,7 @@ private:
     int         stuID;
     int         ownQID;
     int         partnerQID;
+    QString     username;
 };
 
 #endif // EDITPROFILEPAGE_H

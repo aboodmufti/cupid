@@ -31,6 +31,7 @@ void EditProfilePage::on_pushButton_clicked()
 {
     StudentProfile * stuProfile = new StudentProfile();
     stuProfile->setName(ui->nameTextEdit->toPlainText());
+    stuProfile->setUsername(username);
 
     QList<int>* ownQ= new QList<int>();
     (*ownQ) += ownQID;
@@ -79,7 +80,7 @@ void EditProfilePage::on_pushButton_clicked()
 }
 
 void EditProfilePage::setStudentProfile(StudentProfile* stuProfile){
-
+    username = stuProfile->getUsername();
     if(stuProfile->getName() == "unknown"){
         newStu = 1;
         ui->studentIDTextEdit->setReadOnly(false);

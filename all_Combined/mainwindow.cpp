@@ -149,7 +149,8 @@ void MainWindow::editProfileSubmit(int newStu, StudentProfile* stuProfile){
 }
 
 void MainWindow::joinProject(int pid){
-    storage->studentJoinedProject(pid, stu->getStudentProfile()->getID());
+    qDebug() <<"pid sid : " << pid<< " " << stu->getStudentProfile()->getID();
+    storage->addStudentProject(pid, stu->getStudentProfile()->getID());
     handleNewPage(STUDENT_PROJECT_LIST);
 }
 
@@ -222,9 +223,11 @@ void MainWindow::checkStudentLogin(QString userName){
     if((sP->getName()) == "unknown" ){
         stu->setUsername(userName);
         stu->setStudentProfile(sP);
+        stu->getStudentProfile()->setUsername(userName);
+
     }else{
-    stu->setUsername(userName);
-    stu->setStudentProfile(sP);
+        stu->setUsername(userName);
+        stu->setStudentProfile(sP);
     }
     handleNewPage(STUDENT_PROFILE);
 }

@@ -40,6 +40,7 @@ void StudentProjectsPage::on_pushButton_clicked()
 }
 
 void StudentProjectsPage::joinButtonClicked(int pid){
+    qDebug() << "pid in view: "<< pid;
     main->joinProject(pid);
 }
 
@@ -62,9 +63,12 @@ void StudentProjectsPage::setProjects(QList<QList<QString>*>* projects){
         ui->projectsTable->setItem(i,0,name);
 
         QString joinStat = (*(projects2[i]))[2];
-        if(joinStat == "Joined"){
+        qDebug() << "Status in view : " << joinStat;
+        if(joinStat == "TRUE"){
             QTableWidgetItem* status = new QTableWidgetItem();
-            status->setText(joinStat);
+            status->setText("Joined");
+            QColor * green = new QColor(84, 167, 0);
+            status->setTextColor(*green);
             status->setFlags(status->flags() ^ Qt::ItemIsEditable);
             ui->projectsTable->setItem(i,1,status);
 
