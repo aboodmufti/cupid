@@ -19,5 +19,16 @@ void StudentLoginPage::setMain(MainWindow* newMain){
 
 void StudentLoginPage::on_submitButton_clicked()
 {
-    main->handleNewPage(STUDENT_PROFILE);
+    //main->handleNewPage(STUDENT_PROFILE);
+      main->checkStudentLogin(ui->usernameTextEdit->toPlainText()); // added hussam
+
 }
+
+QString StudentLoginPage::getUsername()
+{
+    return ui->usernameTextEdit->toPlainText();
+}
+
+
+
+

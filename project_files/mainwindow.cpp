@@ -36,16 +36,29 @@ void MainWindow::handleNewPage(View view){
             break;
         case STUDENT_LOGIN:
         {
-            StudentLoginPage *newPage2 = new StudentLoginPage();
-            newPage2->setMain(this);
-            this->setCentralWidget(newPage2);
+            StudentLoginPage *studentLoginPage = new StudentLoginPage();
+            /*stu = new Student();
+            StudentProfile *sP = storage->getStudentByUsername(newPage2->getUsername());
+            if((sP->getName()) == "unknown" ){
+                stu->setUsername(newPage2->getUsername());
+                stu->setStudentProfile(sP);
+                storage->insertStudent(sP);
+            }*/
+            studentLoginPage->setMain(this);
+            this->setCentralWidget(studentLoginPage);
         }
             break;
         case ADMIN_LOGIN:
         {
-            AdminLoginPage *newPage3 = new AdminLoginPage();
-            newPage3->setMain(this);
-            this->setCentralWidget(newPage3);
+            AdminLoginPage *adminLoginPage = new AdminLoginPage();
+            /*admin = new Administrator();
+            admin = storage->getAdminByUsername(newPage3->getUsername());
+            if(admin == 0){
+                admin->setUsername(newPage3->getUsername());
+                storage->insertAdministrator(admin);
+            }*/
+            adminLoginPage->setMain(this);
+            this->setCentralWidget(adminLoginPage);
         }
             break;
         case STUDENT_PROFILE:
@@ -162,3 +175,31 @@ void MainWindow::viewProjects()
     adminMain->setMain(this);
     this->setCentralWidget(adminMain);
 }
+
+// added hussam
+void MainWindow::checkAdminLogin(QString userName)
+{
+    admin = new Administrator();
+    admin = storage->getAdminByUsername(userName);
+    if(admin->getUsername() == "unknown" ){
+        admin->setUsername(userName);
+        storage->insertAdministrator(admin);
+    }else{
+    admin->setUsername(userName);
+    }
+    handleNewPage(ADMIN_MAIN_PAGE);
+}
+
+void MainWindow::checkStudentLogin(QString userName){
+    stu = new Student();
+    StudentProfile *sP = storage->getStudentByUsername(userName);
+    if((sP->getName()) == "unknown" ){
+        stu->setUsername(userName);
+        stu->setStudentProfile(sP);
+    }else{
+    stu->setUsername(userName);
+    stu->setStudentProfile(sP);
+    }
+    handleNewPage(STUDENT_PROFILE);
+}
+

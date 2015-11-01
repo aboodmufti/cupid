@@ -17,6 +17,7 @@ public:
     explicit AdminLoginPage(QWidget *parent = 0);
     ~AdminLoginPage();
     void setMain(MainWindow*);
+    QString getUsername();
 
 private slots:
     void on_submitButton_clicked();

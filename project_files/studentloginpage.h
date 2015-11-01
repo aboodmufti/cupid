@@ -17,6 +17,7 @@ public:
     explicit StudentLoginPage(QWidget *parent = 0);
     ~StudentLoginPage();
     void setMain(MainWindow*);
+    QString getUsername();
 
 private slots:
     void on_submitButton_clicked();

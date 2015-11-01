@@ -35,16 +35,20 @@ public:
     ~MainWindow();
     void handleNewPage(View view);
     void initialize();
-    int createProject(Project* proj);
-    void openProject(int pid);
-    void editProject(int pid);
+    void checkAdminLogin(QString);
+    void checkStudentLogin(QString);
+    int createProject(Project*);
+    void openProject(int);
+    void editProject(int);
     void updateProject(Project*);
-    void publishProject(int pid);
+    void publishProject(int);
     void viewProjects();
 
 private:
     Ui::MainWindow *ui;
     Storage *storage;
+    Student *stu;
+    Administrator *admin;
 };
 
 #endif // MAINWINDOW_H

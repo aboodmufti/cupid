@@ -19,6 +19,14 @@ void AdminLoginPage::setMain(MainWindow* newMain){
 
 void AdminLoginPage::on_submitButton_clicked()
 {
-   main->handleNewPage(ADMIN_MAIN_PAGE);
-
+   //main->handleNewPage(ADMIN_MAIN_PAGE);
+    main->checkAdminLogin(ui->usernameTextEdit->toPlainText()); // added hussam
 }
+
+QString AdminLoginPage::getUsername()
+{
+    return ui->usernameTextEdit->toPlainText();
+}
+
+
+
