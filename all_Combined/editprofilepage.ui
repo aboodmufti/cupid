@@ -19,7 +19,7 @@
      <x>420</x>
      <y>250</y>
      <width>20</width>
-     <height>221</height>
+     <height>251</height>
     </rect>
    </property>
    <property name="orientation">
@@ -29,10 +29,10 @@
   <widget class="QScrollArea" name="scrollArea_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>292</y>
-     <width>371</width>
-     <height>181</height>
+     <x>30</x>
+     <y>290</y>
+     <width>391</width>
+     <height>211</height>
     </rect>
    </property>
    <property name="widgetResizable">
@@ -42,349 +42,395 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>353</width>
-      <height>441</height>
+      <y>-667</y>
+      <width>373</width>
+      <height>876</height>
      </rect>
     </property>
-    <layout class="QFormLayout" name="formLayout_2">
-     <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-     </property>
-     <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
       <widget class="QLabel" name="label_24">
        <property name="text">
-        <string>1. Grade in 2404</string>
+        <string>1. What is your grade in COMP 2404?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item>
       <widget class="QComboBox" name="own">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>A</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>B</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>C</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>D</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item>
       <widget class="QLabel" name="label_26">
        <property name="text">
-        <string>2. Grade in 2404</string>
+        <string>2. What is your grade in COMP 2402?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item>
       <widget class="QComboBox" name="own_2">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>A</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>B</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>C</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>D</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item>
       <widget class="QLabel" name="label_33">
        <property name="text">
-        <string>3. Grade in 2404</string>
+        <string>3. Are you Punctual?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item>
       <widget class="QComboBox" name="own_3">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>No</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>Yes</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item>
       <widget class="QLabel" name="label_36">
        <property name="text">
-        <string>4. Grade in 2404</string>
+        <string>4. Are you technical?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item>
       <widget class="QComboBox" name="own_4">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>No</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>Yes</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item>
       <widget class="QLabel" name="label_35">
        <property name="text">
-        <string>5. Grade in 2404</string>
+        <string>5. Do you prefer working during group meetings or by yourself?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item>
       <widget class="QComboBox" name="own_5">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>By myself</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>Sometimes by myself and sometimes with the gorup</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>With the group</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item>
       <widget class="QLabel" name="label_34">
        <property name="text">
-        <string>6. Grade in 2404</string>
+        <string>6. How many hours per week do you usually dedicate for school work?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item>
       <widget class="QComboBox" name="own_6">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>1-3 hours per week</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>4-7 hours per week</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>More than 8 hours per week</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item>
       <widget class="QLabel" name="label_37">
        <property name="text">
-        <string>7. Grade in 2404</string>
+        <string>7. How flexible are you in handling emergency situations (e.g. doing other team member's work in case of emergency)?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
-      <widget class="QComboBox" name="own_8">
-       <item>
-        <property name="text">
-         <string>Answer1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QComboBox" name="own_9">
-       <item>
-        <property name="text">
-         <string>Answer1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QComboBox" name="own_10">
-       <item>
-        <property name="text">
-         <string>Answer1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="6" column="1">
+     <item>
       <widget class="QComboBox" name="own_7">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>Very inflexible</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>Somewhat inflexible</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>Neither flexible nor inflexible</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Somewhat flexible</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Very flexible</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item>
       <widget class="QLabel" name="label_38">
        <property name="text">
-        <string>8. Grade in 2404</string>
+        <string>8. What grade are you aiming for in this course?s</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item>
+      <widget class="QComboBox" name="own_8">
+       <item>
+        <property name="text">
+         <string>A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>B</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>C</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>D</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_39">
        <property name="text">
-        <string>9. Grade in 2404</string>
+        <string>9. During group meetings, how strict are you when it comes to discussion topics? (i.e. is it alright to discuss nonrelated project topics?)</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
+     <item>
+      <widget class="QComboBox" name="own_9">
+       <item>
+        <property name="text">
+         <string>Not at all strict</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Somewhat strict</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Very strict</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_40">
        <property name="text">
-        <string>10. Grade in 2404</string>
+        <string>10. Would you prefer being a group leader?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="10" column="0">
+     <item>
+      <widget class="QComboBox" name="own_10">
+       <item>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Yes</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_41">
        <property name="text">
-        <string>11. Grade in 2404</string>
+        <string>11. Would you mind meeting with the group on weekends?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="10" column="1">
+     <item>
       <widget class="QComboBox" name="own_11">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>No</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>Yes</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="11" column="0">
+     <item>
       <widget class="QLabel" name="label_42">
        <property name="text">
-        <string>12. Grade in 2404</string>
+        <string>12. How many courses are you currently taking?s</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="11" column="1">
+     <item>
       <widget class="QComboBox" name="own_12">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 or more</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="12" column="0">
+     <item>
       <widget class="QLabel" name="label_43">
        <property name="text">
-        <string>13. Grade in 2404</string>
+        <string>13. How many personal projects have you worked on?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="12" column="1">
+     <item>
       <widget class="QComboBox" name="own_13">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>3 or less</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>more than 3</string>
         </property>
        </item>
       </widget>
@@ -396,7 +442,7 @@
    <property name="geometry">
     <rect>
      <x>458</x>
-     <y>510</y>
+     <y>530</y>
      <width>181</width>
      <height>27</height>
     </rect>
@@ -416,7 +462,7 @@
    <property name="geometry">
     <rect>
      <x>648</x>
-     <y>510</y>
+     <y>530</y>
      <width>181</width>
      <height>27</height>
     </rect>
@@ -437,8 +483,8 @@
     <rect>
      <x>450</x>
      <y>292</y>
-     <width>381</width>
-     <height>181</height>
+     <width>391</width>
+     <height>211</height>
     </rect>
    </property>
    <property name="widgetResizable">
@@ -448,349 +494,395 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>363</width>
-      <height>441</height>
+      <y>-718</y>
+      <width>373</width>
+      <height>927</height>
      </rect>
     </property>
-    <layout class="QFormLayout" name="formLayout_3">
-     <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-     </property>
-     <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
       <widget class="QLabel" name="label_25">
        <property name="text">
-        <string>1. Grade in 2404</string>
+        <string> What grade would you prefer your partner has in COMP 2404?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item>
       <widget class="QComboBox" name="partner">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>A</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>B</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>C</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>D</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item>
       <widget class="QLabel" name="label_27">
        <property name="text">
-        <string>2. Grade in 2404</string>
+        <string>2. What grade would you prefer your partner has in COMP 2402?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item>
       <widget class="QComboBox" name="partner_2">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>A</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>B</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>C</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>D</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item>
       <widget class="QLabel" name="label_44">
        <property name="text">
-        <string>3. Grade in 2404</string>
+        <string>3. Does your partner have to be punctual?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item>
       <widget class="QComboBox" name="partner_3">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>No</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>Yes</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item>
       <widget class="QLabel" name="label_45">
        <property name="text">
-        <string>4. Grade in 2404</string>
+        <string>4. Does your partner have to be technical?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item>
       <widget class="QComboBox" name="partner_4">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>No</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>Yes</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item>
       <widget class="QLabel" name="label_46">
        <property name="text">
-        <string>5. Grade in 2404</string>
+        <string>5. Do you prefer that your partner works during group meetings or by themselves?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item>
       <widget class="QComboBox" name="partner_5">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>By themselves</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>Sometimes by  themselves and sometimes with the gorup</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>With the group</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item>
       <widget class="QLabel" name="label_47">
        <property name="text">
-        <string>6. Grade in 2404</string>
+        <string>6. How many hours per week do you prefer that your partner dedicates for school work?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item>
       <widget class="QComboBox" name="partner_6">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>1-3 hours per week</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>4-7 hours per week</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>8 or more hours</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item>
       <widget class="QLabel" name="label_48">
        <property name="text">
-        <string>7. Grade in 2404</string>
+        <string>7. How flexible should your partner be in handling emergency situations?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
-      <widget class="QComboBox" name="partner_8">
-       <item>
-        <property name="text">
-         <string>Answer1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QComboBox" name="partner_9">
-       <item>
-        <property name="text">
-         <string>Answer1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QComboBox" name="partner_10">
-       <item>
-        <property name="text">
-         <string>Answer1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="6" column="1">
+     <item>
       <widget class="QComboBox" name="partner_7">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>Very inflexible</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>Somewhat inflexible</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>Neither flexible nor inflexible</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Somewhat flexible</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Very flexible</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item>
       <widget class="QLabel" name="label_49">
        <property name="text">
-        <string>8. Grade in 2404</string>
+        <string>8. What is the minimum grade that you prefer your partner to be aiming for in this course?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item>
+      <widget class="QComboBox" name="partner_8">
+       <item>
+        <property name="text">
+         <string>A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>B</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>C</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>D</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_50">
        <property name="text">
-        <string>9. Grade in 2404</string>
+        <string>9. During group meetings, how strict should your partner be when it comes to discussion topics?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
+     <item>
+      <widget class="QComboBox" name="partner_9">
+       <item>
+        <property name="text">
+         <string>Not at all strict</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Somewhat strict</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Very strict</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_51">
        <property name="text">
-        <string>10. Grade in 2404</string>
+        <string>10. Would you prefer that your partner takes group leadership?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="10" column="0">
+     <item>
+      <widget class="QComboBox" name="partner_10">
+       <item>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Yes</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label_52">
        <property name="text">
-        <string>11. Grade in 2404</string>
+        <string>11. Would you prefer that your partner is capable of meeting on weekends?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="10" column="1">
+     <item>
       <widget class="QComboBox" name="partner_11">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>No</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>Yes</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="11" column="0">
+     <item>
       <widget class="QLabel" name="label_53">
        <property name="text">
-        <string>12. Grade in 2404</string>
+        <string>12. How many courses would you prefer that your partner is currently taking?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="11" column="1">
+     <item>
       <widget class="QComboBox" name="partner_12">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
+         <string>2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer3</string>
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5 or more</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="12" column="0">
+     <item>
       <widget class="QLabel" name="label_54">
        <property name="text">
-        <string>13. Grade in 2404</string>
+        <string>13. How many personal projects do you prefer your partner has worked on?</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="12" column="1">
+     <item>
       <widget class="QComboBox" name="partner_13">
        <item>
         <property name="text">
-         <string>Answer1</string>
+         <string>3 or less</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Answer2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Answer3</string>
+         <string>more than 3</string>
         </property>
        </item>
       </widget>
@@ -801,7 +893,7 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>300</x>
      <y>10</y>
      <width>271</width>
      <height>141</height>
