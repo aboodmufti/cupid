@@ -38,6 +38,7 @@ Project* EditProjectPage::getProject()
     // We need to get 'project Id' and 'project status' to
     // pass project into 'updateProject(project)'
     project->setID(pid);
+
     project->setName(ui->newNameLineEdit->text());
     project->setMinTeamSize(ui->newMinTeamSpinBox->value());
     project->setMaxTeamSize(ui->newMaxTeamSpinBox->value());
@@ -49,6 +50,7 @@ Project* EditProjectPage::getProject()
 void EditProjectPage::setProject(Project* proj)
 {
     pid = proj->getID();
+    ui->projectNameLabel->setText(proj->getName());
     ui->newNameLineEdit->setText(proj->getName());
     ui->newMinTeamSpinBox->setValue(proj->getMinTeamSize());
     ui->newMaxTeamSpinBox->setValue(proj->getMaxTeamSize());

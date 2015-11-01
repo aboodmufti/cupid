@@ -73,6 +73,7 @@ void AdminMainPage::setProjects(QList<Project*> *proj)
             QColor * green = new QColor(84, 167, 0);
             projStatus->setTextColor(*green);
         }else{
+            projStatus = new QTableWidgetItem("NOT PUBLISHED");
             QColor * red = new QColor(204, 0, 0);
             projStatus->setTextColor(*red);
         }
