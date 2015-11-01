@@ -37,6 +37,7 @@ public:
     void initialize();
     void checkAdminLogin(QString);
     void checkStudentLogin(QString);
+    void displayStudentProfile(int);
     int createProject(Project*);
     void openProject(int);
     void editProject(int);

@@ -27,6 +27,7 @@ class Storage
         StudentProfile*                 getStudentProfile(int);     //abood
         QList<int>*                     getQualifications(int);
         QList<QList<QString>*>*         getStudentProjects(int);    //abood
+        QList<StudentProfile*>*         getStudentsInProject(int);
         bool                            studentJoinedProject(int,int);
         bool                            updateStudentProfile(StudentProfile*); //abood
         bool                            updateQualifications(QList<int>*);

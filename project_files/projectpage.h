@@ -31,6 +31,7 @@ private:
     Ui::ProjectPage *ui;
     MainWindow *main;
     int pid;
+    QList<StudentProfile*>* studentsInProjectList;
 };
 
 #endif // PROJECTPAGE_H

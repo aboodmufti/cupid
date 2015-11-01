@@ -238,7 +238,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="studentsInProjectTable">
    <property name="geometry">
     <rect>
      <x>50</x>

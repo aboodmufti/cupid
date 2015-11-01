@@ -6,6 +6,7 @@ ProjectPage::ProjectPage(QWidget *parent) :
     ui(new Ui::ProjectPage)
 {
     ui->setupUi(this);
+    studentsInProjectList = new QList<StudentProfile*>();
 }
 
 ProjectPage::~ProjectPage()
@@ -33,6 +34,12 @@ void ProjectPage::on_pushButton_4_clicked()  // edit button
      main->editProject(pid);
 }
 
+void ProjectPage::tableItemClicked(int row , int column)
+{
+    pid = ((*(studentsInProjectList))[row])->getID();
+    main->displayStudentProfile(pid);
+}
+
 void ProjectPage::setProject(Project* project)
 {
     pid = project->getID();
@@ -43,4 +50,25 @@ void ProjectPage::setProject(Project* project)
 
     // Need to get Number of Students in a Project
     //ui->numOfStudents->setNum(project->);
+
+    studentsInProjectList = getStudentsInProject(pid);
+    int numOfStudentsInProject = studentsInProjectList->size();
+
+    ui->studentsInProjectTable->setRowCount(numOfStudentsInProject);
+    ui->studentsInProjectTable->setColumnCount(2);
+    ui->studentsInProjectTable->setColumnWidth(0, 600);
+    ui->studentsInProjectTable->setColumnWidth(1, 160);
+    ui->studentsInProjectTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->studentsInProjectTable->setHorizontalHeaderLabels(QString("Student Name;Student ID").split(";"));
+
+    for(int i=0; i<numOfStudentsInProject; ++i)
+    {
+        StudentProfile *stuProfile = (*(studentsInProjectList))[i];
+        QTableWidgetItem *studentName = new QTableWidgetItem(stuProfile->getName());
+        QTableWidgetItem *studentId = new QTableWidgetItem(stuProfile->getID());
+        ui->studentsInProjectTable->setItem(i, 0, studentName);
+        ui->studentsInProjectTable->setItem(i, 1, studentId);
+
+        connect(ui->studentsInProjectTable, SIGNAL(cellClicked(int,int)), this, SLOT(tableItemClicked(int,int)));
+    }
 }

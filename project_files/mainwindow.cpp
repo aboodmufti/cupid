@@ -103,13 +103,6 @@ void MainWindow::handleNewPage(View view){
         case PROJECT:
         {
           ProjectPage *projectPage = new ProjectPage();
-          // we need to get project ID from adminMainPage
-          // when the admin has clicked on a specific project
-          //AdminMainPage *adminMain = new AdminMainPage();
-          //int projectId = adminMain->getProjectId();
-          //Project* project = storage->getProjectById(projectId);
-          //projectPage->setProject(project);
-
           projectPage->setMain(this);
           this->setCentralWidget(projectPage);
         }
@@ -127,6 +120,16 @@ void MainWindow::handleNewPage(View view){
           break;
     }
 
+}
+
+void MainWindow::displayStudentProfile(int pid)
+{
+    StudentProfile *stuProfile = storage->getStudentProfile(pid);
+    StudentProfilePage *studentProfilePage = new StudentProfilePage();
+
+    studentProfilePage->setStudentProfile(stuProfile);
+    studentProfilePage->setMain(this);
+    this->centralWidget(studentProfilePage);
 }
 
 int MainWindow::createProject(Project* proj)

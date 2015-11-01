@@ -3,13 +3,11 @@
 
 AdminMainPage::AdminMainPage(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::AdminMainPage)//, projects(NULL)
+    ui(new Ui::AdminMainPage)
 {
     ui->setupUi(this);
     projects = new QList<Project*>();
     projId = -1;
-    //projects = new QTableWidget(this);
-    //connect(ui->projectsTable, );
 }
 
 AdminMainPage::~AdminMainPage()
@@ -19,13 +17,8 @@ AdminMainPage::~AdminMainPage()
 
 void AdminMainPage::tableItemClicked(int row , int column)
 {
-    //QTableWidgetItem *item = new QTableWidgetItem();
-    //item = ui->projectsTable->item(row, column);
-    // we need to get project ID from this item (project)
-
     projId = ((*(projects))[row])->getID();
     main->openProject(projId);
-
 }
 
 void AdminMainPage::setMain(MainWindow* newMain){
