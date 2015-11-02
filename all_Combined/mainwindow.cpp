@@ -7,12 +7,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     storage = new Storage();
-    qDebug() << "adminTable " << storage->setUpAdministratorTable();
-    qDebug() << "adminProjectTable " << storage->setUpAdminProjectTable();
-    qDebug() << "ProjectStudentTable " << storage->setUpProjectStudentTable();
-    qDebug() << "projectTable " << storage->setUpProjectTable();
-    qDebug() << "Q table " << storage->setUpQualificationsTable();
-    qDebug() << "student table " << storage->setUpStudentTable();
+    storage->setUpAdministratorTable();
+    storage->setUpAdminProjectTable();
+    storage->setUpProjectStudentTable();
+    storage->setUpProjectTable();
+    storage->setUpQualificationsTable();
+    storage->setUpStudentTable();
 }
 
 MainWindow::~MainWindow()
@@ -158,7 +158,7 @@ void MainWindow::editProfileSubmit(int newStu, StudentProfile* stuProfile){
 }
 
 void MainWindow::joinProject(int pid){
-    qDebug() <<"pid sid : " << pid<< " " << stu->getStudentProfile()->getID();
+
     storage->addStudentProject(pid, stu->getStudentProfile()->getID());
     handleNewPage(STUDENT_PROJECT_LIST);
 }
@@ -166,10 +166,10 @@ void MainWindow::joinProject(int pid){
 
 //Dania's
 QList<StudentProfile*>* MainWindow::getStudentsInProject(int pid){
-    qDebug() <<"DEBUG20: "<<pid;
+
     QList<StudentProfile*>* list = storage->getStudentsInProject2(pid);
     return list;
-    qDebug() <<"DEBUG21 ";
+
 }
 
 void MainWindow::displayStudentProfile(int sid,int pid)
@@ -189,16 +189,12 @@ int MainWindow::createProject(Project* proj)
 
 void MainWindow::openProject(int pid)
 {
-    qDebug() <<"DEBUG4 ";
     Project* project = storage->getProjectById(pid);
     QList<StudentProfile*>* list = getStudentsInProject(pid);
-    qDebug() <<"DEBUG5 ";
     ProjectPage *projectPage = new ProjectPage();
 
     projectPage->setProject(project,list);
-    qDebug() <<"DEBUG6 ";
     projectPage->setMain(this);
-    qDebug() <<"DEBUG7 ";
     this->setCentralWidget(projectPage);
 }
 

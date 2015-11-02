@@ -40,7 +40,6 @@ void StudentProjectsPage::on_pushButton_clicked()
 }
 
 void StudentProjectsPage::joinButtonClicked(int pid){
-    qDebug() << "pid in view: "<< pid;
     main->joinProject(pid);
 }
 
@@ -64,7 +63,6 @@ void StudentProjectsPage::setProjects(QList<QList<QString>*>* projects){
         ui->projectsTable->setItem(i,0,name);
 
         QString joinStat = (*(projects2[i]))[2];
-        qDebug() << "Status in view : " << joinStat;
         if(joinStat == "TRUE"){
             QTableWidgetItem* status = new QTableWidgetItem();
             status->setText("Joined");

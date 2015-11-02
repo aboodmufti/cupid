@@ -153,39 +153,28 @@ void AdminStudentProfilePage::setStudentProfile(StudentProfile* stuProfile,int n
         }
 
     }
-    else{
-        ui->stuNameLabel->setText("New Student");
-        ui->stuIdLabel->setText("New Student");
-    }
 
 }
+
 
 QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
     switch(qid){
         case 1:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "A";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "B";
                 }
                 break;
                 case 3:{
-                    return "text value";
+                    return "C";
                 }
                 break;
                 case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "D";
                 }
                 break;
             }
@@ -194,27 +183,19 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 2:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "A";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "B";
                 }
                 break;
                 case 3:{
-                    return "text value";
+                    return "C";
                 }
                 break;
                 case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "D";
                 }
                 break;
             }
@@ -223,27 +204,11 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 3:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "No";
                 }
                 break;
                 case 2:{
-                    return "text value";
-                }
-                break;
-                case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "Yes";
                 }
                 break;
             }
@@ -252,27 +217,11 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 4:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "No";
                 }
                 break;
                 case 2:{
-                    return "text value";
-                }
-                break;
-                case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "Yes";
                 }
                 break;
             }
@@ -281,27 +230,15 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 5:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "By myself";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "Sometimes by myself and sometimes with the group";
                 }
                 break;
                 case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "With the group";
                 }
                 break;
             }
@@ -310,27 +247,15 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 6:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "1-3 hours per week";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "4-7 hours per week";
                 }
                 break;
                 case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "8 or more hours per week";
                 }
                 break;
             }
@@ -339,27 +264,23 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 7:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "Very inflexible";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "Somewhat inflexible";
                 }
                 break;
                 case 3:{
-                    return "text value";
+                    return "Neither flexible nor inflexible";
                 }
                 break;
                 case 4:{
-                    return "text value";
+                    return "Somewhat flexible";
                 }
                 break;
                 case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "Very flexible";
                 }
                 break;
             }
@@ -368,27 +289,19 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 8:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "A";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "B";
                 }
                 break;
                 case 3:{
-                    return "text value";
+                    return "C";
                 }
                 break;
                 case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "D";
                 }
                 break;
             }
@@ -397,27 +310,15 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 9:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "Not at all strict";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "Somewhat strict";
                 }
                 break;
                 case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "Very strict";
                 }
                 break;
             }
@@ -426,27 +327,11 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 10:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "No";
                 }
                 break;
                 case 2:{
-                    return "text value";
-                }
-                break;
-                case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "Yes";
                 }
                 break;
             }
@@ -455,27 +340,11 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 11:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "No";
                 }
                 break;
                 case 2:{
-                    return "text value";
-                }
-                break;
-                case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "Yes";
                 }
                 break;
             }
@@ -484,56 +353,37 @@ QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
         case 12:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "1";
                 }
                 break;
                 case 2:{
-                    return "text value";
+                    return "2";
                 }
                 break;
                 case 3:{
-                    return "text value";
+                    return "3";
                 }
                 break;
                 case 4:{
-                    return "text value";
+                    return "4";
                 }
                 break;
                 case 5:{
-                    return "text value";
+                    return "5 or more";
                 }
                 break;
-                case 6:{
-                    return "text value";
-                }
-                break;
+
             }
         }
         break;
         case 13:{
             switch(valueID){
                 case 1:{
-                    return "text value";
+                    return "3 or less";
                 }
                 break;
                 case 2:{
-                    return "text value";
-                }
-                break;
-                case 3:{
-                    return "text value";
-                }
-                break;
-                case 4:{
-                    return "text value";
-                }
-                break;
-                case 5:{
-                    return "text value";
-                }
-                break;
-                case 6:{
-                    return "text value";
+                    return "More than 3";
                 }
                 break;
             }

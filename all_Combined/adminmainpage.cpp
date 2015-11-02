@@ -22,11 +22,11 @@ void AdminMainPage::tableItemClicked(int row , int column)
     //QTableWidgetItem *item = new QTableWidgetItem();
     //item = ui->projectsTable->item(row, column);
     // we need to get project ID from this item (project)
-    qDebug() <<"DEBUG1 ";
+
     projId = ((*(projects))[row])->getID();
-    qDebug() <<"DEBUG2 ";
+
     main->openProject(projId);
-    qDebug() <<"DEBUG3 ";
+
 
 }
 

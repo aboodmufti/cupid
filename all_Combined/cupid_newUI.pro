@@ -30,8 +30,6 @@ SOURCES += main.cpp\
     entity/Student.cpp \
     entity/StudentProfile.cc \
     entity/User.cpp \
-    storage_test_cases.cpp \
-    database/replacing.cpp \
     adminstudentprofilepage.cpp
 
 HEADERS  += mainwindow.h \

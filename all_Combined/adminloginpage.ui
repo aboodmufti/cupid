@@ -66,9 +66,9 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>0</x>
      <y>10</y>
-     <width>841</width>
+     <width>861</width>
      <height>141</height>
     </rect>
    </property>
@@ -83,7 +83,7 @@
        </font>
       </property>
       <property name="text">
-       <string> cuPID</string>
+       <string>cuPID</string>
       </property>
      </widget>
     </item>

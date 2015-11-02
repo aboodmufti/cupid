@@ -43,7 +43,6 @@ void ProjectPage::tableItemClicked(int row , int column)
 void ProjectPage::setProject(Project* project,QList<StudentProfile*>* list)
 {
     pid = project->getID();
-    qDebug()<< "proj id :" << pid;
     ui->projectNameLabel->setText(project->getName());
     ui->minTeamSize->setText(QString::number(project->getMinTeamSize()));
     ui->maxTeamSize->setText(QString::number(project->getMaxTeamSize()));
@@ -51,13 +50,10 @@ void ProjectPage::setProject(Project* project,QList<StudentProfile*>* list)
 
     // Need to get Number of Students in a Project
     //ui->numOfStudents->setNum(project->);
-    qDebug() <<"DEBUG9 ";
     //studentsInProjectList = main->getStudentsInProject(pid);
     studentsInProjectList = list;
-    qDebug() <<"DEBUG10 ";
     int numOfStudentsInProject = studentsInProjectList->size();
     ui->numOfStudents->setNum(numOfStudentsInProject);
-    qDebug() <<"DEBUG11 ";
     ui->studentsInProjectTable->setRowCount(numOfStudentsInProject);
     ui->studentsInProjectTable->setColumnCount(2);
     ui->studentsInProjectTable->setColumnWidth(0, 600);
@@ -65,17 +61,14 @@ void ProjectPage::setProject(Project* project,QList<StudentProfile*>* list)
     ui->studentsInProjectTable->horizontalHeader()->setStretchLastSection(true);
     ui->studentsInProjectTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->studentsInProjectTable->setHorizontalHeaderLabels(QString("Student Name;Student ID").split(";"));
-    qDebug() <<"DEBUG12 ";
     for(int i=0; i<numOfStudentsInProject; ++i)
     {
         StudentProfile *stuProfile = (*(studentsInProjectList))[i];
         QTableWidgetItem *studentName = new QTableWidgetItem(stuProfile->getName());
         QTableWidgetItem *studentId = new QTableWidgetItem(QString::number(stuProfile->getID()));
-        qDebug() <<"Stu id:" << stuProfile->getID();
         ui->studentsInProjectTable->setItem(i, 0, studentName);
         ui->studentsInProjectTable->setItem(i, 1, studentId);
 
         connect(ui->studentsInProjectTable, SIGNAL(cellClicked(int,int)), this, SLOT(tableItemClicked(int,int)));
     }
-    qDebug() <<"DEBUG13 ";
 }
