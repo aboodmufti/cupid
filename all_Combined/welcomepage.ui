@@ -16,7 +16,7 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>310</x>
      <y>10</y>
      <width>221</width>
      <height>141</height>
@@ -42,7 +42,7 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>280</x>
      <y>260</y>
      <width>301</width>
      <height>171</height>
@@ -79,9 +79,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>verticalLayoutWidget_2</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>adminButton_2</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

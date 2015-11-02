@@ -29,9 +29,9 @@ void MainWindow::handleNewPage(View view){
     {
         case WELCOME_PAGE:
         {
-            WelcomePage *newPage1 = new WelcomePage();
-            newPage1->setMain(this);
-            this->setCentralWidget(newPage1);
+            WelcomePage *welcomePage = new WelcomePage();
+            welcomePage->setMain(this);
+            this->setCentralWidget(welcomePage);
         }
             break;
         case STUDENT_LOGIN:

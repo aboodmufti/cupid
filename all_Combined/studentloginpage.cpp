@@ -24,11 +24,12 @@ void StudentLoginPage::on_submitButton_clicked()
 
 }
 
+void StudentLoginPage::on_backButton_clicked()
+{
+    main->handleNewPage(WELCOME_PAGE);
+}
+
 QString StudentLoginPage::getUsername()
 {
     return ui->usernameTextEdit->toPlainText();
 }
-
-
-
-

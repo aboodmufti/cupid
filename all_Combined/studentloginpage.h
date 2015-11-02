@@ -22,6 +22,8 @@ public:
 private slots:
     void on_submitButton_clicked();
 
+    void on_backButton_clicked();
+
 private:
     Ui::StudentLoginPage *ui;
     MainWindow *main;

@@ -23,6 +23,11 @@ void AdminLoginPage::on_submitButton_clicked()
     main->checkAdminLogin(ui->usernameTextEdit->toPlainText()); // added hussam
 }
 
+void AdminLoginPage::on_backButton_clicked()
+{
+    main->handleNewPage(WELCOME_PAGE);
+}
+
 QString AdminLoginPage::getUsername()
 {
     return ui->usernameTextEdit->toPlainText();

@@ -16,9 +16,9 @@
   <widget class="QPushButton" name="submitButton">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>440</x>
      <y>370</y>
-     <width>221</width>
+     <width>151</width>
      <height>27</height>
     </rect>
    </property>
@@ -36,7 +36,7 @@
   <widget class="QLabel" name="usernameLabel">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>240</x>
      <y>260</y>
      <width>121</width>
      <height>21</height>
@@ -56,9 +56,9 @@
   <widget class="QTextEdit" name="usernameTextEdit">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>360</x>
      <y>260</y>
-     <width>311</width>
+     <width>261</width>
      <height>31</height>
     </rect>
    </property>
@@ -66,7 +66,7 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>310</x>
      <y>10</y>
      <width>221</width>
      <height>141</height>
@@ -88,6 +88,26 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>370</y>
+     <width>151</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
   </widget>
  </widget>
  <resources/>
