@@ -272,7 +272,7 @@ QString StudentProfilePage::convertQ(int qid,int valueID ){
                 }
                 break;
                 case 3:{
-                    return "8 or more hours per week";
+                    return "More than 8 hours per week";
                 }
                 break;
             }

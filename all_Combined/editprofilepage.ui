@@ -217,7 +217,7 @@
        </item>
        <item>
         <property name="text">
-         <string>More than 8 hours per week</string>
+         <string>8 or more hours per week</string>
         </property>
        </item>
       </widget>
@@ -669,7 +669,7 @@
        </item>
        <item>
         <property name="text">
-         <string>More than 8 hours per week</string>
+         <string>8 or more hours per week</string>
         </property>
        </item>
       </widget>
@@ -893,9 +893,9 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>10</x>
      <y>10</y>
-     <width>271</width>
+     <width>841</width>
      <height>141</height>
     </rect>
    </property>

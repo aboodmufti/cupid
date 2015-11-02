@@ -66,9 +66,9 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>10</x>
      <y>10</y>
-     <width>221</width>
+     <width>841</width>
      <height>141</height>
     </rect>
    </property>
@@ -77,7 +77,7 @@
      <widget class="QLabel" name="label_2">
       <property name="font">
        <font>
-        <pointsize>30</pointsize>
+        <pointsize>60</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
