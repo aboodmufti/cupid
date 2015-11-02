@@ -42,9 +42,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-667</y>
-      <width>373</width>
-      <height>876</height>
+      <y>-651</y>
+      <width>402</width>
+      <height>859</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -264,7 +264,7 @@
      <item>
       <widget class="QLabel" name="label_38">
        <property name="text">
-        <string>8. What grade are you aiming for in this course?s</string>
+        <string>8. What grade are you aiming for in this course?</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -375,7 +375,7 @@
      <item>
       <widget class="QLabel" name="label_42">
        <property name="text">
-        <string>12. How many courses are you currently taking?s</string>
+        <string>12. How many courses are you currently taking?</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -481,8 +481,8 @@
   <widget class="QScrollArea" name="scrollArea_3">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>292</y>
+     <x>440</x>
+     <y>290</y>
      <width>391</width>
      <height>211</height>
     </rect>
@@ -494,8 +494,8 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-718</y>
-      <width>373</width>
+      <y>-246</y>
+      <width>438</width>
       <height>927</height>
      </rect>
     </property>
@@ -503,7 +503,7 @@
      <item>
       <widget class="QLabel" name="label_25">
        <property name="text">
-        <string> What grade would you prefer your partner has in COMP 2404?</string>
+        <string>1. What grade would you prefer your partner has in COMP 2404?</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -669,7 +669,7 @@
        </item>
        <item>
         <property name="text">
-         <string>8 or more hours</string>
+         <string>More than 8 hours per week</string>
         </property>
        </item>
       </widget>
