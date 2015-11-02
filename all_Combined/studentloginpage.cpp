@@ -21,7 +21,7 @@ void StudentLoginPage::on_submitButton_clicked()
 {
     //main->handleNewPage(STUDENT_PROFILE);
     if(ui->usernameTextEdit->toPlainText().trimmed() == "" ){
-        ui->errorLabel->setText("Please don't leave it blank");
+        ui->errorLabel->setText("This is a required field");
         return;
     }
     main->checkStudentLogin(ui->usernameTextEdit->toPlainText()); // added hussam

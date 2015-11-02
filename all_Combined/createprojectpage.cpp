@@ -20,6 +20,10 @@ void createProjectPage::setMain(MainWindow* newMain)
 
 void createProjectPage::on_pushButton_clicked()
 {
+    if(ui->projNameEdit->text().trimmed() == ""  ){
+        ui->errorLabel->setText("Please don't leave name field blank");
+        return;
+    }
     int newID = main->createProject(getProject());
     main->openProject(newID);
     //main->handleNewPage(PROJECT);

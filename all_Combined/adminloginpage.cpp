@@ -22,7 +22,7 @@ void AdminLoginPage::on_submitButton_clicked()
    //main->handleNewPage(ADMIN_MAIN_PAGE);
 
     if(ui->usernameTextEdit->toPlainText().trimmed() == "" ){
-        ui->errorLabel->setText("Please don't leave it blank");
+        ui->errorLabel->setText("This is a required field");
         return;
     }
     main->checkAdminLogin(ui->usernameTextEdit->toPlainText()); // added hussam
