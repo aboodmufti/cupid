@@ -46,6 +46,7 @@ public:
     void viewProjects();
     void displayStudentProfile(int sid, int pid);
     QList<StudentProfile*>* getStudentsInProject(int pid);
+    bool getStudentbyID(int);
 
 private:
     Ui::MainWindow *ui;

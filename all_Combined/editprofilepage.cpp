@@ -29,6 +29,11 @@ void EditProfilePage::on_pushButton_2_clicked()
 //Save button
 void EditProfilePage::on_pushButton_clicked()
 {
+    if(ui->nameTextEdit->toPlainText().trimmed() == ""  || ui->studentIDTextEdit->toPlainText().trimmed() == "" ){
+        ui->errorLabel->setText("Please don't leave any field blank");
+        return;
+    }
+
     StudentProfile * stuProfile = new StudentProfile();
     stuProfile->setName(ui->nameTextEdit->toPlainText());
     stuProfile->setUsername(username);
@@ -70,6 +75,16 @@ void EditProfilePage::on_pushButton_clicked()
     stuProfile->setPartnerQ(partnerQ);
 
     if(newStu == 1){
+        QRegExp re("\\d*");
+        if (!re.exactMatch(ui->studentIDTextEdit->toPlainText())){
+            ui->errorLabel->setText("Student ID should only contain numbers");
+            return;
+        }
+        if( main->getStudentbyID(ui->studentIDTextEdit->toPlainText().toInt()) ){
+            ui->errorLabel->setText("Student ID already exists");
+            return;
+        }
+
         stuProfile->setID((ui->studentIDTextEdit->toPlainText()).toInt());
         main->editProfileSubmit(newStu, stuProfile);
     }else if(newStu == 0){

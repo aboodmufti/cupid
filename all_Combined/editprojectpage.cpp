@@ -19,6 +19,10 @@ void EditProjectPage::setMain(MainWindow* newMain){
 
 void EditProjectPage::on_pushButton_clicked() // save
 {
+    if(ui->newNameLineEdit->text().trimmed() == ""  ){
+        ui->errorLabel->setText("Please don't leave name field blank");
+        return;
+    }
     main->updateProject(getProject());
     main->openProject(pid);
    // main->handleNewPage(PROJECT);

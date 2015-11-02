@@ -20,7 +20,11 @@ void StudentLoginPage::setMain(MainWindow* newMain){
 void StudentLoginPage::on_submitButton_clicked()
 {
     //main->handleNewPage(STUDENT_PROFILE);
-      main->checkStudentLogin(ui->usernameTextEdit->toPlainText()); // added hussam
+    if(ui->usernameTextEdit->toPlainText().trimmed() == "" ){
+        ui->errorLabel->setText("Please don't leave it blank");
+        return;
+    }
+    main->checkStudentLogin(ui->usernameTextEdit->toPlainText()); // added hussam
 
 }
 

@@ -136,6 +136,15 @@ void MainWindow::handleNewPage(View view){
 }
 
 //Abood's
+bool MainWindow::getStudentbyID(int sid){
+    StudentProfile* stu = storage->getStudentProfile(sid);
+    if(stu->getName() == "unknown"){
+        return false;
+    }
+    return true;
+
+}
+
 void MainWindow::editProfileSubmit(int newStu, StudentProfile* stuProfile){
 
     if(newStu == 1){
