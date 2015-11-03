@@ -22,6 +22,8 @@ The .tar file includes:
 1) The cuPID folder (which includes all source code and database).
 
 2) This ReadMe file.
+
+3) cupid_UI.pro shortcut
 -------------------------------------------------------------------------------
 
 Compilation and execution:
