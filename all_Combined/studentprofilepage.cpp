@@ -30,7 +30,7 @@ void StudentProfilePage::on_pushButton_3_clicked()
 void StudentProfilePage::on_projectsButton_clicked()
 {
     if(studentProfile->getName() == "unknown"){
-        ui->errorLabel->setText("Please create an account to be able to view projects");
+        ui->errorLabel->setText("Please fill in your profile to be able to view projects");
         return;
     }
     main->handleNewPage(STUDENT_PROJECT_LIST);

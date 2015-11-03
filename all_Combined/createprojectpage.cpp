@@ -38,3 +38,8 @@ Project* createProjectPage::getProject()
     project->setDescription(ui->descriptionEdit->toPlainText());
     return project;
 }
+
+void createProjectPage::on_cancelButton_clicked()
+{
+    main->handleNewPage(ADMIN_MAIN_PAGE);
+}

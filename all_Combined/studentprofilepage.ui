@@ -10,6 +10,11 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <underline>false</underline>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -88,6 +93,7 @@
      <weight>75</weight>
      <bold>true</bold>
      <underline>true</underline>
+     <kerning>false</kerning>
     </font>
    </property>
    <property name="text">

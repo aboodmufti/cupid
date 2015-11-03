@@ -24,6 +24,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_cancelButton_clicked();
+
 private:
     Ui::createProjectPage *ui;
     MainWindow *main;
