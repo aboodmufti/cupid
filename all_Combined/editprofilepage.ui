@@ -119,7 +119,7 @@
      <item>
       <widget class="QLabel" name="label_33">
        <property name="text">
-        <string>3. Are you Punctual?</string>
+        <string>3. Are you punctual?</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -494,7 +494,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>-102</y>
       <width>438</width>
       <height>927</height>
      </rect>
