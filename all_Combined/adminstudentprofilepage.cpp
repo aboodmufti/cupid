@@ -43,7 +43,7 @@ void AdminStudentProfilePage::setStudentProfile(StudentProfile* stuProfile,int n
         ui->ownQList->addItem(convertQ(2,(*(studentProfile->getOwnQ()))[2]));
         ui->ownQList->addItem("");
 
-        ui->ownQList->addItem("3. Are you Punctual?");
+        ui->ownQList->addItem("3. Are you punctual?");
         ui->ownQList->addItem(convertQ(3,(*(studentProfile->getOwnQ()))[3]));
         ui->ownQList->addItem("");
 
