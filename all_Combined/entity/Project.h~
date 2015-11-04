@@ -2,7 +2,7 @@
 #define PROJECT_H
 
 #include <QString>
-/*project entity class contains project related attributes and functions*/
+
 using namespace std;
 
 class Project

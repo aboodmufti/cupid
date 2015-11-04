@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "mainwindow.h"
-/* student profile page boundary class */
 class MainWindow;
 class StudentProfile;
 

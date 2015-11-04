@@ -3,7 +3,7 @@
 
 #include <QString>
 using namespace std;
-/*entity class user that happens to be a parent of student and administrator*/
+
 class User
 {
     protected:

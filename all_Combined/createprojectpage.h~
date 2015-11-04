@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "mainwindow.h"
 #include "entity/EntityDef.h"
-/* administrator create project page boundary class */
+
 class MainWindow;
 
 namespace Ui {

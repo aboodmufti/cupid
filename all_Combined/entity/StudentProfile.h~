@@ -5,7 +5,7 @@
 #include <QString>
 #include <QList>
 #include "Project.h"
-/*Student profile entity class contains student profile related attributes and functions*/
+
 using namespace std;
 
 

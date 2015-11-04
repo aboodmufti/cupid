@@ -6,7 +6,7 @@
 #include <QTableWidget>
 #include "mainwindow.h"
 #include "entity/EntityDef.h"
-/* administrator main page boundary class */
+
 class MainWindow;
 
 namespace Ui {

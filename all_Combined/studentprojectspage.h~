@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "mainwindow.h"
-/* student projects page boundary class */
 class MainWindow;
 
 namespace Ui {

@@ -16,7 +16,7 @@
 #include "adminstudentprofilepage.h"
 
 #include "database/storage.h"
-/* control class for the whole program */
+
 namespace Ui {
 class MainWindow;
 }
