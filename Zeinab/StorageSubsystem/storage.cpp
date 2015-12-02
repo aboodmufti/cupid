@@ -19,9 +19,13 @@ Storage::Storage()
 }
 
 // Student Profile
-StudentProfile* Storage::createStudentProfile(){
-    StudentProfile* prof = new StudentProfile();
-    return prof;
+void Storage::createStudentProfile(){
+    stuProfile = new StudentProfile();
+}
+
+StudentProfile* createNewStudentProfile(){
+    StudentProfile profile = new StudentProfile();
+    return profile;
 }
 
 StudentProfile* Storage::getStudentProfile(){
@@ -77,7 +81,11 @@ void Storage::setStudentProfile(StudentProfile* profile){
 }	
 
 //Student functions
-Student* Storage::createStudent(){
+void Storage::createStudent(){
+    stu = new Student();
+}
+
+Student* Storage::createNewStudent(){
 	Student* s = new Student();
 	return s;
 }
@@ -88,11 +96,21 @@ void Storage::setStudent(Student* s){
 	stu = s;
 }
 
-//Admin functions
-Administrator* Storage::createAdministrator(){
-	Administrator a = new Administrator();
-	return a;
+void setOwnProfile(){
+    stu->setStudentProfile();
 }
+
+StudentProfile* getOwnProfile(){
+    return stu->getStudentProfile();
+}
+
+
+//Admin functions
+
+void Storage::createNewAdministrator(){
+    admin = new Administrator();
+}
+
 Administrator* Storage::getAdministrator(){
 	return admin;
 }
@@ -107,7 +125,12 @@ void Storage::addProject(Project* pro){
 Project* Storage::getProject(){
 	return project;
 }
-Project* Storage::createProject(){
+
+void Storage::createProject(){
+    project = new Project();
+}
+
+Project* Storage::createNewProject(){
 	Project* pro = new Project();
 	return pro;
 }

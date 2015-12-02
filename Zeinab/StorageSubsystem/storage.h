@@ -17,7 +17,8 @@ class Storage
         Storage();
 
 	//Student profile functions
-	StudentProfile* 		createStudentProfile();
+    void 		createStudentProfile();
+    StudentProfile*    createNewStudentProfile();
  	StudentProfile* 		getStudentProfile();
 	int 				getProfileID();
 	QString 			getProfileName();
@@ -36,12 +37,14 @@ class Storage
 	void 				setStudentProfile(StudentProfile*);				
 
 	//Student functions
-	Student*			createStudent();
+    void			createStudent();
 	Student*			getStudent();
 	void				setStudent(Student*);
+    void                setOwnProfile(StudentProfile*);
+    StudentProfile      getOwnProfile(StudentProfile*);
 
 	//Admin functions
-	Administrator*			createAdministrator();
+    void			createAdministrator();
 	Administrator*			getAdministrator();
 	void				setAdministrator(Administrator*);
 	void 				addProject(Project*);
@@ -49,7 +52,8 @@ class Storage
 	//Project functions
 	Project*			 getProject();
 	Project*			 createProject();
-	int        			 getProjectID();
+    Project*             createNewProject();
+    int        			 getProjectID();
         QString   			 getProjectName();
         int     		         getMinTeamSize();
         int     			 getMaxTeamSize();
@@ -64,6 +68,7 @@ class Storage
         void   				 setStatus(QString);
 
 	//Team functions
+    Team*               createNewTeam();
 	void				setTeam(Team*);
 	Team*				getTeam();
 	Team*				createTeam();
@@ -91,8 +96,7 @@ class Storage
         StudentProfile*                 getStudentByUsername(QString);
         bool                            setUpStudentTable();
         bool                            setUpQualificationsTable();
-        bool                            setUpProjectStudentTable();
-        QList<StudentProfile*>*         getStudentsInProject(int);  
+        bool                            setUpProjectStudentTable(); 
         QList<StudentProfile*>*         getStudentsInProject2(int pid);
 
 
