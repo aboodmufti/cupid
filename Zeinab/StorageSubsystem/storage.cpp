@@ -107,7 +107,7 @@ StudentProfile* getOwnProfile(){
 
 //Admin functions
 
-void Storage::createNewAdministrator(){
+void Storage::createAdministrator(){
     admin = new Administrator();
 }
 
