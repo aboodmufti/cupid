@@ -13,10 +13,10 @@
 #include "studentprofilepage.h"
 #include "studentprojectspage.h"
 #include "welcomepage.h"
+#include "adminstudentprofilepage.h"
+
 #include "database/storage.h"
-
-
-
+/* control class for the whole program */
 namespace Ui {
 class MainWindow;
 }
@@ -34,9 +34,21 @@ public:
     ~MainWindow();
     void handleNewPage(View view);
     void initialize();
-    void checkAdminLogin(QString); // added hussam
-    void checkStudentLogin(QString); // added hussam
-
+    void editProfileSubmit(int newStu, StudentProfile* stuProfile);
+    void joinProject(int pid);
+    void checkAdminLogin(QString);
+    void checkStudentLogin(QString);
+    int  createProject(Project*);
+    void openProject(int);
+    void editProject(int);
+    void updateProject(Project*);
+    void publishProject(int);
+    void viewProjects();
+    void displayStudentProfile(int sid, int pid);
+    QList<StudentProfile*>* getStudentsInProject(int pid);
+    bool getStudentbyID(int);
+    /* go to the welcome page */
+    void welcomePage();
 private:
     Ui::MainWindow *ui;
     Storage *storage;
