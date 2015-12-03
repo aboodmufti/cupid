@@ -74,7 +74,7 @@ void Storage::addProject(Project* pro){
 }
 
 void Storage::setProjects(QList<Project*> pro){
-	stuProfile->seProjects(pro);
+    stuProfile->setProjects(pro);
 }
 void Storage::setStudentProfile(StudentProfile* profile){
 	stuProfile = profile;
