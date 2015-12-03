@@ -7,6 +7,7 @@
 //#include "StorageSubsytem/Defs.h"
 
 #include "mainwindow.h"
+#include "algorithmsummary.h"
 
 #include <QMap>
 #include <QtMath>
@@ -17,12 +18,14 @@ class AlgorithmManager
 {
 public:
     //AlgorithmManager(Storage* storage, MainWindow* main);
-    AlgorithmManager();
+    AlgorithmManager(MainWindow* main);
     void runAlgorithm(Project* project, QList<StudentProfile*>* studentsInProject);
 
 private:
     Storage* storage;
     MainWindow* mainWindow;
+    QString* output;
+    QString* output2;
 
     QList<QMap<QString, int>*>* preventiveMeasures(int minSize, int maxSize, int numStudents);
     QList<QMap<int, QMap<int,int>*>*>* step1(QList<StudentProfile*>* studentsInProject);

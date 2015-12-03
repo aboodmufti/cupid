@@ -14,6 +14,7 @@ class AlgorithmSummary : public QWidget
 public:
     explicit AlgorithmSummary(QWidget *parent = 0);
     ~AlgorithmSummary();
+    void setOutput(QString* output, QString* output2);
 
 private:
     Ui::AlgorithmSummary *ui;

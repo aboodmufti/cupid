@@ -12,3 +12,8 @@ AlgorithmSummary::~AlgorithmSummary()
 {
     delete ui;
 }
+
+void AlgorithmSummary::setOutput(QString* output,QString* output2){
+    ui->output->setText((*output2));
+    ui->output->append((*output));
+}
