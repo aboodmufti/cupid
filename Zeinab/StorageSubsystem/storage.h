@@ -3,7 +3,7 @@
 #include <QList>
 #include <QtSql>
 
-#include "sEntityDef.h"
+#include "EntityDef.h"
 
 #include <string>
 #include <QString>
@@ -41,7 +41,7 @@ class Storage
 	Student*			getStudent();
 	void				setStudent(Student*);
     void                setOwnProfile(StudentProfile*);
-    StudentProfile      getOwnProfile(StudentProfile*);
+    StudentProfile      getOwnProfile();
 
 	//Admin functions
     void			createAdministrator();

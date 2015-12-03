@@ -52,7 +52,7 @@ QList<Project*> Storage::getProjects(){
 	return stuProfile->getProjects();
 }
 void Storage::setUsername(QString n){
-	stuUProfile->setUsername(n);
+    stuProfile->setUsername(n);
 }
 void Storage::setProfileName(QString n){
 	stuProfile->setName(n);
@@ -96,8 +96,8 @@ void Storage::setStudent(Student* s){
 	stu = s;
 }
 
-void setOwnProfile(){
-    stu->setStudentProfile();
+void setOwnProfile(StudentProfile* stuPro){
+    stu->setStudentProfile(stuPro);
 }
 
 StudentProfile* getOwnProfile(){
