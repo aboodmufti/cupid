@@ -21,10 +21,16 @@ void EditProjectPage::on_pushButton_clicked() // save
 {
     int newMin = ui->newMinTeamSpinBox->text().toInt();
     int newMax = ui->newMaxTeamSpinBox->text().toInt();
+
     if(ui->newNameLineEdit->text().trimmed() == ""  ){
         ui->errorLabel->setText("Please don't leave name field blank");
         return;
-    }else if(newMax <= newMin){
+    }
+    if(newMin < 2){
+        ui->errorLabel->setText("Minimum team size cannot be less than two");
+        return;
+    }
+    if(newMax <= newMin){
         ui->errorLabel->setText("Maximum team size cannot be larger than or equal to the minimum size");
         return;
     }
