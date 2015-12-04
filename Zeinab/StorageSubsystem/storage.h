@@ -7,6 +7,8 @@
 
 #include <string>
 #include <QString>
+#include "AlgorithmSubsystem/algorithmmanager.h"
+
 /* class storage contains all the functions that would apply the database commands*/
 using namespace std;
 
@@ -32,26 +34,27 @@ class Storage
     	void             		setOwnQ(QList<int>*);
     	void              		setPartnerQ(QList<int>*);
     	//void             		setTeams(Team*);
-    	void              		addProject(Project*);
+        void              		addProject(Project*);
     	void             	        setProjects(QList<Project*>);
 	void 				setStudentProfile(StudentProfile*);				
 
 	//Student functions
     void			createStudent();
+    Student*         createNewStudent();
 	Student*			getStudent();
 	void				setStudent(Student*);
     void                setOwnProfile(StudentProfile*);
-    StudentProfile      getOwnProfile();
+    StudentProfile*      getOwnProfile();
 
 	//Admin functions
     void			createAdministrator();
 	Administrator*			getAdministrator();
 	void				setAdministrator(Administrator*);
-	void 				addProject(Project*);
+    void 				addNewProject(Project*);
 
 	//Project functions
 	Project*			 getProject();
-	Project*			 createProject();
+    void			 createProject();
     Project*             createNewProject();
     int        			 getProjectID();
         QString   			 getProjectName();
@@ -114,9 +117,8 @@ class Storage
         bool                            setUpProjectTable();
 
 	//Algorithm management functions
-	void 				executeAlgorithm(Project*);
-	void 				viewSummery(Project*); //might remove later
-	void 				viewInformation(Project*); //might remove later
+    void 				executeAlgorithm(Project*, QList<StudentProfile*>*);
+    void 				backToAdmin();
 
 	//other storage functions
         QSqlQuery*			getQueryObject();
