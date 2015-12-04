@@ -75,5 +75,16 @@ void ProjectPage::setProject(Project* project,QList<StudentProfile*>* list)
 
 void ProjectPage::on_pushButton_2_clicked() //algorithm Button
 {
-    projectManager->executeAlgorithm();
+    ui->errorLabel->setText("");
+    int min = ui->minTeamSize->text().toInt();
+    int max = ui->maxTeamSize->text().toInt();
+    int total = ui->numOfStudents->text().toInt();
+    if(total < min){
+        ui->errorLabel->setText("The mininimum team size cannot be larger than the total number of students!");
+    }else if(max > total){
+        ui->errorLabel->setText("The maximum team size cannot be larger than the total number of students!");
+
+    }else{
+        projectManager->executeAlgorithm();
+    }
 }
