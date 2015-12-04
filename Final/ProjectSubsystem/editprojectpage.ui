@@ -70,7 +70,7 @@
     <item row="2" column="1">
      <widget class="QSpinBox" name="newMinTeamSpinBox">
       <property name="minimum">
-       <number>2</number>
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -161,9 +161,9 @@
   <widget class="QLabel" name="errorLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>280</x>
      <y>138</y>
-     <width>761</width>
+     <width>531</width>
      <height>20</height>
     </rect>
    </property>

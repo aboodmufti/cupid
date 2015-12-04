@@ -21,7 +21,7 @@ void EditProjectPage::on_pushButton_clicked() // save
 {
     int newMin = ui->newMinTeamSpinBox->text().toInt();
     int newMax = ui->newMaxTeamSpinBox->text().toInt();
-
+    qDebug()<< newMin;
     if(ui->newNameLineEdit->text().trimmed() == ""  ){
         ui->errorLabel->setText("Please don't leave name field blank");
         return;
