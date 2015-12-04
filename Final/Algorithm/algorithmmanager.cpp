@@ -251,7 +251,7 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
             QList<int>* currElement = it.next();
             if (currElement->at(0) == s1 || currElement->at(1) == s1 || currElement->at(0) == s2  || currElement->at(1) == s2){
                 it.remove();
-                qDebug() << "REMOVED";
+                //qDebug() << "REMOVED";
             }
         }
 
@@ -336,6 +336,15 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
             size -= 1;
             stusInTeam->append(s3);
             listOfIds->removeOne(s3);
+
+            QMutableListIterator<QList<int>*> it((*copyList));
+            while (it.hasNext()) {
+                QList<int>* currElement = it.next();
+                if (currElement->at(0) == s3 || currElement->at(1) == s3 ){
+                    it.remove();
+                    qDebug() << "REMOVED 2";
+                }
+            }
 
             qDebug() << "                CHOSEN STUDENT";
                  qDebug() << "Student:" << s3 << "Score:" << (float)lowestAvrg2 << "count:" << count << "size:" << size ;
