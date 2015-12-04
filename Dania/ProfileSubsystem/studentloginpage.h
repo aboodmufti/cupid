@@ -19,6 +19,7 @@ public:
     explicit StudentLoginPage(QWidget *parent = 0);
     ~StudentLoginPage();
     void setMain(MainWindow*);
+    void setManager(ProfileManager*);
     QString getUsername();
 
 private slots:

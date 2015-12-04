@@ -19,6 +19,7 @@ public:
     explicit WelcomePage(QWidget *parent = 0);
     ~WelcomePage();
     void setMain(MainWindow*);
+    void setManager(ProfileManager*);
 
 private slots:
     void on_adminButton_2_clicked();

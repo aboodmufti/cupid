@@ -19,6 +19,7 @@ public:
     explicit StudentProjectsPage(QWidget *parent = 0);
     ~StudentProjectsPage();
     void setMain(MainWindow*);
+    void setManager(ProfileManager*);
     void setProjects(QList<QList<QString>*>*);
 
 private slots:

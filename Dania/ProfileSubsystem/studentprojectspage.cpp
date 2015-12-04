@@ -34,9 +34,15 @@ void StudentProjectsPage::setMain(MainWindow* newMain){
     manager->getMainWindow() = newMain;
 }
 
+void StudentProjectsPage::setManager(ProfileManager* mngr)
+{
+    manager = mngr;
+}
+
 void StudentProjectsPage::on_pushButton_clicked()
 {
-    manager->getMainWindow()->handleNewPage(STUDENT_PROFILE);
+    //manager->getMainWindow()->handleNewPage(STUDENT_PROFILE);
+    manager->setStudentProfilePage();
 }
 
 void StudentProjectsPage::joinButtonClicked(int pid){

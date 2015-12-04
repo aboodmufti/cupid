@@ -21,9 +21,15 @@ void EditProfilePage::setMain(MainWindow* newMain){
     manager->getMainWindow() = newMain;
 }
 
+void EditProfilePage::setManager(ProfileManager* mngr)
+{
+    manager = mngr;
+}
+
 void EditProfilePage::on_pushButton_2_clicked()
 {
-    manager->getMainWindow()->handleNewPage(STUDENT_PROFILE);
+    //manager->getMainWindow()->handleNewPage(STUDENT_PROFILE);
+    manager->setStudentProfilePage();
 }
 
 //Save button

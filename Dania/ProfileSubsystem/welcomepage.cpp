@@ -17,6 +17,11 @@ void WelcomePage::setMain(MainWindow* newMain){
     manager->getMainWindow() = newMain;
 }
 
+void WelcomePage::setManager(ProfileManager* mngr)
+{
+    manager = mngr;
+}
+
 void WelcomePage::on_adminButton_2_clicked()
 {
     manager->getMainWindow()->handleNewPage(ADMIN_LOGIN);

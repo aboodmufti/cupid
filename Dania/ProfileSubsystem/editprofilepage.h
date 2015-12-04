@@ -20,6 +20,7 @@ public:
     explicit EditProfilePage(QWidget *parent = 0);
     ~EditProfilePage();
     void setMain(MainWindow*);
+    void setManager(ProfileManager*);
     void setStudentProfile(StudentProfile*);
 
 private slots:

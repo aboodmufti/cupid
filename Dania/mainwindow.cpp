@@ -21,7 +21,10 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initialize(){
-    this->handleNewPage(WELCOME_PAGE);
+    //this->handleNewPage(WELCOME_PAGE);
+    WelcomePage *welcomePage = new WelcomePage();
+    welcomePage->setManager(manager);
+    this->setCentralWidget(welcomePage);
 }
 void MainWindow::handleNewPage(View view){
 

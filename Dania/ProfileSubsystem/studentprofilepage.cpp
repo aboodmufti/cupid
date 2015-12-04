@@ -22,9 +22,15 @@ void StudentProfilePage::setMain(MainWindow* newMain){
     manager->getMainWindow() = newMain;
 }
 
+void StudentProfilePage::setManager(ProfileManager* mngr)
+{
+    manager = mngr;
+}
+
 void StudentProfilePage::on_pushButton_3_clicked()
 {
-    manager->getMainWindow()->handleNewPage(WELCOME_PAGE);
+    //manager->getMainWindow()->handleNewPage(WELCOME_PAGE);
+    manager->getMainWindow()->initialize();
 }
 
 void StudentProfilePage::on_projectsButton_clicked()
@@ -33,12 +39,14 @@ void StudentProfilePage::on_projectsButton_clicked()
         ui->errorLabel->setText("Please fill in your profile to be able to view projects");
         return;
     }
-    manager->getMainWindow()->handleNewPage(STUDENT_PROJECT_LIST);
+    //manager->getMainWindow()->handleNewPage(STUDENT_PROJECT_LIST);
+    manager->setStudentProjectsPage();
 }
 
 void StudentProfilePage::on_pushButton_clicked()
 {
-    manager->getMainWindow()->handleNewPage(EDIT_PROFILE);
+    //manager->getMainWindow()->handleNewPage(EDIT_PROFILE);
+    manager->setEditProfilePage();
 }
 
 void StudentProfilePage::setStudentProfile(StudentProfile* stuProfile){

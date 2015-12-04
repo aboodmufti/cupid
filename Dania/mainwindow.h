@@ -54,6 +54,7 @@ private:
     Storage *storage;
     Student *stu;
     Administrator *admin;
+    ProfileManager *manager;
 };
 
 #endif // MAINWINDOW_H

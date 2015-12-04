@@ -20,6 +20,7 @@ public:
     explicit StudentProfilePage(QWidget *parent = 0);
     ~StudentProfilePage();
     void setMain(MainWindow*);
+    void setManager(ProfileManager*);
     void setStudentProfile(StudentProfile*);
     QString convertQ(int qid,int valueID);
 
