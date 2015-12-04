@@ -213,7 +213,6 @@ QList<QList<int>*>* AlgorithmManager::step2(QList<QMap<int, QMap<int,int>*>*>* i
 
 
 
-
 void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QList<int>*>* finalList, QList<int>* listOfIds){
     QList<QList<int>*>* copyList = new QList<QList<int>*>();
     (*copyList)= (*finalList);
@@ -246,6 +245,15 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
         listOfIds->removeOne(s1);
         listOfIds->removeOne(s2);
 
+
+        QMutableListIterator<QList<int>*> it((*copyList));
+        while (it.hasNext()) {
+            QList<int>* currElement = it.next();
+            if (currElement->at(0) == s1 || currElement->at(1) == s1 || currElement->at(0) == s2  || currElement->at(1) == s2){
+                it.remove();
+                qDebug() << "REMOVED";
+            }
+        }
 
         qDebug() << "---------------------------------------------";
         qDebug() << "                INSIDE STEP3";

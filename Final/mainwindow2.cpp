@@ -17,14 +17,10 @@ MainWindow2::~MainWindow2()
 
 void MainWindow2::initialize(Storage* storage){
     //this->handleNewPage(WELCOME_PAGE);
-    qDebug()<< "DEBUG 1";
     welcomePage = new WelcomePage();
-    qDebug()<< "DEBUG 2";
     welcomePage->setMain(this,storage);
-    qDebug()<< "DEBUG 3";
     WelcomePage* welcome = new WelcomePage();
     this->setCentralWidget(welcome);
-    qDebug()<< "DEBUG 4";
 }
 
 void MainWindow2::initialize(){

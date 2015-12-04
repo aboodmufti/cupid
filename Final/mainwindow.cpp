@@ -23,7 +23,6 @@ void MainWindow::initialize(Storage* storage){
 }
 
 void MainWindow::initialize(){
-    qDebug() << "Main 1";
     WelcomePage* welcome = new WelcomePage();
     welcome->setMain(this,this->storage);
     this->setCentralWidget(welcome);

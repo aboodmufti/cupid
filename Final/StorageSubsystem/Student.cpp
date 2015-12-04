@@ -9,6 +9,5 @@ void Student::setStudentProfile(StudentProfile* stu){
 }
 
 StudentProfile* Student::getStudentProfile(){
-    //qDebug() << "DEBUG 18";
     return stuProfile;
 }

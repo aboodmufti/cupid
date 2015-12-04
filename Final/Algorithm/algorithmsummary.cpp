@@ -23,9 +23,7 @@ void AlgorithmSummary::setManager(AlgorithmManager* manager){
 
 void AlgorithmSummary::on_pushButton_clicked()
 {
-    qDebug() << "algo 1";
     manager->goToProject();
-    qDebug() << "algo 2";
 }
 
 

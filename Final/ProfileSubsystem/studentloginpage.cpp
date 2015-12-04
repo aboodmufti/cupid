@@ -29,9 +29,7 @@ void StudentLoginPage::on_submitButton_clicked()
         ui->errorLabel->setText("This is a required field");
         return;
     }
-    qDebug() << "DEBUG 9";
     manager->checkStudentLogin(ui->usernameTextEdit->toPlainText()); // added hussam
-    qDebug() << "DEBUG 10";
 }
 
 void StudentLoginPage::on_backButton_clicked()

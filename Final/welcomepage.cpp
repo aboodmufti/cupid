@@ -23,7 +23,6 @@ void WelcomePage::setMain(MainWindow* newMain, Storage* storage){
 void WelcomePage::on_adminButton_2_clicked()
 {
     //main->handleNewPage(ADMIN_LOGIN);
-    qDebug() << "DEBUG 1";
     storage->goToAdminLogin(main);
 }
 

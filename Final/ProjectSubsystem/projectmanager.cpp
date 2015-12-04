@@ -152,11 +152,7 @@ void ProjectManager::checkAdminLogin(QString userName)
 
 
 void ProjectManager::goToAdminLoginPage(){
-    qDebug() << "DEBUG 6";
     AdminLoginPage *adminLoginPage = new AdminLoginPage();
-    qDebug() << "DEBUG 7";
     adminLoginPage->setManager(this);
-    qDebug() << "DEBUG 8";
     mainWindow->setCentralWidget(adminLoginPage);
-    qDebug() << "DEBUG 9";
 }

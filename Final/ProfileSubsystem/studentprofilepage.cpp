@@ -53,9 +53,7 @@ void StudentProfilePage::setStudentProfile(StudentProfile*  stuProfile){
     // create a student profile through the facade class
     //StudentProfile* studentProfile =   stuProfile->createStudentProfile();
     //studentProfile =  stuProfile->;
-    qDebug() << "DEBUG 18 :"<<  stuProfile->getUsername();
     // manager->setStuProfileInStorage(stuProfile);
-    qDebug() << "DEBUG 19";
     if(  stuProfile->getName() != "unknown"){
         ui->stuNameLabel->setText(  stuProfile->getName());
         ui->stuIdLabel->setText(QString::number(  stuProfile->getID()));

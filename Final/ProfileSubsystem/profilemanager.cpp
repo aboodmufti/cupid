@@ -3,7 +3,6 @@
 ProfileManager::ProfileManager()
 {
     //storage = new Storage();
-    //qDebug() << "In ProfileManager Constructor";
 }
 
 Storage* ProfileManager::getStorage()
@@ -18,27 +17,19 @@ MainWindow* ProfileManager::getMainWindow()
 
 void ProfileManager::setStudentLoginPage()
 {
-    qDebug() << "DEBUG 5";
     StudentLoginPage *studentLoginPage = new StudentLoginPage();
-    qDebug() << "DEBUG 6";
     studentLoginPage->setManager(this);
-    qDebug() << "DEBUG 7";
     mainWindow->setCentralWidget(studentLoginPage);
-    qDebug() << "DEBUG 8";
 }
 
 void ProfileManager::setStudentProfilePage()
 {
-    qDebug() << "DEBUG 13";
     StudentProfilePage *studentProfilePage = new StudentProfilePage();
-    qDebug() << "DEBUG 14";
     //StudentProfile* stuProfile = storage->getStudentByUsername(student->getUsername());
     //student->setStudentProfile(stuProfile);  //if coming from editProfile
     StudentProfile* stuPro = storage->getOwnProfile();
     studentProfilePage->setStudentProfile(stuPro);
-    qDebug() << "DEBUG 15";
     studentProfilePage->setManager(this);
-    qDebug() << "DEBUG 16";
     mainWindow->setCentralWidget(studentProfilePage);
 }
 
@@ -81,7 +72,6 @@ void ProfileManager::joinProject(int pid)
 
 void ProfileManager::checkStudentLogin(QString username)
 {
-    qDebug() << "DEBUG 11";
     //stu = new Student();
     storage->createStudent();
     StudentProfile *stuProfile = storage->getStudentByUsername(username);
@@ -98,7 +88,6 @@ void ProfileManager::checkStudentLogin(QString username)
         //storage->setStudentProfile(stuProfile);
     }
     //mainWindow->handleNewPage(STUDENT_PROFILE);
-    qDebug() << "DEBUG 12";
     setStudentProfilePage();
 }
 

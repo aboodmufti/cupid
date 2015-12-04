@@ -10,7 +10,6 @@ Storage::Storage()
 
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(final_path);
-    qDebug() << final_path;
     db.open();
     query = new QSqlQuery(db);
 }
@@ -100,7 +99,6 @@ void Storage::setOwnProfile(StudentProfile* stuPro){
 }
 
 StudentProfile* Storage::getOwnProfile(){
-    qDebug() << "DEBUG 17";
     return stu->getStudentProfile();
 }
 
@@ -695,8 +693,6 @@ void Storage::executeAlgorithm(Project* project, QList<StudentProfile*>* student
     algorithmManager->runAlgorithm(project, studentsInProject);
 }
 void Storage::goToProject(int pid){
-    qDebug() << "algo 4";
-    qDebug() << "STORAGE: goToProject()";
     projectManager->openProject(pid);
 }
 
@@ -709,11 +705,7 @@ void Storage::goToAdminLogin(MainWindow* main){
 }
 
 void Storage::goToStudentLogin(MainWindow* main){
-    qDebug() << "DEBUG 1";
     profileManager = new ProfileManager();
-    qDebug() << "DEBUG 2";
     profileManager->setMainStorage(main,this);
-    qDebug() << "DEBUG 3";
     profileManager->setStudentLoginPage();
-    qDebug() << "DEBUG 4";
 }

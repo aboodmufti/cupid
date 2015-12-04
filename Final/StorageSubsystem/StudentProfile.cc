@@ -3,7 +3,6 @@
 #include <qdebug.h>
 #include <QDebug>
 StudentProfile::StudentProfile(){
-    qDebug() << "student profile";
     username = "unknown";
     studentName = "unknown";
     studentID = -1;
