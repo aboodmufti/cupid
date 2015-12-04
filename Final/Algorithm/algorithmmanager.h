@@ -28,6 +28,7 @@ public:
     void goToProject();
     void goToSummary();
     void goToDetails();
+    Storage* getStorage();
 
 private:
     Storage* storage;
@@ -43,6 +44,7 @@ private:
     QList<QList<int>*>* step2(QList<QMap<int, QMap<int,int>*>*>* individualScoreList);
     void step3(QList<QMap<QString, int>*>* initialTeams, QList<QList<int>*>* finalList, QList<int>* listOfIds);
     QList<int>* idList(QList<StudentProfile*>* studentsInProject);
+
 };
 
 #endif // ALGORITHMMANAGER_H

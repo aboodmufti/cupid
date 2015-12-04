@@ -36,16 +36,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="output">
-   <property name="geometry">
-    <rect>
-     <x>35</x>
-     <y>141</y>
-     <width>791</width>
-     <height>371</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
@@ -70,6 +60,16 @@
    </property>
    <property name="text">
     <string>Detailed results</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="outputTable">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>801</width>
+     <height>351</height>
+    </rect>
    </property>
   </widget>
  </widget>

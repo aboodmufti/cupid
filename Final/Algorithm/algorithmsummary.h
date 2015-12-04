@@ -3,7 +3,9 @@
 
 #include <QWidget>
 #include "algorithmmanager.h"
+#include <QTableWidget>
 
+class QTableWidget;
 class AlgorithmManager;
 
 namespace Ui {
@@ -19,6 +21,8 @@ public:
     ~AlgorithmSummary();
     void setOutput(QString output);
     void setManager(AlgorithmManager* manager);
+    void setAllOutput(QList<QMap<QString, int>*>* output);
+    QTableWidget* getTable();
 private slots:
     void on_pushButton_clicked();
     

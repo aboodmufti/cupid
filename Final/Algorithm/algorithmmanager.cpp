@@ -49,37 +49,56 @@ void AlgorithmManager::runAlgorithm(Project* project, QList<StudentProfile*>* st
 
     //create teams
     step3(initialTeams,finalList, stuIdList);
+    /*
     output = " ";
     output += "---------------------------------------------\n";
-    output += "                Final Teams\n";
-    output += "---------------------------------------------\n";
+    //output += "                Final Teams\n";
+    //output += "---------------------------------------------\n";
     qDebug() << "---------------------------------------------";
     qDebug() << "                Final Teams";
     qDebug() << "---------------------------------------------";
     for(int i = 0; i < initialTeams->size() ; ++i){
-        qDebug() << "****NEW TEAM****";
-        output += "****NEW TEAM****\n";
+        qDebug() <<  "****Team " << i << "****";
+        output += "                   Team "+QString::number(i+1)+"\n";
+        output += "---------------------------------------------\n";
+        output += "  Student Name\tStudent ID\n";
+        output += "---------------------------------------------\n";
         QList<QString> keysList = initialTeams->at(i)->keys();
        for(int z = 0; z < keysList.size() ; ++z){
            if(keysList.at(z).contains("avrg")){
-               output += keysList.at(z) + ": " + QString::number((float)(initialTeams->at(i)->value(keysList.at(z))) / 100) + "\n";
+               //output += keysList.at(z) + ": " + QString::number((float)(initialTeams->at(i)->value(keysList.at(z))) / 100) + "\n";
                qDebug() << keysList.at(z) <<": " << (float)(initialTeams->at(i)->value(keysList.at(z))) / 100;
+           }else if(keysList.at(z).contains("s") && !keysList.at(z).contains("size")){
+               //output += keysList.at(z) + ": " + QString::number(initialTeams->at(i)->value(keysList.at(z))) + "\n";
+               StudentProfile* stu = storage->getStudentProfile(initialTeams->at(i)->value(keysList.at(z)));
+               output += stu->getName() +"\t\t"+ QString::number(stu->getID())+"\n";
+               qDebug() << keysList.at(z) <<": " << (initialTeams->at(i)->value(keysList.at(z)));
            }else{
-               output += keysList.at(z) + ": " + QString::number(initialTeams->at(i)->value(keysList.at(z))) + "\n";
-                qDebug() << keysList.at(z) <<": " << (initialTeams->at(i)->value(keysList.at(z)));
+               qDebug() << keysList.at(z) <<": " << (initialTeams->at(i)->value(keysList.at(z)));
+               //output += keysList.at(z) + ": " + QString::number(initialTeams->at(i)->value(keysList.at(z))) + "\n";
            }
        }
        output += "---------------------------------------------\n";
        qDebug() << "---------------------------------------------";
 
     }
+    RcpTbl->verticalHeader()->resizeSection(RcpCnt, 10);
+    for (int Col = 0; Col < RcpTbl->columnCount(); Col++)
+    {
+        RcpTbl->setItem(RcpCnt, Col, new QTableWidgetItem());
+        RcpTbl->item(RcpCnt, Col)->setBackground(SpaceColor);
+    }
+    */
 
     //output = new QString();
     output2 = new QString();
 
     algoPage = new AlgorithmSummary();
     algoPage->setManager(this);
-    algoPage->setOutput(output);
+    //algoPage->setOutput(output);
+    algoPage->setAllOutput(initialTeams);
+
+
     mainWindow->setCentralWidget(algoPage);
 
     //detailedPage = new DetailedResults();
@@ -88,6 +107,9 @@ void AlgorithmManager::runAlgorithm(Project* project, QList<StudentProfile*>* st
 
 }
 
+Storage* AlgorithmManager::getStorage(){
+    return storage;
+}
 
 QList<QMap<QString, int>*>* AlgorithmManager::preventiveMeasures(int minSize, int maxSize, int numStudents){
     QList<QMap<QString, int>*>* teams = new QList<QMap<QString, int>*>();
@@ -342,7 +364,7 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
                 QList<int>* currElement = it.next();
                 if (currElement->at(0) == s3 || currElement->at(1) == s3 ){
                     it.remove();
-                    qDebug() << "REMOVED 2";
+                    //qDebug() << "REMOVED 2";
                 }
             }
 
