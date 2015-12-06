@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     ProjectSubsystem/projectpage.cpp \
     welcomepage.cpp \
     ProjectSubsystem/adminloginpage.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    Algorithm/detailedresults.cpp
 
 
 HEADERS  += \
@@ -63,12 +64,12 @@ HEADERS  += \
     ProjectSubsystem/projectpage.h \
     welcomepage.h \
     ProjectSubsystem/adminloginpage.h \
-    mainwindow.h
+    mainwindow.h \
+    Algorithm/detailedresults.h
 
 
 FORMS    += \
     Algorithm/algorithmsummary.ui \
-    ProfileSubsystem/adminstudentprofilepage.ui \
     ProfileSubsystem/editprofilepage.ui \
     ProfileSubsystem/studentloginpage.ui \
     ProfileSubsystem/studentprofilepage.ui \
@@ -80,8 +81,10 @@ FORMS    += \
     ProjectSubsystem/projectpage.ui \
     welcomepage.ui \
     ProjectSubsystem/adminloginpage.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    Algorithm/detailedresults.ui
 
 
 OTHER_FILES += \
-    StorageSubsystem/cupid_DB.db
+    StorageSubsystem/cupid_DB.db \
+    style.qss

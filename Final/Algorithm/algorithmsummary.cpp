@@ -48,15 +48,17 @@ void AlgorithmSummary::setAllOutput(QList<QMap<QString, int>*>* output){
     ui->outputTable->verticalHeader()->setVisible(false);
     int count = 0;
     for(int i = 0; i < output->size() ; ++i){
-        QColor * green = new QColor(241, 241, 240);
+        QColor * green = new QColor(185, 222, 249);
         ui->outputTable->verticalHeader()->resizeSection(count, 35);
         ui->outputTable->setSpan(count,0,1,2);
         //for (int Col = 0; Col < ui->outputTable->columnCount(); Col++)
         //{
             QTableWidgetItem *newTeam = new QTableWidgetItem("Team "+QString::number(i+1));
             newTeam->setTextAlignment(Qt::AlignCenter);
+
             ui->outputTable->setItem(count, 0, newTeam);
-            ui->outputTable->item(count, 0)->setBackgroundColor((*green));
+            ui->outputTable->item(count, 0)->setBackground(QBrush(QColor(185, 222, 249),Qt::SolidPattern));
+            //ui->outputTable->item(count,0)->setSelected(true);
         //}
         ++count;
 

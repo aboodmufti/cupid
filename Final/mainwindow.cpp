@@ -16,6 +16,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initialize(Storage* storage){
     //this->handleNewPage(WELCOME_PAGE);
+
     welcomePage = new WelcomePage();
     welcomePage->setMain(this,storage);
     this->storage = storage;

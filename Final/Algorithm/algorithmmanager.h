@@ -8,7 +8,7 @@
 
 #include "mainwindow.h"
 #include "algorithmsummary.h"
-//#include "detailedresults.h"
+#include "detailedresults.h"
 
 #include <QMap>
 #include <QtMath>
@@ -38,11 +38,12 @@ private:
     AlgorithmSummary* algoPage;
     //DetailedResults* detailedPage;
     int pid;
+    QList<QMap<QString, int>*>* initialTeams2;
 
     QList<QMap<QString, int>*>* preventiveMeasures(int minSize, int maxSize, int numStudents);
     QList<QMap<int, QMap<int,int>*>*>* step1(QList<StudentProfile*>* studentsInProject);
     QList<QList<int>*>* step2(QList<QMap<int, QMap<int,int>*>*>* individualScoreList);
-    void step3(QList<QMap<QString, int>*>* initialTeams, QList<QList<int>*>* finalList, QList<int>* listOfIds);
+    QString step3(QList<QMap<QString, int>*>* initialTeams, QList<QList<int>*>* finalList, QList<int>* listOfIds);
     QList<int>* idList(QList<StudentProfile*>* studentsInProject);
 
 };

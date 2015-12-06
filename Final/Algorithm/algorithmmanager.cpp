@@ -4,14 +4,8 @@ AlgorithmManager::AlgorithmManager(Storage* storage, MainWindow* main)
 {
     this->storage = storage;
     this->mainWindow = main;
+}
 
-}
-/*
-AlgorithmManager::AlgorithmManager(MainWindow* main)
-{
-    this->mainWindow = main;
-}
-*/
 void AlgorithmManager::runAlgorithm(Project* project, QList<StudentProfile*>* studentsInProject){
     pid = project->getID();
     int numStudents = studentsInProject->size();
@@ -30,79 +24,34 @@ void AlgorithmManager::runAlgorithm(Project* project, QList<StudentProfile*>* st
     QList<QList<int>*>* finalList = step2(individualScoreList);
 
 
-    qDebug() << "---------------------------------------------\n";
+    qDebug() << "------------------------------------------------------------------------------------------\n";
     qDebug() << "                FINAL SCORE LIST\n";
-    qDebug() << "---------------------------------------------\n";
+    qDebug() << "------------------------------------------------------------------------------------------\n";
     for(int i = 0; i < finalList->size() ; ++i){
         qDebug() << "Student 1:" << finalList->at(i)->at(0) << "  " << "Student 2:" << finalList->at(i)->at(1) << "Score:" << (float)finalList->at(i)->at(2)/100 ;
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
     }
 
     //get the list of student ids
     QList<int>* stuIdList = idList(studentsInProject);
-    qDebug() << "---------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
     qDebug() << "                STUDENT IDS";
-    qDebug() << "---------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
     for(int i = 0; i < stuIdList->size() ; ++i){
         qDebug() << stuIdList->at(i);
     }
 
     //create teams
-    step3(initialTeams,finalList, stuIdList);
-    /*
-    output = " ";
-    output += "---------------------------------------------\n";
-    //output += "                Final Teams\n";
-    //output += "---------------------------------------------\n";
-    qDebug() << "---------------------------------------------";
-    qDebug() << "                Final Teams";
-    qDebug() << "---------------------------------------------";
-    for(int i = 0; i < initialTeams->size() ; ++i){
-        qDebug() <<  "****Team " << i << "****";
-        output += "                   Team "+QString::number(i+1)+"\n";
-        output += "---------------------------------------------\n";
-        output += "  Student Name\tStudent ID\n";
-        output += "---------------------------------------------\n";
-        QList<QString> keysList = initialTeams->at(i)->keys();
-       for(int z = 0; z < keysList.size() ; ++z){
-           if(keysList.at(z).contains("avrg")){
-               //output += keysList.at(z) + ": " + QString::number((float)(initialTeams->at(i)->value(keysList.at(z))) / 100) + "\n";
-               qDebug() << keysList.at(z) <<": " << (float)(initialTeams->at(i)->value(keysList.at(z))) / 100;
-           }else if(keysList.at(z).contains("s") && !keysList.at(z).contains("size")){
-               //output += keysList.at(z) + ": " + QString::number(initialTeams->at(i)->value(keysList.at(z))) + "\n";
-               StudentProfile* stu = storage->getStudentProfile(initialTeams->at(i)->value(keysList.at(z)));
-               output += stu->getName() +"\t\t"+ QString::number(stu->getID())+"\n";
-               qDebug() << keysList.at(z) <<": " << (initialTeams->at(i)->value(keysList.at(z)));
-           }else{
-               qDebug() << keysList.at(z) <<": " << (initialTeams->at(i)->value(keysList.at(z)));
-               //output += keysList.at(z) + ": " + QString::number(initialTeams->at(i)->value(keysList.at(z))) + "\n";
-           }
-       }
-       output += "---------------------------------------------\n";
-       qDebug() << "---------------------------------------------";
+    output = step3(initialTeams,finalList, stuIdList);
 
-    }
-    RcpTbl->verticalHeader()->resizeSection(RcpCnt, 10);
-    for (int Col = 0; Col < RcpTbl->columnCount(); Col++)
-    {
-        RcpTbl->setItem(RcpCnt, Col, new QTableWidgetItem());
-        RcpTbl->item(RcpCnt, Col)->setBackground(SpaceColor);
-    }
-    */
-
-    //output = new QString();
-    output2 = new QString();
 
     algoPage = new AlgorithmSummary();
     algoPage->setManager(this);
-    //algoPage->setOutput(output);
     algoPage->setAllOutput(initialTeams);
-
+    initialTeams2 = initialTeams;
 
     mainWindow->setCentralWidget(algoPage);
 
-    //detailedPage = new DetailedResults();
-    //setoutptu
 
 
 }
@@ -235,9 +184,11 @@ QList<QList<int>*>* AlgorithmManager::step2(QList<QMap<int, QMap<int,int>*>*>* i
 
 
 
-void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QList<int>*>* finalList, QList<int>* listOfIds){
+QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QList<int>*>* finalList, QList<int>* listOfIds){
     QList<QList<int>*>* copyList = new QList<QList<int>*>();
     (*copyList)= (*finalList);
+
+    QString details = "";
 
     for(int i = 0 ; i < initialTeams->size(); ++i){
         int size = ((initialTeams->at(i))->value("size"));
@@ -277,34 +228,51 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
             }
         }
 
-        qDebug() << "---------------------------------------------";
+
+        details += "\n\n\n------------------------------------------------------------------------------------------\n";
+        details += "                             FORMING A NEW TEAM (Team size = "+QString::number((initialTeams->at(i))->value("size"))+")\n";
+        details += "------------------------------------------------------------------------------------------\n\n";
+        details += "------------------------------------------------------------------------------------------\n";
+        details += "                                     FIRST 2 IN THE TEAM\n";
+        details += "------------------------------------------------------------------------------------------\n";
+        details += "Student 1 ID: " + QString::number(s1) + "  \nStudent 2 ID: " + QString::number(s2) + "  \nScore: " + QString::number(lowestAvrg) + " <-- lowest score\n";
+        details += "Number of students in the team: " + QString::number(count) +"\n";
+        details += "------------------------------------------------------------------------------------------\n";
+        details += "                                  List of IDs on this team\n";
+        details += "------------------------------------------------------------------------------------------\n";
+        for(int c = 0 ;c < stusInTeam->size(); ++c){
+            details += QString::number(stusInTeam->at(c)) + "\n";
+        }
+        details += "------------------------------------------------------------------------------------------\n";
+
+        qDebug() << "------------------------------------------------------------------------------------------";
         qDebug() << "                INSIDE STEP3";
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
            qDebug() << "****FIRST 2 IN TEAM****";
            qDebug() << "Student 1:" << s1 << "  " << "Student 2:" << s2 << "Score:" << lowestAvrg << "count:" << count << "size:" << size ;
-           qDebug() << "---------------------------------------------";
+           qDebug() << "------------------------------------------------------------------------------------------";
            qDebug() << "                list of ids(not on a team)";
         for(int c = 0 ;c < listOfIds->size(); ++c){
             qDebug() << listOfIds->at(c);
         }
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
 
         qDebug() << "                list of ids(ON THIS TEAM)";
         for(int c = 0 ;c < stusInTeam->size(); ++c){
              qDebug() << stusInTeam->at(c);
         }
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
         /*
         qDebug() << "                final score list (MODIFIED) size: "<<copyList->size();
         for(int c = 0 ;c < copyList->size(); ++c){
              qDebug() << "Student 1:" << copyList->at(c)->at(0) << "  " << "Student 2:" << copyList->at(c)->at(1) << "Score:" << copyList->at(c)->at(2);
         }
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
         qDebug() << "                final score list (ORIGINAL) size: "<<finalList->size();
         for(int c = 0 ;c < finalList->size(); ++c){
              qDebug() << "Student 1:" << finalList->at(c)->at(0) << "  " << "Student 2:" << finalList->at(c)->at(1) << "Score:" << finalList->at(c)->at(2);
         }
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
         */
         while(size > 0 ){
             QList<QList<int>*>* candidateStus = new QList<QList<int>*>();
@@ -330,12 +298,21 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
                 candidateStus->append(oneStu);
 
             }
-
+            details += "\n------------------------------------------------------------------------------------------\n";
+            details += "                                 CHOOSING THE NEXT STUDENT\n";
+            details += "------------------------------------------------------------------------------------------\n\n";
+            details += "------------------------------------------------------------------------------------------\n";
+            details += "                                 List of Candidate Students\n";
+            details += "------------------------------------------------------------------------------------------\n";
+            for(int c = 0 ;c < candidateStus->size(); ++c){
+                 details += "Student ID: " + QString::number(candidateStus->at(c)->at(0)) + "    Score: " + QString::number((float)candidateStus->at(c)->at(1)/100) +"\n";
+            }
+            details += "------------------------------------------------------------------------------------------\n";
             qDebug() << "                candidate students";
             for(int c = 0 ;c < candidateStus->size(); ++c){
-                 qDebug() << "Student:" << candidateStus->at(c)->at(0) << "Score:" << (float)candidateStus->at(c)->at(1)/100;
+                 qDebug() << "Student ID:" << candidateStus->at(c)->at(0) << "Score:" << (float)candidateStus->at(c)->at(1)/100;
             }
-            qDebug() << "---------------------------------------------";
+            qDebug() << "------------------------------------------------------------------------------------------";
 
             float lowestAvrg2 = (float)candidateStus->at(0)->at(1) / 100;
             int s3 = candidateStus->at(0)->at(0);
@@ -368,18 +345,32 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
                 }
             }
 
+            details += "------------------------------------------------------------------------------------------\n";
+            details += "                                    CHOSEN STUDENT\n";
+            details += "------------------------------------------------------------------------------------------\n";
+            details += "Student ID: " + QString::number(s3) + " \nScore with the rest of the team: " + QString::number(lowestAvrg2) + " <-- lowest score\n";
+            details += "Number of students in the team: " + QString::number(count) +"\n";
+            details += "------------------------------------------------------------------------------------------\n";
+            details += "                          List of Students on the team (updated)\n";
+            details += "------------------------------------------------------------------------------------------\n";
+            for(int c = 0 ;c < stusInTeam->size(); ++c){
+                 details += QString::number(stusInTeam->at(c))+"\n";
+            }
+            details += "------------------------------------------------------------------------------------------\n";
             qDebug() << "                CHOSEN STUDENT";
-                 qDebug() << "Student:" << s3 << "Score:" << (float)lowestAvrg2 << "count:" << count << "size:" << size ;
-            qDebug() << "---------------------------------------------";
+                 qDebug() << "Student ID:" << s3 << "Score:" << (float)lowestAvrg2 << "count:" << count << "size:" << size ;
+            qDebug() << "------------------------------------------------------------------------------------------";
 
                  qDebug() << "                list of ids(ON THIS TEAM) UPDATED WITH NEW STUDENT";
                  for(int c = 0 ;c < stusInTeam->size(); ++c){
                       qDebug() << stusInTeam->at(c);
                  }
-                 qDebug() << "---------------------------------------------";
+                 qDebug() << "------------------------------------------------------------------------------------------";
         }
 
     }
+
+    return details;
 
 
 }
@@ -418,8 +409,8 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
                 s2 = copyList->at(z)->at(1);
             }
         }
-        qDebug() << "---------------------------------------------";
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
         qDebug() << "s1: " << s1 << "  s2: " << s2;
 
         QMutableListIterator<QList<int>*> it((*copyList));
@@ -435,8 +426,8 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
         for(int c = 0 ;c < copyList->size(); ++c){
              qDebug() << "Student 1:" << copyList->at(c)->at(0) << "  " << "Student 2:" << copyList->at(c)->at(1) << "Score:" << (float)copyList->at(c)->at(2)/100;
         }
-        qDebug() << "---------------------------------------------";
-        qDebug() << "---------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
+        qDebug() << "------------------------------------------------------------------------------------------";
         QList<int>* stusInTeam = new QList<int>();
 
         (initialTeams->at(i))->insert("s1",s1);
@@ -589,12 +580,12 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
 
     //}
 
-    qDebug() << "---------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
     qDebug() << "                list of ids(not on a team)";
     for(int c = 0 ;c < listOfIds->size(); ++c){
         qDebug() << listOfIds->at(c);
     }
-    qDebug() << "---------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
 
 }*/
 
@@ -607,18 +598,20 @@ void AlgorithmManager::goToProject(){
 
 
 void AlgorithmManager::goToSummary(){
+    algoPage = new AlgorithmSummary();
+    algoPage->setManager(this);
+    //algoPage->setOutput(output);
+    algoPage->setAllOutput(initialTeams2);
+
     mainWindow->setCentralWidget(algoPage);
 }
 
 
 
 void AlgorithmManager::goToDetails(){
-    /*qDebug() << "GO TO DETAILS";
-    DetailedResults* detailedPage2 = new DetailedResults();
-    qDebug() << "GO TO DETAILS 2";
-    detailedPage2->setManager(this);
-    qDebug() << "GO TO DETAILS 3";
-    mainWindow->setCentralWidget(algoPage);
-    qDebug() << "GO TO DETAILS 5";
-    */
+    DetailedResults* detailedPage = new DetailedResults();
+    detailedPage->setManager(this);
+    detailedPage->setOutput(output);
+    mainWindow->setCentralWidget(detailedPage);
+
 }

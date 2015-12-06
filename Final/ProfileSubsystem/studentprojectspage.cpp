@@ -72,6 +72,7 @@ void StudentProjectsPage::setProjects(QList<QList<QString>*>* projects){
         if(joinStat == "TRUE"){
             QTableWidgetItem* status = new QTableWidgetItem();
             status->setText("Joined");
+            status->setTextAlignment(Qt::AlignCenter);
             QColor * green = new QColor(84, 167, 0);
             status->setTextColor(*green);
             status->setFlags(status->flags() ^ Qt::ItemIsEditable);
