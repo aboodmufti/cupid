@@ -306,16 +306,8 @@ QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<
             details += "\t\t    ------------------------------------------------------------------------------------------\n";
             details += "\t\t                                    List of Candidate Students\n";
             details += "\t\t    ------------------------------------------------------------------------------------------\n";
-            //QTextStream ss(&details);
-            //ss << left << qSetFieldWidth(25) << "\t\t    Student ID: " << left << qSetFieldWidth(10) << " Score: " << endl;
             for(int c = 0 ;c < candidateStus->size(); ++c){
                  details += "\t\t       Student ID: " + storage->getStudentProfile(candidateStus->at(c)->at(0))->getName() + "        Score: " + QString::number((float)candidateStus->at(c)->at(1)/100) +"\n";
-                 //details += QString("\t\t       Student ID: %1 Score: %2\n").arg(storage->getStudentProfile(candidateStus->at(c)->at(0))->getName(),6).arg(QString::number((float)candidateStus->at(c)->at(1)/100), 10);
-                 //QTextStream ss(&details);
-                 //ss << left << qSetFieldWidth(18) << "\t\t    Student ID: " << right << qSetFieldWidth(7) << " Score: " << endl;
-                 //ss << left << qSetFieldWidth(18) << "\t\t    Student ID: " << storage->getStudentProfile(candidateStus->at(c)->at(0))->getName() << right << qSetFieldWidth(7) << " Score: " << QString::number((float)candidateStus->at(c)->at(1)/100) << endl;
-                 //ss << left << qSetFieldWidth(25) << "\t\t    " << storage->getStudentProfile(candidateStus->at(c)->at(0))->getName() << left << qSetFieldWidth(10) << " " << QString::number((float)candidateStus->at(c)->at(1)/100) << endl;
-                 //qDebug() << (qPrintable(details));
             }
             details += "\t\t    ------------------------------------------------------------------------------------------\n";
             qDebug() << "                candidate students";
