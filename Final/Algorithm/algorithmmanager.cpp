@@ -230,18 +230,18 @@ QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<
 
 
         details += "\n\n\n------------------------------------------------------------------------------------------\n";
-        details += "                             FORMING A NEW TEAM (Team size = "+QString::number((initialTeams->at(i))->value("size"))+")\n";
+        details += "                                   TEAM "+QString::number(i+1)+" (Team size = "+QString::number((initialTeams->at(i))->value("size"))+")\n";
         details += "------------------------------------------------------------------------------------------\n\n";
         details += "------------------------------------------------------------------------------------------\n";
         details += "                                     FIRST 2 IN THE TEAM\n";
         details += "------------------------------------------------------------------------------------------\n";
-        details += "Student 1 ID: " + QString::number(s1) + "  \nStudent 2 ID: " + QString::number(s2) + "  \nScore: " + QString::number(lowestAvrg) + " <-- lowest score\n";
+        details += "Student 1: " +  storage->getStudentProfile(s1)->getName() + "  \nStudent 2: " + storage->getStudentProfile(s2)->getName() + "  \nScore: " + QString::number(lowestAvrg) + " <-- lowest score\n";
         details += "Number of students in the team: " + QString::number(count) +"\n";
         details += "------------------------------------------------------------------------------------------\n";
         details += "                                  List of IDs on this team\n";
         details += "------------------------------------------------------------------------------------------\n";
         for(int c = 0 ;c < stusInTeam->size(); ++c){
-            details += QString::number(stusInTeam->at(c)) + "\n";
+            details += storage->getStudentProfile(stusInTeam->at(c))->getName()+ "\n";
         }
         details += "------------------------------------------------------------------------------------------\n";
 
@@ -305,7 +305,7 @@ QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<
             details += "                                 List of Candidate Students\n";
             details += "------------------------------------------------------------------------------------------\n";
             for(int c = 0 ;c < candidateStus->size(); ++c){
-                 details += "Student ID: " + QString::number(candidateStus->at(c)->at(0)) + "    Score: " + QString::number((float)candidateStus->at(c)->at(1)/100) +"\n";
+                 details += "Student ID: " + storage->getStudentProfile(candidateStus->at(c)->at(0))->getName() + "    Score: " + QString::number((float)candidateStus->at(c)->at(1)/100) +"\n";
             }
             details += "------------------------------------------------------------------------------------------\n";
             qDebug() << "                candidate students";
@@ -348,13 +348,13 @@ QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<
             details += "------------------------------------------------------------------------------------------\n";
             details += "                                    CHOSEN STUDENT\n";
             details += "------------------------------------------------------------------------------------------\n";
-            details += "Student ID: " + QString::number(s3) + " \nScore with the rest of the team: " + QString::number(lowestAvrg2) + " <-- lowest score\n";
+            details += "Student: " + storage->getStudentProfile(s3)->getName() + " \nScore with the rest of the team: " + QString::number(lowestAvrg2) + " <-- lowest score\n";
             details += "Number of students in the team: " + QString::number(count) +"\n";
             details += "------------------------------------------------------------------------------------------\n";
             details += "                          List of Students on the team (updated)\n";
             details += "------------------------------------------------------------------------------------------\n";
             for(int c = 0 ;c < stusInTeam->size(); ++c){
-                 details += QString::number(stusInTeam->at(c))+"\n";
+                 details += storage->getStudentProfile(stusInTeam->at(c))->getName()+"\n";
             }
             details += "------------------------------------------------------------------------------------------\n";
             qDebug() << "                CHOSEN STUDENT";

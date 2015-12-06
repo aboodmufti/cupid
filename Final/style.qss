@@ -33,7 +33,7 @@ QLabel{
 }
 
 QLabel#errorLabel{
-    color: #b30000;
+    color: #FFCACA;
 }
 
 QScrollArea QLabel{
