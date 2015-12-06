@@ -2,11 +2,10 @@
 #define STUDENTPROJECTSPAGE_H
 
 #include <QWidget>
-#include "ProfileSubsystem/profilemanager.h"
-#include "mainwindow.h"
+#include "projectmanager.h"
 /* student projects page boundary class */
-class MainWindow;
-class ProfileManager;
+class ProjectManager;
+
 namespace Ui {
 class StudentProjectsPage;
 }
@@ -18,8 +17,7 @@ class StudentProjectsPage : public QWidget
 public:
     explicit StudentProjectsPage(QWidget *parent = 0);
     ~StudentProjectsPage();
-    //void setMain(MainWindow*);
-    void setManager(ProfileManager*);
+    void setMain(MainWindow*);
     void setProjects(QList<QList<QString>*>*);
 
 private slots:
@@ -29,7 +27,6 @@ private slots:
 private:
     Ui::StudentProjectsPage *ui;
     MainWindow *main;
-    ProfileManager *manager;
 };
 
 #endif // STUDENTPROJECTSPAGE_H

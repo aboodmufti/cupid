@@ -6,6 +6,7 @@
 #include "Student.h"
 #include "User.h"
 #include "StudentProfile.h"
+#include "Team.h"
 
 
 #endif // ENTITYDEF_H

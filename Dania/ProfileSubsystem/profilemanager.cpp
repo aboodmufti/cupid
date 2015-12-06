@@ -2,8 +2,7 @@
 
 ProfileManager::ProfileManager()
 {
-    storage = new Storage();
-    qDebug() << "In ProfileManager Constructor";
+    //storage = new Storage();
 }
 
 Storage* ProfileManager::getStorage()
@@ -28,7 +27,8 @@ void ProfileManager::setStudentProfilePage()
     StudentProfilePage *studentProfilePage = new StudentProfilePage();
     //StudentProfile* stuProfile = storage->getStudentByUsername(student->getUsername());
     //student->setStudentProfile(stuProfile);  //if coming from editProfile
-    studentProfilePage->setStudentProfile(getStorage()->getOwnProfile());
+    StudentProfile* stuPro = storage->getOwnProfile();
+    studentProfilePage->setStudentProfile(stuPro);
     studentProfilePage->setManager(this);
     mainWindow->setCentralWidget(studentProfilePage);
 }
@@ -44,7 +44,7 @@ void ProfileManager::setEditProfilePage()
 void ProfileManager::setStudentProjectsPage()
 {
     StudentProjectsPage *studentProjectsPage = new StudentProjectsPage();
-    QList<QList<QString>*>* projects = storage->getStudentProjects(getStorage()->getProfileID());
+    QList<QList<QString>*>* projects = storage->getStudentProjects(getStorage()->getOwnProfile()->getID());
     studentProjectsPage->setProjects(projects);
     studentProjectsPage->setManager(this);
     mainWindow->setCentralWidget(studentProjectsPage);
@@ -56,14 +56,16 @@ void ProfileManager::editProfileSubmit(int newStu, StudentProfile* stuProfile){
     }else if(newStu == 0){
         storage->updateStudentProfile(stuProfile);
     }
-    storage->setStudent(stuProfile);
+    //storage->setStudent(stuProfile);
+    //storage->setStudentProfile();
+    storage->setOwnProfile(stuProfile);
     //mainWindow->handleNewPage(STUDENT_PROFILE);
     setStudentProfilePage();
 }
 
 void ProfileManager::joinProject(int pid)
 {
-    storage->addStudentProject(pid, storage->getProfileID());
+    storage->addStudentProject(pid, storage->getOwnProfile()->getID());
     //mainWindow->handleNewPage(STUDENT_PROJECT_LIST);
     setStudentProjectsPage();
 }
@@ -75,12 +77,15 @@ void ProfileManager::checkStudentLogin(QString username)
     StudentProfile *stuProfile = storage->getStudentByUsername(username);
     if((stuProfile->getName()) == "unknown" ){
         storage->getStudent()->setUsername(username);
-        storage->setStudentProfile(stuProfile);
-        storage->getStudentProfile()->setUsername(username);
+        storage->setOwnProfile(stuProfile);
+        //storage->setStudentProfile(stuProfile);
+        //storage->getStudentProfile()->setUsername(username);
+        storage->getOwnProfile()->setUsername(username);
 
     }else{
         storage->getStudent()->setUsername(username);
-        storage->setStudentProfile(stuProfile);
+        storage->setOwnProfile(stuProfile);
+        //storage->setStudentProfile(stuProfile);
     }
     //mainWindow->handleNewPage(STUDENT_PROFILE);
     setStudentProfilePage();
@@ -109,4 +114,14 @@ bool ProfileManager::getStudentbyID(int sid)
         return false;
     }
     return true;
+}
+
+
+void ProfileManager::setMainStorage(MainWindow* main,Storage* storage){
+    this->mainWindow = main;
+    this->storage = storage;
+}
+
+void ProfileManager::setStuProfileInStorage(StudentProfile* stu){
+    storage->setStudentProfile(stu);
 }

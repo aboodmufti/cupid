@@ -1,62 +1,33 @@
-#include "ProfileSubsystem/studentprofilepage.h"
-#include "ui_studentprofilepage.h"
+#include "adminstudentprofilepage.h"
+#include "ui_adminstudentprofilepage.h"
 
-StudentProfilePage::StudentProfilePage(QWidget *parent) :
+AdminStudentProfilePage::AdminStudentProfilePage(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::StudentProfilePage)
+    ui(new Ui::AdminStudentProfilePage)
 {
     ui->setupUi(this);
-    /*ui->stuNameLabel->setText("Abood Mufti");
-    ui->stuIdLabel->setText("100884076");
-    for(int i = 0; i<20; ++i){
-        ui->ownQList->addItem(i,"Abooddd");
-    }*/
 }
 
-StudentProfilePage::~StudentProfilePage()
+AdminStudentProfilePage::~AdminStudentProfilePage()
 {
     delete ui;
 }
-/*
-void StudentProfilePage::setMain(MainWindow* newMain){
-    manager->getMainWindow() = newMain;
-}
-*/
-void StudentProfilePage::setManager(ProfileManager* mngr)
+
+void AdminStudentProfilePage::on_backButton_clicked()
 {
-    manager = mngr;
+     projectManager->openProject(pid);
 }
 
-void StudentProfilePage::on_pushButton_3_clicked()
-{
-    //manager->getMainWindow()->handleNewPage(WELCOME_PAGE);
-    manager->getMainWindow()->initialize();
+void AdminStudentProfilePage::setManager(ProjectManager* pm){
+    projectManager = pm;
 }
 
-void StudentProfilePage::on_projectsButton_clicked()
-{
-    if(  manager->getStorage()->getOwnProfile()->getName() == "unknown"){
-        ui->errorLabel->setText("Please fill in your profile to be able to view projects");
-        return;
-    }
-    //manager->getMainWindow()->handleNewPage(STUDENT_PROJECT_LIST);
-    manager->setStudentProjectsPage();
-}
-
-void StudentProfilePage::on_pushButton_clicked()
-{
-    //manager->getMainWindow()->handleNewPage(EDIT_PROFILE);
-    manager->setEditProfilePage();
-}
-
-void StudentProfilePage::setStudentProfile(StudentProfile*  stuProfile){
-    // create a student profile through the facade class
-    //StudentProfile* studentProfile =   stuProfile->createStudentProfile();
-    //studentProfile =  stuProfile->;
-    // manager->setStuProfileInStorage(stuProfile);
-    if(  stuProfile->getName() != "unknown"){
-        ui->stuNameLabel->setText(  stuProfile->getName());
-        ui->stuIdLabel->setText(QString::number(  stuProfile->getID()));
+void AdminStudentProfilePage::setStudentProfile(StudentProfile* stuProfile,int newpid){
+    pid = newpid;
+    studentProfile = stuProfile;
+    if(studentProfile->getName() != "unknown"){
+        ui->stuNameLabel->setText(studentProfile->getName());
+        ui->stuIdLabel->setText(QString::number(studentProfile->getID()));
 
         QColor *blue = new QColor(0, 84, 167);
         QBrush *blueBrush = new QBrush(*blue);
@@ -64,55 +35,55 @@ void StudentProfilePage::setStudentProfile(StudentProfile*  stuProfile){
         ui->ownQList->setTextElideMode(Qt::ElideLeft);
 
         ui->ownQList->addItem("1. What is your grade in COMP 2404?");
-        ui->ownQList->addItem(convertQ(1,(*(  stuProfile->getOwnQ()))[1])); //convert to actual answer: from int to meaningful string
+        ui->ownQList->addItem(convertQ(1,(*(studentProfile->getOwnQ()))[1])); //convert to actual answer: from int to meaningful string
         ui->ownQList->addItem("");
         //ui->ownQList->addItem(new QComboBox());
         ui->ownQList->addItem("2. What is your grade in COMP 2402?");
-        ui->ownQList->addItem(convertQ(2,(*(  stuProfile->getOwnQ()))[2]));
+        ui->ownQList->addItem(convertQ(2,(*(studentProfile->getOwnQ()))[2]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("3. Are you punctual?");
-        ui->ownQList->addItem(convertQ(3,(*(  stuProfile->getOwnQ()))[3]));
+        ui->ownQList->addItem(convertQ(3,(*(studentProfile->getOwnQ()))[3]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("4. Are you technical?");
-        ui->ownQList->addItem(convertQ(4,(*(  stuProfile->getOwnQ()))[4]));
+        ui->ownQList->addItem(convertQ(4,(*(studentProfile->getOwnQ()))[4]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("5. Do you prefer working during group meetings or by yourself?");
-        ui->ownQList->addItem(convertQ(5,(*(  stuProfile->getOwnQ()))[5]));
+        ui->ownQList->addItem(convertQ(5,(*(studentProfile->getOwnQ()))[5]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("6. How many hours per week do you usually dedicate for school work?");
-        ui->ownQList->addItem(convertQ(6,(*(  stuProfile->getOwnQ()))[6]));
+        ui->ownQList->addItem(convertQ(6,(*(studentProfile->getOwnQ()))[6]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("7. How flexible are you in handling emergency situations (e.g. doing other team member's work in case of emergency)?");
-        ui->ownQList->addItem(convertQ(7,(*(  stuProfile->getOwnQ()))[7]));
+        ui->ownQList->addItem(convertQ(7,(*(studentProfile->getOwnQ()))[7]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("8. What grade are you aiming for in this course?");
-        ui->ownQList->addItem(convertQ(8,(*(  stuProfile->getOwnQ()))[8]));
+        ui->ownQList->addItem(convertQ(8,(*(studentProfile->getOwnQ()))[8]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("9. During group meetings, how strict are you when it comes to discussion topics? (i.e. is it alright to discuss nonrelated project topics?)");
-        ui->ownQList->addItem(convertQ(9,(*(  stuProfile->getOwnQ()))[9]));
+        ui->ownQList->addItem(convertQ(9,(*(studentProfile->getOwnQ()))[9]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("10. Would you prefer being a group leader?");
-        ui->ownQList->addItem(convertQ(10,(*(  stuProfile->getOwnQ()))[10]));
+        ui->ownQList->addItem(convertQ(10,(*(studentProfile->getOwnQ()))[10]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("11. Would you mind meeting with the group on weekends?");
-        ui->ownQList->addItem(convertQ(11,(*(  stuProfile->getOwnQ()))[11]));
+        ui->ownQList->addItem(convertQ(11,(*(studentProfile->getOwnQ()))[11]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("12. How many courses are you currently taking?");
-        ui->ownQList->addItem(convertQ(12,(*(  stuProfile->getOwnQ()))[12]));
+        ui->ownQList->addItem(convertQ(12,(*(studentProfile->getOwnQ()))[12]));
         ui->ownQList->addItem("");
 
         ui->ownQList->addItem("13. How many personal projects have you worked on?");
-        ui->ownQList->addItem(convertQ(13,(*(  stuProfile->getOwnQ()))[13]));
+        ui->ownQList->addItem(convertQ(13,(*(studentProfile->getOwnQ()))[13]));
         ui->ownQList->addItem("");
 
 
@@ -125,64 +96,67 @@ void StudentProfilePage::setStudentProfile(StudentProfile*  stuProfile){
         ui->partnerQList->setTextElideMode(Qt::ElideLeft);
 
         ui->partnerQList->addItem("1. What grade would you prefer your partner has in COMP 2404?");
-        ui->partnerQList->addItem(convertQ(1,(*(  stuProfile->getPartnerQ()))[1]));
+        ui->partnerQList->addItem(convertQ(1,(*(studentProfile->getPartnerQ()))[1]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("2. What grade would you prefer your partner has in COMP 2402?");
-        ui->partnerQList->addItem(convertQ(2,(*(  stuProfile->getPartnerQ()))[2]));
+        ui->partnerQList->addItem(convertQ(2,(*(studentProfile->getPartnerQ()))[2]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("3. Does your partner have to be punctual?");
-        ui->partnerQList->addItem(convertQ(3,(*(  stuProfile->getPartnerQ()))[3]));
+        ui->partnerQList->addItem(convertQ(3,(*(studentProfile->getPartnerQ()))[3]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("4. Does your partner have to be technical?");
-        ui->partnerQList->addItem(convertQ(4,(*(  stuProfile->getPartnerQ()))[4]));
+        ui->partnerQList->addItem(convertQ(4,(*(studentProfile->getPartnerQ()))[4]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("5. Do you prefer that your partner works during group meetings or by themselves?");
-        ui->partnerQList->addItem(convertQ(5,(*(  stuProfile->getPartnerQ()))[5]));
+        ui->partnerQList->addItem(convertQ(5,(*(studentProfile->getPartnerQ()))[5]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("6. How many hours per week do you prefer that your partner dedicates for school work?");
-        ui->partnerQList->addItem(convertQ(6,(*(  stuProfile->getPartnerQ()))[6]));
+        ui->partnerQList->addItem(convertQ(6,(*(studentProfile->getPartnerQ()))[6]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("7. How flexible should your partner be in handling emergency situations?");
-        ui->partnerQList->addItem(convertQ(7,(*(  stuProfile->getPartnerQ()))[7]));
+        ui->partnerQList->addItem(convertQ(7,(*(studentProfile->getPartnerQ()))[7]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("8. What is the minimum grade that you prefer your partner to be aiming for in this course?");
-        ui->partnerQList->addItem(convertQ(8,(*(  stuProfile->getPartnerQ()))[8]));
+        ui->partnerQList->addItem(convertQ(8,(*(studentProfile->getPartnerQ()))[8]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("9. During group meetings, how strict should your partner be when it comes to discussion topics?");
-        ui->partnerQList->addItem(convertQ(9,(*(  stuProfile->getPartnerQ()))[9]));
+        ui->partnerQList->addItem(convertQ(9,(*(studentProfile->getPartnerQ()))[9]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("10. Would you prefer that your partner takes group leadership?");
-        ui->partnerQList->addItem(convertQ(10,(*(  stuProfile->getPartnerQ()))[10]));
+        ui->partnerQList->addItem(convertQ(10,(*(studentProfile->getPartnerQ()))[10]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("11. Would you prefer that your partner is capable of meeting on weekends?");
-        ui->partnerQList->addItem(convertQ(11,(*(  stuProfile->getPartnerQ()))[11]));
-        ui->partnerQList->addItem(""); //How many courses are you currently taking?
+        ui->partnerQList->addItem(convertQ(11,(*(studentProfile->getPartnerQ()))[11]));
+        ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("12. How many courses would you prefer that your partner is currently taking?");
-        ui->partnerQList->addItem(convertQ(12,(*(  stuProfile->getPartnerQ()))[12]));
+        ui->partnerQList->addItem(convertQ(12,(*(studentProfile->getPartnerQ()))[12]));
         ui->partnerQList->addItem("");
 
         ui->partnerQList->addItem("13. How many personal projects do you prefer your partner has worked on?");
-        ui->partnerQList->addItem(convertQ(13,(*(  stuProfile->getPartnerQ()))[13]));
+        ui->partnerQList->addItem(convertQ(13,(*(studentProfile->getPartnerQ()))[13]));
         ui->partnerQList->addItem("");
 
         for(int z =0 ; z < 39; z+=3){
             ui->partnerQList->item(z)->setForeground(*blueBrush);
         }
+
     }
+
 }
 
-QString StudentProfilePage::convertQ(int qid,int valueID ){
+
+QString AdminStudentProfilePage::convertQ(int qid,int valueID ){
     switch(qid){
         case 1:{
             switch(valueID){

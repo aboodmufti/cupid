@@ -4,6 +4,9 @@
 #include <QWidget>
 #include "mainwindow.h"
 /* welcome page boundary class */
+#include "StorageSubsystem/storage.h"
+class Storage;
+
 class MainWindow;
 
 namespace Ui {
@@ -17,8 +20,7 @@ class WelcomePage : public QWidget
 public:
     explicit WelcomePage(QWidget *parent = 0);
     ~WelcomePage();
-    void setMain(MainWindow*);
-
+    void setMain(MainWindow*,Storage* storage);
 private slots:
     void on_adminButton_2_clicked();
 
@@ -27,6 +29,7 @@ private slots:
 private:
     Ui::WelcomePage *ui;
     MainWindow *main;
+    Storage* storage;
 };
 
 #endif // WELCOMEPAGE_H

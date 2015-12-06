@@ -7,6 +7,7 @@
 /* student edit profile page boundary class */
 class MainWindow;
 class StudentProfile;
+class ProfileManager;
 
 namespace Ui {
 class EditProfilePage;
@@ -19,7 +20,7 @@ class EditProfilePage : public QWidget
 public:
     explicit EditProfilePage(QWidget *parent = 0);
     ~EditProfilePage();
-    void setMain(MainWindow*);
+    //void setMain(MainWindow*);
     void setManager(ProfileManager*);
     void setStudentProfile(StudentProfile*);
 

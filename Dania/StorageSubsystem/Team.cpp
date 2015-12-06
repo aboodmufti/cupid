@@ -1,4 +1,4 @@
-#include "Team.hpp"
+#include "Team.h"
 
 // constructors and destructors
 Team::Team(){
@@ -63,7 +63,7 @@ bool Team::addStudent(int id){
 }
 
 void Team::removeStudent(int id){
-    studentIds.remove(id);
+    studentIds.removeOne(id);
 }
 
 
@@ -76,10 +76,4 @@ Team& Team::operator+=(int id){
 Team& Team::operator-=(int id){
     this->removeStudent(id);
     return *this;
-}
-
-ostream& operator<<(ostream& out, Team& t)
-{
-    out << t.teamInfo << endl;
-    return out;
 }

@@ -1,6 +1,7 @@
 #include "StudentProfile.h"
 
-
+#include <qdebug.h>
+#include <QDebug>
 StudentProfile::StudentProfile(){
     username = "unknown";
     studentName = "unknown";

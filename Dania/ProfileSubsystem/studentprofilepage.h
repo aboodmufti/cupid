@@ -7,6 +7,7 @@
 /* student profile page boundary class */
 class MainWindow;
 class StudentProfile;
+class ProfileManager;
 
 namespace Ui {
 class StudentProfilePage;
@@ -19,7 +20,7 @@ class StudentProfilePage : public QWidget
 public:
     explicit StudentProfilePage(QWidget *parent = 0);
     ~StudentProfilePage();
-    void setMain(MainWindow*);
+    //void setMain(MainWindow*);
     void setManager(ProfileManager*);
     void setStudentProfile(StudentProfile*);
     QString convertQ(int qid,int valueID);

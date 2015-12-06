@@ -1,22 +1,32 @@
 #include "mainwindow.h"
 #include <QApplication>
-//#include "database/storage.h"
-//#include "entity/EntityDef.h"
+
+#include "mainwindow.h"
 #include "StorageSubsystem/storage.h"
-//#include <iostream>
-#include <QDebug>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.initialize();
-    w.show();
+    QString test = __FILE__;
+    QString test2 = test.left(test.length() - 8);
+    QString final_path = test2.append("style.qss");
 
-    //std::cout << "MAIN!";
-    qDebug() << "In Main";
+    // Load an application style
+    QFile styleFile( final_path );
+    styleFile.open( QFile::ReadOnly );
+
+    // Apply the loaded stylesheet
+    QString style( styleFile.readAll() );
+    //a.setStyleSheet( style );
+    //fff8ec
+    MainWindow* w = new MainWindow();
+    Storage* storage = new Storage();
+    w->setStyleSheet(style);
+    w->initialize(storage);
+    w->show();
+
+
+    //MainWindow* mainWindow = new MainWindow();
+
     return a.exec();
-
 }
-
-

@@ -1,4 +1,4 @@
-#include "ProfileSubsystem/studentprojectspage.h"
+#include "studentprojectspage.h"
 #include "ui_studentprojectspage.h"
 
 StudentProjectsPage::StudentProjectsPage(QWidget *parent) :
@@ -29,24 +29,18 @@ StudentProjectsPage::~StudentProjectsPage()
 {
     delete ui;
 }
-/*
-void StudentProjectsPage::setMain(MainWindow* newMain){
-    manager->getMainWindow() = newMain;
-}
-*/
-void StudentProjectsPage::setManager(ProfileManager* mngr)
-{
-    manager = mngr;
+
+void StudentProjectsPage::setManager(ProjectManager* pm){
+    projectManager = pm;
 }
 
 void StudentProjectsPage::on_pushButton_clicked()
 {
-    //manager->getMainWindow()->handleNewPage(STUDENT_PROFILE);
-    manager->setStudentProfilePage();
+    projectManager->handleNewPage(STUDENT_PROFILE);
 }
 
 void StudentProjectsPage::joinButtonClicked(int pid){
-    manager->joinProject(pid);
+    projectManager->joinProject(pid);
 }
 
 void StudentProjectsPage::setProjects(QList<QList<QString>*>* projects){
@@ -64,7 +58,7 @@ void StudentProjectsPage::setProjects(QList<QList<QString>*>* projects){
 
     for(int i=0;i<projects2.size();++i){
         QTableWidgetItem* name = new QTableWidgetItem();
-        name->setText((*(projects2[i]))[1]);
+        name->setText((*(projects2[i]))[1]);\
         name->setFlags(name->flags() ^ Qt::ItemIsEditable);
         ui->projectsTable->setItem(i,0,name);
 
@@ -72,7 +66,6 @@ void StudentProjectsPage::setProjects(QList<QList<QString>*>* projects){
         if(joinStat == "TRUE"){
             QTableWidgetItem* status = new QTableWidgetItem();
             status->setText("Joined");
-            status->setTextAlignment(Qt::AlignCenter);
             QColor * green = new QColor(84, 167, 0);
             status->setTextColor(*green);
             status->setFlags(status->flags() ^ Qt::ItemIsEditable);

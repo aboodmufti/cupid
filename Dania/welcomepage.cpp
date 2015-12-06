@@ -13,16 +13,21 @@ WelcomePage::~WelcomePage()
     delete ui;
 }
 
-void WelcomePage::setMain(MainWindow* newMain){
+void WelcomePage::setMain(MainWindow* newMain, Storage* storage){
     main = newMain;
+    this->storage = storage;
 }
+
+
 
 void WelcomePage::on_adminButton_2_clicked()
 {
-    main->handleNewPage(ADMIN_LOGIN);
+    //main->handleNewPage(ADMIN_LOGIN);
+    storage->goToAdminLogin(main);
 }
 
 void WelcomePage::on_studentButton_2_clicked()
 {
-    main->handleNewPage(STUDENT_LOGIN);
+    //main->handleNewPage(STUDENT_LOGIN);
+    storage->goToStudentLogin(main);
 }

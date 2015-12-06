@@ -12,11 +12,11 @@ StudentLoginPage::~StudentLoginPage()
 {
     delete ui;
 }
-
+/*
 void StudentLoginPage::setMain(MainWindow* newMain){
     manager->getMainWindow() = newMain;
 }
-
+*/
 void StudentLoginPage::setManager(ProfileManager* mngr)
 {
     manager = mngr;
@@ -30,7 +30,6 @@ void StudentLoginPage::on_submitButton_clicked()
         return;
     }
     manager->checkStudentLogin(ui->usernameTextEdit->toPlainText()); // added hussam
-
 }
 
 void StudentLoginPage::on_backButton_clicked()

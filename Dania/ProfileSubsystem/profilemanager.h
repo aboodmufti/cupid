@@ -6,8 +6,9 @@
 #include "ProfileSubsystem/studentprofilepage.h"
 #include "ProfileSubsystem/editprofilepage.h"
 #include "ProfileSubsystem/studentprojectspage.h"
-#include "ProfileSubsystem/welcomepage.h"
+//#include "ProfileSubsystem/welcomepage.h"
 #include "mainwindow.h"
+class Storage;
 
 class ProfileManager
 {
@@ -26,6 +27,9 @@ public:
     void checkStudentLogin(QString);
     void openProject(int);
     bool getStudentbyID(int);
+    void setMainStorage(MainWindow* main,Storage* storage);
+
+    void setStuProfileInStorage(StudentProfile* stu);
 
 private:
     Storage *storage;

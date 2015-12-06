@@ -1,4 +1,4 @@
-#include "StorageSubsystem/storage.h"
+#include "storage.h"
 #include <QList>
 #include <unistd.h>
 
@@ -10,12 +10,8 @@ Storage::Storage()
 
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(final_path);
-
-    bool db_ok = db.open();
-
+    db.open();
     query = new QSqlQuery(db);
-
-
 }
 
 // Student Profile
@@ -23,8 +19,8 @@ void Storage::createStudentProfile(){
     stuProfile = new StudentProfile();
 }
 
-StudentProfile* createNewStudentProfile(){
-    StudentProfile profile = new StudentProfile();
+StudentProfile* Storage::createNewStudentProfile(){
+    StudentProfile* profile = new StudentProfile();
     return profile;
 }
 
@@ -65,7 +61,7 @@ void Storage::setOwnQ(QList<int>* list){
 	stuProfile->setOwnQ(list);
 }
 void  Storage::setPartnerQ(QList<int>* list){
-	stuProfile->setPartenrQ(list);
+    stuProfile->setPartnerQ(list);;
 }
 
 //void Storage::setTeams(Team*);
@@ -77,8 +73,10 @@ void Storage::setProjects(QList<Project*> pro){
     stuProfile->setProjects(pro);
 }
 void Storage::setStudentProfile(StudentProfile* profile){
-	stuProfile = profile;
+
+    stuProfile = profile;
 }	
+
 
 //Student functions
 void Storage::createStudent(){
@@ -96,11 +94,11 @@ void Storage::setStudent(Student* s){
 	stu = s;
 }
 
-void setOwnProfile(StudentProfile* stuPro){
+void Storage::setOwnProfile(StudentProfile* stuPro){
     stu->setStudentProfile(stuPro);
 }
 
-StudentProfile* getOwnProfile(){
+StudentProfile* Storage::getOwnProfile(){
     return stu->getStudentProfile();
 }
 
@@ -117,7 +115,7 @@ Administrator* Storage::getAdministrator(){
 void Storage::setAdministrator(Administrator* a){
 	admin = a;
 }
-void Storage::addProject(Project* pro){
+void Storage::addNewProject(Project* pro){
 	admin->addProject(pro);
 }
 
@@ -210,10 +208,10 @@ QString Storage::getTeamInfo(){
 	return team->getTeamInfo();
 }
 bool Storage::addStudent(int id){
-	team->addStudent(id);
+    return team->addStudent(id);
 }
 void Storage::removeStudent(int id){
-	team->removeStudent(id);
+    return team->removeStudent(id);
 }
 
 
@@ -690,7 +688,24 @@ QList<StudentProfile*>* Storage::getStudentsInProject2(int pid)
 }
 
 	//Algorithm management functions
-void Storage::executeAlgorithm(Project*){}
-void Storage::viewSummery(Project*){} //might remove later
-void Storage::viewInformation(Project*){} //might remove later
+void Storage::executeAlgorithm(Project* project, QList<StudentProfile*>* studentsInProject, MainWindow* main){
+    AlgorithmManager     *algorithmManager = new AlgorithmManager(this, main);
+    algorithmManager->runAlgorithm(project, studentsInProject);
+}
+void Storage::goToProject(int pid){
+    projectManager->openProject(pid);
+}
 
+void Storage::goToAdminLogin(MainWindow* main){
+    ProjectManager* projectManager = new ProjectManager();
+    this->projectManager = projectManager;
+    projectManager->setMainStorage(main,this);
+    projectManager->goToAdminLoginPage();
+
+}
+
+void Storage::goToStudentLogin(MainWindow* main){
+    profileManager = new ProfileManager();
+    profileManager->setMainStorage(main,this);
+    profileManager->setStudentLoginPage();
+}

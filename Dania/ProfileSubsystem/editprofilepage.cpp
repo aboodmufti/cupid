@@ -16,11 +16,11 @@ EditProfilePage::~EditProfilePage()
 {
     delete ui;
 }
-
+/*
 void EditProfilePage::setMain(MainWindow* newMain){
     manager->getMainWindow() = newMain;
 }
-
+*/
 void EditProfilePage::setManager(ProfileManager* mngr)
 {
     manager = mngr;
@@ -44,10 +44,14 @@ void EditProfilePage::on_pushButton_clicked()
     stuProfile->setName(ui->nameTextEdit->toPlainText());
     stuProfile->setUsername(username);*/
 
+    StudentProfile *stuProfile = manager->getStorage()->createNewStudentProfile();
+    stuProfile->setName(ui->nameTextEdit->toPlainText());
+    stuProfile->setUsername(username);
+    /*
     manager->getStorage()->createStudentProfile();
     manager->getStorage()->setProfileName(ui->nameTextEdit->toPlainText());
     manager->getStorage()->setUsername(username);
-
+    */
     QList<int>* ownQ= new QList<int>();
     (*ownQ) += ownQID;
     (*ownQ) += ((ui->own->currentIndex())+1);
@@ -80,10 +84,11 @@ void EditProfilePage::on_pushButton_clicked()
     (*partnerQ) += ((ui->partner_11->currentIndex())+1);
     (*partnerQ) += ((ui->partner_12->currentIndex())+1);
     (*partnerQ) += ((ui->partner_13->currentIndex())+1);
-
+/*
     manager->getStorage()->setOwnQ(ownQ);
-    manager->getStorage()->setPartnerQ(partnerQ);
-
+    manager->getStorage()->setPartnerQ(partnerQ);*/
+    stuProfile->setOwnQ(ownQ);
+    stuProfile->setPartnerQ(partnerQ);
     if(newStu == 1){
         QRegExp re("\\d*");
         if (!re.exactMatch(ui->studentIDTextEdit->toPlainText())){
@@ -95,10 +100,14 @@ void EditProfilePage::on_pushButton_clicked()
             return;
         }
 
-        manager->getStorage()->setProfileID((ui->studentIDTextEdit->toPlainText()).toInt());
+        //manager->getStorage()->setProfileID((ui->studentIDTextEdit->toPlainText()).toInt());
+        stuProfile->setID((ui->studentIDTextEdit->toPlainText()).toInt());
         manager->editProfileSubmit(newStu, stuProfile);
+       //manager->editProfileSubmit(newStu, manager->getStorage()->getOwnProfile());
     }else if(newStu == 0){
-        manager->getStorage()->setProfileID(stuID);
+        stuProfile->setID(stuID);
+        //manager->getStorage()->setProfileID(stuID);
+        //manager->editProfileSubmit(newStu, manager->getStorage()->getOwnProfile());
         manager->editProfileSubmit(newStu, stuProfile);
     }
 
