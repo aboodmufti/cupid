@@ -30,7 +30,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Algorithm output</string>
+    <string>Algorithm Output</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -39,11 +39,18 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>530</y>
+     <x>440</x>
+     <y>500</y>
      <width>191</width>
      <height>27</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>Back</string>
@@ -52,23 +59,30 @@
   <widget class="QPushButton" name="detailedResults">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>530</y>
+     <x>640</x>
+     <y>500</y>
      <width>191</width>
      <height>27</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>Detailed results</string>
+    <string>Detailed Results</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="outputTable">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>150</y>
+     <y>120</y>
      <width>801</width>
-     <height>351</height>
+     <height>341</height>
     </rect>
    </property>
   </widget>

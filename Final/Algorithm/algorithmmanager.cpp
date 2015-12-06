@@ -1,4 +1,5 @@
 ﻿#include "algorithmmanager.h"
+#include <QTextStream>
 
 AlgorithmManager::AlgorithmManager(Storage* storage, MainWindow* main)
 {
@@ -229,19 +230,20 @@ QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<
         }
 
 
-        details += "\n\n\n------------------------------------------------------------------------------------------\n";
-        details += "                                   TEAM "+QString::number(i+1)+" (Team size = "+QString::number((initialTeams->at(i))->value("size"))+")\n";
-        details += "------------------------------------------------------------------------------------------\n\n";
-        details += "------------------------------------------------------------------------------------------\n";
-        details += "                                     FIRST 2 IN THE TEAM\n";
-        details += "------------------------------------------------------------------------------------------\n";
-        details += "Student 1: " +  storage->getStudentProfile(s1)->getName() + "  \nStudent 2: " + storage->getStudentProfile(s2)->getName() + "  \nScore: " + QString::number(lowestAvrg) + " <-- lowest score\n";
-        details += "Number of students in the team: " + QString::number(count) +"\n";
-        details += "------------------------------------------------------------------------------------------\n";
-        details += "                                  List of IDs on this team\n";
-        details += "------------------------------------------------------------------------------------------\n";
+        details += "\n\n\n\t\t    ------------------------------------------------------------------------------------------\n";
+        details += "\t\t                                       TEAM "+QString::number(i+1)+" (Team size = "+QString::number((initialTeams->at(i))->value("size"))+")\n";
+        details += "\t\t    ------------------------------------------------------------------------------------------\n\n";
+        details += "\t\t    ------------------------------------------------------------------------------------------\n";
+        details += "\t\t                                         FIRST 2 IN THE TEAM\n";
+        details += "\t\t    ------------------------------------------------------------------------------------------\n";
+        details += "\t\t    Student 1: " +  storage->getStudentProfile(s1)->getName() + "  \n\t\t    Student 2: " + storage->getStudentProfile(s2)->getName() + "  \n\t\t    Score: " + QString::number(lowestAvrg) + " <-- lowest score\n";
+        details += "\t\t    Number of students in the team: " + QString::number(count) +"\n";
+        details += "\t\t    ------------------------------------------------------------------------------------------\n";
+        //details += "\t\t                                      List of IDs on this team\n";
+        details += "\t\t                                   List of Students on this team\n";
+        details += "\t\t    ------------------------------------------------------------------------------------------\n\t\t    ";
         for(int c = 0 ;c < stusInTeam->size(); ++c){
-            details += storage->getStudentProfile(stusInTeam->at(c))->getName()+ "\n";
+            details += storage->getStudentProfile(stusInTeam->at(c))->getName()+ "\n\t\t    ";
         }
         details += "------------------------------------------------------------------------------------------\n";
 
@@ -298,16 +300,16 @@ QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<
                 candidateStus->append(oneStu);
 
             }
-            details += "\n------------------------------------------------------------------------------------------\n";
-            details += "                                 CHOOSING THE NEXT STUDENT\n";
-            details += "------------------------------------------------------------------------------------------\n\n";
-            details += "------------------------------------------------------------------------------------------\n";
-            details += "                                 List of Candidate Students\n";
-            details += "------------------------------------------------------------------------------------------\n";
+            details += "\n\t\t    ------------------------------------------------------------------------------------------\n";
+            details += "\t\t                                 CHOOSING THE NEXT STUDENT\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n";
+            details += "\t\t                                    List of Candidate Students\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n";
             for(int c = 0 ;c < candidateStus->size(); ++c){
-                 details += "Student ID: " + storage->getStudentProfile(candidateStus->at(c)->at(0))->getName() + "    Score: " + QString::number((float)candidateStus->at(c)->at(1)/100) +"\n";
+                 details += "\t\t       Student: " + storage->getStudentProfile(candidateStus->at(c)->at(0))->getName() + "        Score: " + QString::number((float)candidateStus->at(c)->at(1)/100) +"\n";
             }
-            details += "------------------------------------------------------------------------------------------\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n";
             qDebug() << "                candidate students";
             for(int c = 0 ;c < candidateStus->size(); ++c){
                  qDebug() << "Student ID:" << candidateStus->at(c)->at(0) << "Score:" << (float)candidateStus->at(c)->at(1)/100;
@@ -345,16 +347,16 @@ QString AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<
                 }
             }
 
-            details += "------------------------------------------------------------------------------------------\n";
-            details += "                                    CHOSEN STUDENT\n";
-            details += "------------------------------------------------------------------------------------------\n";
-            details += "Student: " + storage->getStudentProfile(s3)->getName() + " \nScore with the rest of the team: " + QString::number(lowestAvrg2) + " <-- lowest score\n";
-            details += "Number of students in the team: " + QString::number(count) +"\n";
-            details += "------------------------------------------------------------------------------------------\n";
-            details += "                          List of Students on the team (updated)\n";
-            details += "------------------------------------------------------------------------------------------\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n";
+            details += "\t\t                                           CHOSEN STUDENT\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n";
+            details += "\t\t    Student: " + storage->getStudentProfile(s3)->getName() + " \n\t\t    Score with the rest of the team: " + QString::number(lowestAvrg2) + " <-- lowest score\n";
+            details += "\t\t    Number of students in the team: " + QString::number(count) +"\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n";
+            details += "\t\t                           List of Students on the team (updated)\n";
+            details += "\t\t    ------------------------------------------------------------------------------------------\n\t\t    ";
             for(int c = 0 ;c < stusInTeam->size(); ++c){
-                 details += storage->getStudentProfile(stusInTeam->at(c))->getName()+"\n";
+                 details += storage->getStudentProfile(stusInTeam->at(c))->getName()+"\n\t\t    ";
             }
             details += "------------------------------------------------------------------------------------------\n";
             qDebug() << "                CHOSEN STUDENT";
