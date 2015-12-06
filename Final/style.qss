@@ -17,7 +17,8 @@ QPushButton:pressed{
 }
 
 QPushButton:focus{
-    outine-none;
+    border: none;
+    outline: none;
 }
 
 
@@ -68,6 +69,7 @@ QTableWidget::item{
 
 QListWidget{
   background-color: #ffffff;
+  border-radius: 3px;
 }
 
 QScrollArea{
