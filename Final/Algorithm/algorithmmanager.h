@@ -45,7 +45,7 @@ private:
     QList<QList<int>*>* step2(QList<QMap<int, QMap<int,int>*>*>* individualScoreList);
     QString step3(QList<QMap<QString, int>*>* initialTeams, QList<QList<int>*>* finalList, QList<int>* listOfIds);
     QList<int>* idList(QList<StudentProfile*>* studentsInProject);
-
+    int coef(int score, int q);
 };
 
 #endif // ALGORITHMMANAGER_H

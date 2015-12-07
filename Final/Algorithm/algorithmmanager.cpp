@@ -128,7 +128,66 @@ QList<QMap<QString, int>*>* AlgorithmManager::preventiveMeasures(int minSize, in
     }
 }
 
+int AlgorithmManager::coef(int score, int q){
+    switch(q){
+        case 1:{
+            return score * 5;
+        }
+        break;
+        case 2:{
+            return score * 5;
+        }
+        break;
+        case 3:{
+            return score * 6;
+        }
+        break;
+        case 4:{
+            return score * 5;
+        }
+        break;
+        case 5:{
+            return score * 4;
+        }
+        break;
+        case 6:{
+            return score * 5;
+        }
+        break;
+        case 7:{
+            return score * 6;
+        }
+        break;
+        case 8:{
+            return score * 7;
+        }
+        break;
+        case 9:{
+            return score * 3;
+        }
+        break;
+        case 10:{
+            return score * 2;
+        }
+        break;
+        case 11:{
+            return score * 2;
+        }
+        break;
+        case 12:{
+            return score * 3;
+        }
+        break;
+        case 13:{
+            return score * 4;
+        }
+        break;
+      default:
+        return 0;
+        break;
 
+    }
+}
 QList<QMap<int, QMap<int,int>*>*>* AlgorithmManager::step1(QList<StudentProfile*>* studentsInProject){
     QList<QMap<int, QMap<int,int>*>*>* individualScoreList = new QList<QMap<int, QMap<int,int>*>*>();
     int totalStuNum = studentsInProject->size();
@@ -147,8 +206,8 @@ QList<QMap<int, QMap<int,int>*>*>* AlgorithmManager::step1(QList<StudentProfile*
             for(int y = 1 ; y < 14; ++y){
                 QList<int>* currStuPartnerQ = currStu->getPartnerQ();
                 QList<int>* comparedStuOwnQ = comparedStu->getPartnerQ();
-
-                sumOfDiffs += qFabs(currStuPartnerQ->at(y) - comparedStuOwnQ->at(y));
+                sumOfDiffs += qFabs(coef(currStuPartnerQ->at(y),y) - coef(comparedStuOwnQ->at(y),y));
+                //sumOfDiffs += qFabs(currStuPartnerQ->at(y) - comparedStuOwnQ->at(y));
             }
             scores->insert(comparedStu->getID(),sumOfDiffs);
         }
