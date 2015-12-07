@@ -37,7 +37,7 @@ void createProjectPage::on_pushButton_clicked()
     }
 
     int newID = projectManager->createProject(getProject());
-    projectManager->openProject(newID);
+    projectManager->openProject(newID,1);
 }
 
 Project* createProjectPage::getProject()

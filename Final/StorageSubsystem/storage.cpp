@@ -692,8 +692,8 @@ void Storage::executeAlgorithm(Project* project, QList<StudentProfile*>* student
     AlgorithmManager     *algorithmManager = new AlgorithmManager(this, main);
     algorithmManager->runAlgorithm(project, studentsInProject);
 }
-void Storage::goToProject(int pid){
-    projectManager->openProject(pid);
+void Storage::goToProject(int pid, int err){
+    projectManager->openProject(pid, err);
 }
 
 void Storage::goToAdminLogin(MainWindow* main){

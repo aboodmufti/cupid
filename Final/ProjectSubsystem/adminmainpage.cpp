@@ -25,7 +25,7 @@ void AdminMainPage::tableItemClicked(int row , int column)
 
     projId = ((*(projects))[row])->getID();
 
-    projectManager->openProject(projId);
+    projectManager->openProject(projId,1);
 
 
 }

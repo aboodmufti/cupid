@@ -40,6 +40,10 @@ void ProjectPage::tableItemClicked(int row , int column)
     projectManager->displayStudentProfile(sid,pid);
 }
 
+void ProjectPage::setError(QString errorMessage){
+    ui->errorLabel->setText(errorMessage);
+}
+
 void ProjectPage::setProject(Project* project,QList<StudentProfile*>* list)
 {
     pid = project->getID();

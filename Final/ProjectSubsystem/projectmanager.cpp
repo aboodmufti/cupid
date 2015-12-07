@@ -71,14 +71,18 @@ int ProjectManager::createProject(Project* proj)
     return storage->insertProject(proj);
 }
 
-void ProjectManager::openProject(int pid)
+void ProjectManager::openProject(int pid, int err)
 {
+
     project = storage->getProjectById(pid);
     studentsInProject = storage->getStudentsInProject2(pid) ;//getStudentsInProject(pid)
     ProjectPage *projectPage = new ProjectPage();
 
     projectPage->setProject(project,studentsInProject);
     projectPage->setManager(this);
+    if(err == 0 ){
+        projectPage->setError("Can't form teams with the given minimum and maximum team size");
+    }
     mainWindow->setCentralWidget(projectPage);
 }
 

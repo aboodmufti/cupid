@@ -35,12 +35,12 @@ void EditProjectPage::on_pushButton_clicked() // save
         return;
     }
     projectManager->updateProject(getProject());
-    projectManager->openProject(pid);
+    projectManager->openProject(pid,1);
 }
 
 void EditProjectPage::on_pushButton_2_clicked() // cancel
 {
-    projectManager->openProject(pid);
+    projectManager->openProject(pid,1);
 
 }
 

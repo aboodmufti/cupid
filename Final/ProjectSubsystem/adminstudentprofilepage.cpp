@@ -15,7 +15,7 @@ AdminStudentProfilePage::~AdminStudentProfilePage()
 
 void AdminStudentProfilePage::on_backButton_clicked()
 {
-     projectManager->openProject(pid);
+     projectManager->openProject(pid,1);
 }
 
 void AdminStudentProfilePage::setManager(ProjectManager* pm){

@@ -15,7 +15,10 @@ void AlgorithmManager::runAlgorithm(Project* project, QList<StudentProfile*>* st
 
     //get teams list with sizes
     QList<QMap<QString, int>*>* initialTeams = preventiveMeasures(minSize, maxSize, numStudents);
-
+    if(initialTeams == 0){
+        storage->goToProject(pid,0);
+        return;
+    }
 
     //get individual score lists
     QList<QMap<int, QMap<int,int>*>*>* individualScoreList;
@@ -81,10 +84,17 @@ QList<QMap<QString, int>*>* AlgorithmManager::preventiveMeasures(int minSize, in
         numFullTeams -= 1;
         int noTeamStus = remainder + maxSize;
         int divider = 2;
+        qDebug() << "numFullTeams: "<< numFullTeams << "  noTeamStus: "<< noTeamStus << "  divider: "<< divider << "  maxSize: "<< maxSize << "  minSize: "<< minSize;
+
         while(qFloor(noTeamStus/divider) < minSize){
             numFullTeams -= 1;
             noTeamStus += maxSize;
             divider += 1;
+            if(numFullTeams < 0 || noTeamStus > numStudents){
+                qDebug() << "CANNOT FORM TEAMS";
+                return 0;
+            }
+            qDebug() << "numFullTeams: "<< numFullTeams << "  noTeamStus: "<< noTeamStus << "  divider: "<< divider << "  maxSize: "<< maxSize << "  minSize: "<< minSize;
         }
 
         remainder = noTeamStus % divider;
@@ -95,6 +105,7 @@ QList<QMap<QString, int>*>* AlgorithmManager::preventiveMeasures(int minSize, in
             team->insert("size", maxSize);
             team->insert("remaining", maxSize);
             teams->append(team);
+            qDebug() << "Team size: " << maxSize;
         }
 
         //Adding team with the extra student
@@ -102,6 +113,7 @@ QList<QMap<QString, int>*>* AlgorithmManager::preventiveMeasures(int minSize, in
         team->insert("size", (qFloor(noTeamStus/divider)+remainder));
         team->insert("remaining", (qFloor(noTeamStus/divider)+remainder));
         teams->append(team);
+        qDebug()<< "Team size: "<< (qFloor(noTeamStus/divider)+remainder);
 
         //Adding the rest
         for(int i=0 ; i<divider-1 ; ++i){
@@ -109,6 +121,7 @@ QList<QMap<QString, int>*>* AlgorithmManager::preventiveMeasures(int minSize, in
             team->insert("size", (qFloor(noTeamStus/divider)));
             team->insert("remaining", (qFloor(noTeamStus/divider)));
             teams->append(team);
+            qDebug()<< "Team size: "<< (qFloor(noTeamStus/divider));
         }
         qDebug() << "Preventive Measures END";
         return teams;
@@ -594,7 +607,7 @@ void AlgorithmManager::step3(QList<QMap<QString, int>*>* initialTeams, QList<QLi
 
 void AlgorithmManager::goToProject(){
     qDebug() << "algo 3";
-    storage->goToProject(pid);
+    storage->goToProject(pid,1);
     qDebug() << "GO TO PROJECT";
 }
 

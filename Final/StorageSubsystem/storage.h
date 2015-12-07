@@ -123,7 +123,7 @@ class Storage
 
         //Algorithm management functions
         void                            executeAlgorithm(Project*, QList<StudentProfile*>*,MainWindow* main);
-        void                            goToProject(int pid);
+        void                            goToProject(int pid, int err);
 
         //other storage functions
         QSqlQuery*			getQueryObject();

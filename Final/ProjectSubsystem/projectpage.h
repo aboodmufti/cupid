@@ -22,7 +22,7 @@ public:
     ~ProjectPage();
     void setManager(ProjectManager*);
     void setProject(Project*, QList<StudentProfile*>*);
-
+    void setError(QString errorMessage);
 
 private slots:
     void on_pushButton_clicked();

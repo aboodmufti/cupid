@@ -29,7 +29,7 @@ class ProjectManager : public QMainWindow
 public:
     void joinProject(int pid);
     int  createProject(Project*);
-    void openProject(int);
+    void openProject(int, int err);
     void editProject(int);
     void updateProject(Project*);
     void publishProject(int);
