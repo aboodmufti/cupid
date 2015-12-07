@@ -23,7 +23,8 @@ The .tar file includes:
 
 2) This ReadMe file.
 
-3) Final.pro file along with the main and mainwindow files that are needed to launch the program.
+3) Final.pro file along with the main, mainwindow, style and welcomepage files that are needed to
+   launch the program.
 
 -------------------------------------------------------------------------------------------------------
 
