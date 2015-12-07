@@ -31,7 +31,7 @@ void EditProjectPage::on_pushButton_clicked() // save
         return;
     }
     if(newMax <= newMin){
-        ui->errorLabel->setText("Maximum team size cannot be larger than or equal to the minimum size");
+        ui->errorLabel->setText("Maximum team size cannot be less than or equal to the minimum size");
         return;
     }
     projectManager->updateProject(getProject());
